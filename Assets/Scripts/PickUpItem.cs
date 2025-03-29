@@ -9,6 +9,9 @@ public class PickUpItem : MonoBehaviour
     [SerializeField] float pickUpDistance = 1.5f;
     [SerializeField] float ttl = 10f;
 
+    public Item item;
+    public int count = 1;
+
 
     private void Awake()
     { 
@@ -23,9 +26,8 @@ public class PickUpItem : MonoBehaviour
         float distance = Vector3.Distance(transform.position, player.position);
 
     
-        if (distance < pickUpDistance)
+        if (distance > pickUpDistance)
         {
-            Destroy(gameObject);
             return;
         }
        
@@ -36,8 +38,17 @@ public class PickUpItem : MonoBehaviour
             );
 
         if (distance < 0.1f)
-        {
-            return;
+        {   
+            //여기보단 다른 구체적인 컨트롤러로 옮겨야 함
+            if(GameManager.Instance.inventoryContainer != null)
+            {
+                GameManager.Instance.inventoryContainer.Add(item, count);
+            }
+            else
+            {
+                Debug.LogWarning("NO INVENTORY CONTAINER ATTACHED TO THE GAME MANAGER");
+            }
+            Destroy(gameObject);
         }
     }
 }
