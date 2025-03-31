@@ -15,7 +15,16 @@ public class PickUpItem : MonoBehaviour
 
     private void Awake()
     { 
-        player = GameManager.Instance.player.transform;
+        player = GameManager.instance.player.transform;
+    }
+
+    public void Set(Item item, int count)
+    {
+        this.item = item;
+        this.count = count;
+
+        SpriteRenderer renderer = GetComponent<SpriteRenderer>();
+        renderer.sprite = item.icon;
     }
 
     private void Update()
@@ -40,9 +49,9 @@ public class PickUpItem : MonoBehaviour
         if (distance < 0.1f)
         {   
             //여기보단 다른 구체적인 컨트롤러로 옮겨야 함
-            if(GameManager.Instance.inventoryContainer != null)
+            if(GameManager.instance.inventoryContainer != null)
             {
-                GameManager.Instance.inventoryContainer.Add(item, count);
+                GameManager.instance.inventoryContainer.Add(item, count);
             }
             else
             {
