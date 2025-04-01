@@ -381,7 +381,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 175942727}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 886670048}
@@ -1410,6 +1410,7 @@ GameObject:
   - component: {fileID: 416943246}
   - component: {fileID: 416943247}
   - component: {fileID: 416943248}
+  - component: {fileID: 416943249}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1581,6 +1582,21 @@ MonoBehaviour:
   tileDatas:
   - {fileID: 11400000, guid: f988c84d4160acd4c800a0918a63afc1, type: 2}
   - {fileID: 11400000, guid: 4e6ca8fadcff772488afbbc210a7a9ba, type: 2}
+--- !u!114 &416943249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416943241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2077d700e4b65b2438961e032c95ae0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plowed: {fileID: 11400000, guid: c9d35ab03e775b445b6360ff1f43651c, type: 2}
+  seeded: {fileID: 11400000, guid: 7803ba2fefc895145857dd9483513dd1, type: 2}
+  targetTilemap: {fileID: 175942730}
 --- !u!1001 &449506498
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2098,7 +2114,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.03, y: 0.25503355, z: -10}
+  m_LocalPosition: {x: 1.03, y: 0.25503355, z: -10.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2422,7 +2438,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 599410740}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.03, y: 0.25503355, z: -10}
+  m_LocalPosition: {x: 1.03, y: 0.25503355, z: -10.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 770497106}
@@ -2564,7 +2580,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 631060357}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.03, y: 0.25503355, z: 0}
+  m_LocalPosition: {x: 1.03, y: 0.25503355, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2634,6 +2650,8 @@ MonoBehaviour:
   markerManager: {fileID: 2096203714}
   tileMapReadcontroller: {fileID: 416943248}
   maxDistance: 2
+  cropsManager: {fileID: 416943249}
+  plowableTiles: {fileID: 11400000, guid: 4e6ca8fadcff772488afbbc210a7a9ba, type: 2}
 --- !u!114 &631060365
 MonoBehaviour:
   m_ObjectHideFlags: 0

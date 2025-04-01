@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class ToolsCharacterController : MonoBehaviour
 {
@@ -12,7 +13,8 @@ public class ToolsCharacterController : MonoBehaviour
     [SerializeField] MarkerManager markerManager;
     [SerializeField] TileMapReadController tileMapReadcontroller;
     [SerializeField] float maxDistance = 1.5f;
-
+    [SerializeField] CropsManager cropsManager;
+    [SerializeField] TileData plowableTiles;
 
     Vector3Int selectedTilePosition;
     bool selectable;
@@ -30,7 +32,11 @@ public class ToolsCharacterController : MonoBehaviour
         Marker();
         if (Input.GetMouseButtonDown(0))
         {
-            UseTool();
+            if (UseToolWorld() == true)
+            {
+                return;
+            }
+            UseToolGrid();
         }
     }
 
@@ -52,7 +58,7 @@ public class ToolsCharacterController : MonoBehaviour
         markerManager.markedCellPosition = selectedTilePosition;
     }
 
-    private void UseTool()
+    private bool UseToolWorld()
     {
         Vector2 position = rgbd2d.position + character.lastMotionVector * offsetDistance;
 
@@ -64,7 +70,27 @@ public class ToolsCharacterController : MonoBehaviour
             if (hit != null)
             {
                 hit.Hit();
-                break;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void UseToolGrid()
+    {
+        if (selectable == true)
+        {
+            TileBase tileBase = tileMapReadcontroller.GetTileBase(selectedTilePosition);
+            TileData tileData = tileMapReadcontroller.GetTileData(tileBase);
+            if(tileData != plowableTiles) { return; }
+
+            if (cropsManager.Check(selectedTilePosition))
+            {
+                cropsManager.Seed(selectedTilePosition);
+            }
+            else
+            {
+                cropsManager.Plow(selectedTilePosition);
             }
         }
     }
