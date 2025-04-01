@@ -4,7 +4,7 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: -2671460228953875570
-    second: Overworld_0
+    second: Grass
   - first:
       213: -2689026045669087484
     second: Overworld_1
@@ -2914,7 +2914,7 @@ TextureImporter:
     second: Overworld_969
   - first:
       213: -3328804424743113820
-    second: Overworld_970
+    second: PlowableDirt
   - first:
       213: -1775735504993857005
     second: Overworld_971
@@ -3310,7 +3310,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Overworld_0
+      name: Grass
       rect:
         serializedVersion: 2
         x: 0
@@ -23680,7 +23680,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Overworld_970
+      name: PlowableDirt
       rect:
         serializedVersion: 2
         x: 16
