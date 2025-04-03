@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeToGrow: 20
   yield: {fileID: 11400000, guid: faf9b38dcaf97a84fa88ac6fd06e1f84, type: 2}
-  count: 1
+  count: 5
   sprrites:
   - {fileID: -2273560400057252286, guid: 72d0538992dc02d4da7ea958c091a7f0, type: 3}
   - {fileID: -8520553723163835839, guid: 72d0538992dc02d4da7ea958c091a7f0, type: 3}

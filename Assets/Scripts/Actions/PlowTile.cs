@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-[CreateAssetMenu(menuName ="Data/Tool action/Plow")]
+[CreateAssetMenu(menuName ="Data/ToolAction/Plow")]
 
 public class PlowTile : ToolAction
 {

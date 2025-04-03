@@ -1543,7 +1543,7 @@ MonoBehaviour:
     m_PostInfinity: 0
     m_RotationOrder: 4
   dayLightColor: {r: 1, g: 1, b: 1, a: 1}
-  timeScale: 600
+  timeScale: 2000
   startAtTime: 28800
   text: {fileID: 1458024101}
   globalLight: {fileID: 1631282790}
@@ -2659,6 +2659,7 @@ MonoBehaviour:
   markerManager: {fileID: 2096203714}
   tileMapReadcontroller: {fileID: 416943248}
   maxDistance: 2
+  onTilePickUp: {fileID: 11400000, guid: 18a22eab862384b469e9956ca27b7f8f, type: 2}
 --- !u!114 &631060365
 MonoBehaviour:
   m_ObjectHideFlags: 0
