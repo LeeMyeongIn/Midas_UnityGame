@@ -89,4 +89,15 @@ public class ItemContainer : ScriptableObject
         }
     }
 
+    internal bool CheckFreeSpace()
+    {
+        for (int i = 0; i < slots.Count; i++) {
+            if (slots[i].item == null)
+            {
+                return true;
+            }
+        }
+
+         return false;
+    }
 }
