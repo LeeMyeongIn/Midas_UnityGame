@@ -5,7 +5,7 @@ using UnityEngine;
 public class RecipePanel : ItemPanel
 {
     [SerializeField] RecipeList recipeList;
-    [SerializeField] Crafting Crafting;
+    [SerializeField] Crafting crafting;
 
     public override void Show()
     {
@@ -18,6 +18,6 @@ public class RecipePanel : ItemPanel
     {
         if (id >= recipeList.recipes.Count) { return; }
 
-        Crafting.Craft(recipeList.recipes[id]);
+        crafting.Craft(recipeList.recipes[id]);
     }
 }

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6fcf269aafe05fa4ea64ac464b62134c, type: 3}
-  m_Name: StonePile
+  m_Name: Chest
   m_EditorClassIdentifier: 
-  Name: Stone pile
+  Name: Chest
   stackable: 0
-  icon: {fileID: 21300000, guid: e62c1cecd96dd534eae1c3ce611e0eb0, type: 3}
+  icon: {fileID: 9116851946686450653, guid: 6f6c79370bdd3a643832176e8a9f1878, type: 3}
   onAction: {fileID: 0}
   onTileMapAction: {fileID: 0}
   onItemUsed: {fileID: 0}

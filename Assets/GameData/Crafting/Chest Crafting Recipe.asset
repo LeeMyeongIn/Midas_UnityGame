@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed465b2494a4e8c42b48d5dbfc4dbd9e, type: 3}
+  m_Name: Chest Crafting Recipe
+  m_EditorClassIdentifier: 
+  elements:
+  - item: {fileID: 11400000, guid: b6af4c934e673a041be8792df9dc09bb, type: 2}
+    count: 1
+  output:
+    item: {fileID: 11400000, guid: b94d7d0278bbea44e87495fd8cfca386, type: 2}
+    count: 1

@@ -6,7 +6,7 @@ public class PanelGroup : MonoBehaviour
 {
     public List<GameObject> panels;
 
-    public void show(int idPanel)
+    public void Show(int idPanel)
     {
         for (int i = 0; i < panels.Count; i++)
         {
