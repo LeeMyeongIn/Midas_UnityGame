@@ -22,6 +22,7 @@ public class ItemPanel : MonoBehaviour
     {
         Show();
     }
+
     private void LateUpdate()
     {
         if(inventory.isDirty)
