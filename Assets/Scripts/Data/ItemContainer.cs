@@ -60,7 +60,7 @@ public class ItemContainer : ScriptableObject
         else
         {   //인벤토리에 non stackable한 아이템이 추가될 때
             ItemSlot itemSlot = slots.Find(x => x.item == null);
-            if (itemSlot == null)
+            if (itemSlot != null)
             {
                 itemSlot.item = item;
             }
