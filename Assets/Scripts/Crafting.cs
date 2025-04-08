@@ -19,7 +19,7 @@ public class Crafting : MonoBehaviour
             if (inventory.CheckItem(recipe.elements[i]) == false)
             {
                 Debug.Log("Crafting recipe elements are not present in the inventory");
-                break;
+                return;
             }
         }
 

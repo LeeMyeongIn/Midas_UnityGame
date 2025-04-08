@@ -150,6 +150,7 @@ GameObject:
   - component: {fileID: 20140457}
   - component: {fileID: 20140459}
   - component: {fileID: 20140458}
+  - component: {fileID: 20140460}
   m_Layer: 5
   m_Name: CraftingPanel
   m_TagString: Untagged
@@ -216,6 +217,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 20140456}
   m_CullTransparentMesh: 1
+--- !u!114 &20140460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 20140456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52efbbee28e5f0347a40777fff573a03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: {fileID: 11400000, guid: 311834cc7e6b900428d39f1f64254429, type: 2}
+  buttons: []
+  recipeList: {fileID: 11400000, guid: c8e0824218ff40c4d8c5e5a727bbb5bc, type: 2}
+  crafting: {fileID: 631060369}
 --- !u!1001 &35974735
 PrefabInstance:
   m_ObjectHideFlags: 0
