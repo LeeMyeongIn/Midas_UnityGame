@@ -549,6 +549,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6044415320884122631, guid: 764aa9710af18b34f8f061fe39a7e8d8, type: 3}
+      propertyPath: targetPosition.x
+      value: -5.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 6044415320884122631, guid: 764aa9710af18b34f8f061fe39a7e8d8, type: 3}
+      propertyPath: targetPosition.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6044415320884122631, guid: 764aa9710af18b34f8f061fe39a7e8d8, type: 3}
       propertyPath: sceneNameToTransition
       value: RoadScene
       objectReference: {fileID: 0}
@@ -2536,6 +2544,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6044415320447270919, guid: 764aa9710af18b34f8f061fe39a7e8d8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 6044415320447270919, guid: 764aa9710af18b34f8f061fe39a7e8d8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.65
+      objectReference: {fileID: 0}
     - target: {fileID: 6044415320884122624, guid: 764aa9710af18b34f8f061fe39a7e8d8, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -2583,6 +2599,14 @@ PrefabInstance:
     - target: {fileID: 6044415320884122630, guid: 764aa9710af18b34f8f061fe39a7e8d8, type: 3}
       propertyPath: m_Name
       value: Transition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6044415320884122631, guid: 764aa9710af18b34f8f061fe39a7e8d8, type: 3}
+      propertyPath: targetPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6044415320884122631, guid: 764aa9710af18b34f8f061fe39a7e8d8, type: 3}
+      propertyPath: targetPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 764aa9710af18b34f8f061fe39a7e8d8, type: 3}
