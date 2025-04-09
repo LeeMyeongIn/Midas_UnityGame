@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
 
+
 public class TilemapCropsManager : TimeAgent
 {
     [SerializeField] TileBase plowed;
@@ -15,6 +16,10 @@ public class TilemapCropsManager : TimeAgent
     [SerializeField] GameObject cropsSpritePrefab;
 
     [SerializeField] CropsContainer container;
+    public Tilemap GetTilemap()
+    {
+        return targetTilemap;
+    }
 
     private void Start()
     {
@@ -60,7 +65,6 @@ public class TilemapCropsManager : TimeAgent
 
             if (cropTile.Complete)
             {
-                Debug.Log("I'm done growing");
                 continue;
             }
 

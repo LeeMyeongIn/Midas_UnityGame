@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ea86f649c532de4d84511e4d5f48d62, type: 3}
+  m_Name: MainScene Objects Container
+  m_EditorClassIdentifier: 
+  placeableObjects:
+  - placedItem: {fileID: 11400000, guid: b94d7d0278bbea44e87495fd8cfca386, type: 2}
+    targetObject: {fileID: 0}
+    positionOnGrid: {x: -1, y: -1, z: 0}
+  - placedItem: {fileID: 11400000, guid: b94d7d0278bbea44e87495fd8cfca386, type: 2}
+    targetObject: {fileID: 0}
+    positionOnGrid: {x: 1, y: -1, z: 0}
+  - placedItem: {fileID: 11400000, guid: b94d7d0278bbea44e87495fd8cfca386, type: 2}
+    targetObject: {fileID: 0}
+    positionOnGrid: {x: 2, y: -1, z: 0}
+  - placedItem: {fileID: 11400000, guid: b94d7d0278bbea44e87495fd8cfca386, type: 2}
+    targetObject: {fileID: 0}
+    positionOnGrid: {x: 0, y: -2, z: 0}
+  - placedItem: {fileID: 11400000, guid: b94d7d0278bbea44e87495fd8cfca386, type: 2}
+    targetObject: {fileID: 0}
+    positionOnGrid: {x: 2, y: 0, z: 0}
+  - placedItem: {fileID: 11400000, guid: b94d7d0278bbea44e87495fd8cfca386, type: 2}
+    targetObject: {fileID: 0}
+    positionOnGrid: {x: 1, y: -2, z: 0}
+  - placedItem: {fileID: 11400000, guid: b94d7d0278bbea44e87495fd8cfca386, type: 2}
+    targetObject: {fileID: 0}
+    positionOnGrid: {x: 1, y: -1, z: 0}
+  - placedItem: {fileID: 11400000, guid: b94d7d0278bbea44e87495fd8cfca386, type: 2}
+    targetObject: {fileID: 0}
+    positionOnGrid: {x: 1, y: -1, z: 0}
+  - placedItem: {fileID: 11400000, guid: b94d7d0278bbea44e87495fd8cfca386, type: 2}
+    targetObject: {fileID: 0}
+    positionOnGrid: {x: 0, y: -2, z: 0}
+  - placedItem: {fileID: 11400000, guid: b94d7d0278bbea44e87495fd8cfca386, type: 2}
+    targetObject: {fileID: 0}
+    positionOnGrid: {x: 1, y: -2, z: 0}
+  - placedItem: {fileID: 11400000, guid: b94d7d0278bbea44e87495fd8cfca386, type: 2}
+    targetObject: {fileID: 0}
+    positionOnGrid: {x: 1, y: 1, z: 0}

@@ -2277,6 +2277,7 @@ GameObject:
   - component: {fileID: 416943248}
   - component: {fileID: 416943249}
   - component: {fileID: 416943250}
+  - component: {fileID: 416943251}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2301,6 +2302,7 @@ MonoBehaviour:
   dragAndDropController: {fileID: 416943246}
   timeController: {fileID: 416943245}
   dialogueSystem: {fileID: 933739894}
+  placebleObjects: {fileID: 0}
 --- !u!4 &416943243
 Transform:
   m_ObjectHideFlags: 0
@@ -2447,8 +2449,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c409716bcc78d214686a865fa7306b42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilemap: {fileID: 2140937851}
+  tilemap: {fileID: 0}
   cropsManager: {fileID: 416943249}
+  objectsManager: {fileID: 416943251}
 --- !u!114 &416943249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2476,6 +2479,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   screenTint: {fileID: 1734395991}
   cameraConfiner: {fileID: 599410743}
+--- !u!114 &416943251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416943241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfca843e513e7514aa46839e88ff5448, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  placeableObjectsManager: {fileID: 0}
 --- !u!224 &426220429 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3580542897121026232, guid: b639b425e14f00642903cfabc6ba8b66, type: 3}
@@ -3017,7 +3033,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 493398356}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -3327,6 +3343,7 @@ GameObject:
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
   - component: {fileID: 519420033}
+  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3467,6 +3484,21 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!114 &519420034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00357a84701de01448a72a79a248192a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
+  timeToSwitch: 0
+  playOnStart: {fileID: 0}
 --- !u!1001 &532353976
 PrefabInstance:
   m_ObjectHideFlags: 0
