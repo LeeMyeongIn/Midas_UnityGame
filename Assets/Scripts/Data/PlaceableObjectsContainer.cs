@@ -22,4 +22,14 @@ public class PlaceableObject
 public class PlaceableObjectsContainer : ScriptableObject
 {
     public List<PlaceableObject> placeableObjects;
+
+    internal PlaceableObject Get(Vector3Int position)
+    {
+        return placeableObjects.Find(x => x.positionOnGrid == position);
+    }
+
+    internal void Remove(PlaceableObject placedObject)
+    {
+        placeableObjects.Remove(placedObject);
+    }
 }
