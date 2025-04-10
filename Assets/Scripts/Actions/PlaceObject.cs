@@ -10,4 +10,9 @@ public class PlaceObject : ToolAction
         tileMapReadController.objectsManager.Place(item, gridPosition);
         return true;
     }
+
+    public override void OnItemUsed(Item usedItem, ItemContainer inventory)
+    {
+        inventory.Remove(usedItem);
+    }
 }

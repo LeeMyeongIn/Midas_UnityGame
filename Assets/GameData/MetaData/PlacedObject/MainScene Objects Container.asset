@@ -15,34 +15,7 @@ MonoBehaviour:
   placeableObjects:
   - placedItem: {fileID: 11400000, guid: b94d7d0278bbea44e87495fd8cfca386, type: 2}
     targetObject: {fileID: 0}
-    positionOnGrid: {x: -1, y: -1, z: 0}
-  - placedItem: {fileID: 11400000, guid: b94d7d0278bbea44e87495fd8cfca386, type: 2}
-    targetObject: {fileID: 0}
-    positionOnGrid: {x: 1, y: -1, z: 0}
-  - placedItem: {fileID: 11400000, guid: b94d7d0278bbea44e87495fd8cfca386, type: 2}
-    targetObject: {fileID: 0}
-    positionOnGrid: {x: 2, y: -1, z: 0}
-  - placedItem: {fileID: 11400000, guid: b94d7d0278bbea44e87495fd8cfca386, type: 2}
-    targetObject: {fileID: 0}
-    positionOnGrid: {x: 0, y: -2, z: 0}
-  - placedItem: {fileID: 11400000, guid: b94d7d0278bbea44e87495fd8cfca386, type: 2}
-    targetObject: {fileID: 0}
-    positionOnGrid: {x: 2, y: 0, z: 0}
-  - placedItem: {fileID: 11400000, guid: b94d7d0278bbea44e87495fd8cfca386, type: 2}
-    targetObject: {fileID: 0}
-    positionOnGrid: {x: 1, y: -2, z: 0}
-  - placedItem: {fileID: 11400000, guid: b94d7d0278bbea44e87495fd8cfca386, type: 2}
-    targetObject: {fileID: 0}
-    positionOnGrid: {x: 1, y: -1, z: 0}
-  - placedItem: {fileID: 11400000, guid: b94d7d0278bbea44e87495fd8cfca386, type: 2}
-    targetObject: {fileID: 0}
-    positionOnGrid: {x: 1, y: -1, z: 0}
-  - placedItem: {fileID: 11400000, guid: b94d7d0278bbea44e87495fd8cfca386, type: 2}
-    targetObject: {fileID: 0}
     positionOnGrid: {x: 0, y: -2, z: 0}
   - placedItem: {fileID: 11400000, guid: b94d7d0278bbea44e87495fd8cfca386, type: 2}
     targetObject: {fileID: 0}
     positionOnGrid: {x: 1, y: -2, z: 0}
-  - placedItem: {fileID: 11400000, guid: b94d7d0278bbea44e87495fd8cfca386, type: 2}
-    targetObject: {fileID: 0}
-    positionOnGrid: {x: 1, y: 1, z: 0}
