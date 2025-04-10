@@ -2803,6 +2803,10 @@ PrefabInstance:
       propertyPath: onOpenAudio
       value: 
       objectReference: {fileID: 8300000, guid: 429bc962ca4f3fb4e84f54a1b8ab57dc, type: 3}
+    - target: {fileID: 8494542333749797850, guid: e82fc33bf0bca914e8d1ba36cac7948b, type: 3}
+      propertyPath: itemContainer
+      value: 
+      objectReference: {fileID: 11400000, guid: be788660ac0550440896b03f1bfd5b10, type: 2}
     - target: {fileID: 8494542333749797851, guid: e82fc33bf0bca914e8d1ba36cac7948b, type: 3}
       propertyPath: m_Name
       value: ChestObject
