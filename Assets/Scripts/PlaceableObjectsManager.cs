@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using static UnityEditor.Progress;
+//using static UnityEditor.Progress;
+//28번 영상 스크립트에는 없고 빨간줄 뜨길래 주석 처리 함.
 
 public class PlaceableObjectsManager : MonoBehaviour
 {
@@ -18,8 +19,16 @@ public class PlaceableObjectsManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        for(int i = 0; i < placeableObjects.placeableObjects.Count; i++)
+        for (int i = 0; i < placeableObjects.placeableObjects.Count; i++)
         {
+            if (placeableObjects.placeableObjects[i].targetObject == null) { continue; }
+
+            IPersistant persistant = placeableObjects.placeableObjects[i].targetObject.GetComponent<IPersistant>();
+            if (persistant != null)
+            {
+                string jsonString = persistant.Read();
+                placeableObjects.placeableObjects[i].objectState = jsonString;
+            }
             placeableObjects.placeableObjects[i].targetObject = null;
         }
     }
@@ -51,6 +60,7 @@ public class PlaceableObjectsManager : MonoBehaviour
     private void VisualizeItem(PlaceableObject placeableObject)
     {
         GameObject go = Instantiate(placeableObject.placedItem.itemPrefab);
+        go.transform.parent = transform;
 
         Vector3 position = 
             targetTilemap.CellToWorld(placeableObject.positionOnGrid) 
@@ -58,6 +68,12 @@ public class PlaceableObjectsManager : MonoBehaviour
 
         position -= Vector3.forward * 0.1f;
         go.transform.position = position;
+
+        IPersistant persistant = go.GetComponent<IPersistant>();
+        if(persistant != null)
+        {
+            persistant.Load(placeableObject.objectState);
+        }
 
         placeableObject.targetObject = go.transform;
     }
