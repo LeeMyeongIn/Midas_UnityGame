@@ -94,7 +94,7 @@ MonoBehaviour:
   convertableItem: {fileID: 11400000, guid: d4e261e37396945418d43c7e3abeaa36, type: 2}
   producedItem: {fileID: 11400000, guid: ea8cc238cb8ed3a46a1a4f6d2ab645ae, type: 2}
   producedItemCount: 1
-  timeToprocess: 5
+  timeToprocess: 30
 --- !u!1 &4745571263174497798
 GameObject:
   m_ObjectHideFlags: 0
