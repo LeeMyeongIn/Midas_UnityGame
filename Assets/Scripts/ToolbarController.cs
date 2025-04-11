@@ -38,7 +38,7 @@ public class ToolbarController : MonoBehaviour
             else
             {
                 selectedTool -= 1;
-                selectedTool = (selectedTool <= 0 ? toolbarSize - 1 : selectedTool);
+                selectedTool = (selectedTool < 0 ? toolbarSize - 1 : selectedTool);
             }
             onChange?.Invoke(selectedTool);
         }
