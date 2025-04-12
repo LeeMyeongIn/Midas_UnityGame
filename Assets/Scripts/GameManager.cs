@@ -17,4 +17,5 @@ public class GameManager : MonoBehaviour
     public DayTimeController timeController;
     public DialogueSystem dialogueSystem;
     public PlaceableObjectsReferenceManager placebleObjects;
+    public ItemList itemDB;
 }

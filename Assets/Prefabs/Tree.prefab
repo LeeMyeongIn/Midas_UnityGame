@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1910217270924070907}
   - component: {fileID: -5765207004873239218}
   - component: {fileID: 1689024842204487693}
+  - component: {fileID: 8298145924161079498}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Untagged
@@ -99,7 +100,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.25}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -110,7 +111,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 2}
+  m_Size: {x: 1.45, y: 0.63}
   m_EdgeRadius: 0
 --- !u!114 &1910217270924070907
 MonoBehaviour:
@@ -125,10 +126,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickUpDrop: {fileID: 7877821644521882301, guid: 42d6738ec555dbc4ab5c4a4137a58f35, type: 3}
-  spread: 0.7
-  item: {fileID: 0}
+  spread: 2
+  item: {fileID: 11400000, guid: b6af4c934e673a041be8792df9dc09bb, type: 2}
   itemCountInOneDrop: 1
-  dropCount: 5
+  dropCount: 25
   nodeType: 1
 --- !u!114 &-5765207004873239218
 MonoBehaviour:
@@ -158,3 +159,16 @@ MonoBehaviour:
   count: 1
   spread: 2
   probability: 0.5
+--- !u!114 &8298145924161079498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1910217270924069895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d93bf10cd3710e4abe8a191b891cb1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stationary: 1

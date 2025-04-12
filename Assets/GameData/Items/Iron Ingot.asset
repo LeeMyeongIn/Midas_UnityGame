@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Iron Ingot
   m_EditorClassIdentifier: 
   Name: Iron Ingot
+  id: 2
   stackable: 1
   icon: {fileID: 21300000, guid: ae01a759963979045969091fae4382a6, type: 3}
   onAction: {fileID: 0}

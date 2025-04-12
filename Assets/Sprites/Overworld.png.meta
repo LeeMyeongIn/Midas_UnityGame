@@ -2842,13 +2842,13 @@ TextureImporter:
     second: Overworld_945
   - first:
       213: -4954742672101255831
-    second: Overworld_946
+    second: PlowableDirtTopLeft
   - first:
       213: 8144699696999271006
-    second: Overworld_947
+    second: PlowableDirtTop
   - first:
       213: 3255367198055861555
-    second: Overworld_948
+    second: PlowableDirtTopRight
   - first:
       213: -9094384059482548560
     second: Overworld_949
@@ -2911,13 +2911,13 @@ TextureImporter:
     second: Overworld_968
   - first:
       213: -5785010887368744721
-    second: Overworld_969
+    second: PlowableDirtLeft
   - first:
       213: -3328804424743113820
     second: PlowableDirt
   - first:
       213: -1775735504993857005
-    second: Overworld_971
+    second: PlowableDirtRight
   - first:
       213: -2849048843315229846
     second: Overworld_972
@@ -2980,13 +2980,13 @@ TextureImporter:
     second: Overworld_991
   - first:
       213: -965214712313699184
-    second: Overworld_992
+    second: PlowableDirtBottomLeft
   - first:
       213: 8899647166731993134
-    second: Overworld_993
+    second: PlowableDirtBottom
   - first:
       213: 2980805111510648012
-    second: Overworld_994
+    second: PlowableDirtBottomRight
   - first:
       213: -4193866500333192731
     second: Overworld_995
@@ -3058,10 +3058,10 @@ TextureImporter:
     second: Overworld_1017
   - first:
       213: -7678643800723079021
-    second: Overworld_1018
+    second: PlowableDIrt InnerCorner Bottom Right
   - first:
       213: -7641520638012626963
-    second: Overworld_1019
+    second: PlowableDirt innerCorner Bottom Left
   - first:
       213: 6389272540002557646
     second: Overworld_1020
@@ -3136,10 +3136,10 @@ TextureImporter:
     second: Overworld_1043
   - first:
       213: -1500545212691171932
-    second: Overworld_1044
+    second: PlowableDirt inner Corner Top Right
   - first:
       213: -7964366090450388058
-    second: Overworld_1045
+    second: PlowableDirt innerCorner Top Left
   - first:
       213: 5605892339981550205
     second: Overworld_1046
@@ -23176,7 +23176,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Overworld_946
+      name: PlowableDirtTopLeft
       rect:
         serializedVersion: 2
         x: 0
@@ -23197,7 +23197,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Overworld_947
+      name: PlowableDirtTop
       rect:
         serializedVersion: 2
         x: 16
@@ -23218,7 +23218,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Overworld_948
+      name: PlowableDirtTopRight
       rect:
         serializedVersion: 2
         x: 32
@@ -23659,7 +23659,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Overworld_969
+      name: PlowableDirtLeft
       rect:
         serializedVersion: 2
         x: 0
@@ -23701,7 +23701,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Overworld_971
+      name: PlowableDirtRight
       rect:
         serializedVersion: 2
         x: 32
@@ -24142,7 +24142,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Overworld_992
+      name: PlowableDirtBottomLeft
       rect:
         serializedVersion: 2
         x: 0
@@ -24163,7 +24163,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Overworld_993
+      name: PlowableDirtBottom
       rect:
         serializedVersion: 2
         x: 16
@@ -24184,7 +24184,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Overworld_994
+      name: PlowableDirtBottomRight
       rect:
         serializedVersion: 2
         x: 32
@@ -24688,7 +24688,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Overworld_1018
+      name: PlowableDIrt InnerCorner Bottom Right
       rect:
         serializedVersion: 2
         x: 0
@@ -24709,7 +24709,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Overworld_1019
+      name: PlowableDirt innerCorner Bottom Left
       rect:
         serializedVersion: 2
         x: 16
@@ -25234,7 +25234,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Overworld_1044
+      name: PlowableDirt inner Corner Top Right
       rect:
         serializedVersion: 2
         x: 0
@@ -25255,7 +25255,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Overworld_1045
+      name: PlowableDirt innerCorner Top Left
       rect:
         serializedVersion: 2
         x: 16
