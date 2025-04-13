@@ -12,12 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ea86f649c532de4d84511e4d5f48d62, type: 3}
   m_Name: MainScene Objects Container
   m_EditorClassIdentifier: 
-  placeableObjects:
-  - placedItem: {fileID: 11400000, guid: b94d7d0278bbea44e87495fd8cfca386, type: 2}
-    targetObject: {fileID: 0}
-    positionOnGrid: {x: 0, y: -2, z: 0}
-    objectState: '{"itemDatas":[{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0}]}'
-  - placedItem: {fileID: 11400000, guid: b94d7d0278bbea44e87495fd8cfca386, type: 2}
-    targetObject: {fileID: 0}
-    positionOnGrid: {x: 1, y: -2, z: 0}
-    objectState: '{"itemDatas":[{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0},{"itemId":-1,"count":0}]}'
+  placeableObjects: []
