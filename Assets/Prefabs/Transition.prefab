@@ -75,6 +75,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 929b575814b4acc4b9d05501452fecff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  transitionType: 0
+  sceneNameToTransition: 
+  targetPosition: {x: 0, y: 0, z: 0}
+  confiner: {fileID: 0}
+  destination: {fileID: 6044415320447270919}
 --- !u!1 &6044415322055424154
 GameObject:
   m_ObjectHideFlags: 0

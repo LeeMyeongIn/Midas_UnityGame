@@ -24,4 +24,9 @@ public class CameraConfiner : MonoBehaviour
         Collider2D bounds = go.GetComponent<Collider2D>();
         confiner.m_BoundingShape2D = bounds;
     }
+
+    internal void UpdateBounds(Collider2D confiner)
+    {
+        this.confiner.m_BoundingShape2D = confiner;
+    }
 }
