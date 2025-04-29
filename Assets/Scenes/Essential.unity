@@ -5557,6 +5557,7 @@ GameObject:
   - component: {fileID: 631060362}
   - component: {fileID: 631060363}
   - component: {fileID: 631060364}
+  - component: {fileID: 631060372}
   - component: {fileID: 631060366}
   - component: {fileID: 631060365}
   - component: {fileID: 631060367}
@@ -5843,6 +5844,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stationary: 0
+--- !u!114 &631060372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 631060357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb2c08c59f140464a9d4c272e52e1f83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsetDistance: 1.2
+  attackAreaSize: {x: 1, y: 1}
 --- !u!224 &671226458 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3580542897121026232, guid: b639b425e14f00642903cfabc6ba8b66, type: 3}

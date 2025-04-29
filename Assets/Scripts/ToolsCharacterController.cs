@@ -17,6 +17,7 @@ public class ToolsCharacterController : MonoBehaviour
     [SerializeField] float maxDistance = 1.5f;
     [SerializeField] ToolAction onTilePickUp;
     [SerializeField] IconHighlight iconHighlight;
+    AttackController attackController;
     
 
     Vector3Int selectedTilePosition;
@@ -28,10 +29,16 @@ public class ToolsCharacterController : MonoBehaviour
         rgbd2d = GetComponent<Rigidbody2D>();
         toolbarController = GetComponent<ToolbarController>();
         animator = GetComponent<Animator>();
+        attackController = GetComponent<AttackController>();
     }
 
     private void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            WeaponAction();
+        }
+
         SelectTile();
         CanSelectCheck();
         Marker();
@@ -43,6 +50,17 @@ public class ToolsCharacterController : MonoBehaviour
             }
             UseToolGrid();
         }
+    }
+
+    private void WeaponAction()
+    {
+        Item item = toolbarController.GetItem;
+        if (item == null) { return; }
+        if (item.isWeapon == false) { return; }
+
+        Vector2 position = rgbd2d.position + character.lastMotionVector * offsetDistance;
+
+        attackController.Attack(item.damage, character.lastMotionVector);
     }
 
     private void SelectTile()

@@ -31,7 +31,7 @@ TextureImporter:
     second: House Door Open
   - first:
       213: 3745290752181560014
-    second: Overworld_9
+    second: EvilPlant
   - first:
       213: 1829778442542560619
     second: Overworld_10
@@ -4423,27 +4423,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Overworld_70
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 544
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: be959516245b7f220800000000000000
-      internalID: 2519681813242796523
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Overworld_71
       rect:
         serializedVersion: 2
@@ -5027,27 +5006,6 @@ TextureImporter:
       bones: []
       spriteID: f4478b8bb9a0cc6a0800000000000000
       internalID: -6427750904229235633
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Overworld_109
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 528
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8b376382fe1db9960800000000000000
-      internalID: 7609906820474631096
       vertices: []
       indices: 
       edges: []
@@ -24200,6 +24158,27 @@ TextureImporter:
       bones: []
       spriteID: 720993c291c25da10800000000000000
       internalID: 1933500101653270567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EvilPlant
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 529
+        width: 14
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec266508812f9f330800000000000000
+      internalID: 3745290752181560014
       vertices: []
       indices: 
       edges: []

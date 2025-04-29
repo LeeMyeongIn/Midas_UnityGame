@@ -22,3 +22,5 @@ MonoBehaviour:
   crop: {fileID: 0}
   iconHighlight: 0
   itemPrefab: {fileID: 0}
+  isWeapon: 1
+  damage: 10
