@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7877821644521882298}
   - component: {fileID: 7877821644521882299}
   - component: {fileID: 7877821644521882300}
+  - component: {fileID: -1743342933652620687}
   m_Layer: 0
   m_Name: PickUpItemPrefab
   m_TagString: Untagged
@@ -100,3 +101,16 @@ MonoBehaviour:
   ttl: 10
   item: {fileID: 11400000, guid: b6af4c934e673a041be8792df9dc09bb, type: 2}
   count: 1
+--- !u!114 &-1743342933652620687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7877821644521882301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d93bf10cd3710e4abe8a191b891cb1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stationary: 0
