@@ -18,4 +18,5 @@ public class GameManager : MonoBehaviour
     public DialogueSystem dialogueSystem;
     public PlaceableObjectsReferenceManager placebleObjects;
     public ItemList itemDB;
+    public OnScreenMessageSystem messageSystem;
 }
