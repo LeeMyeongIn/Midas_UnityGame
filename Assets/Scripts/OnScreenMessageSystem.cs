@@ -21,6 +21,10 @@ public class OnScreenMessageSystem : MonoBehaviour
     List<OnScreenMessage> onScreenMessageList;
     List<OnScreenMessage> openList;
 
+    [SerializeField] float horizontalScatter = 0.5f;
+    [SerializeField] float verticalScatter = 1f;
+    [SerializeField] float timeToLive = 3f;
+
     private void Awake()
     {
         onScreenMessageList = new List<OnScreenMessage>();
@@ -46,6 +50,10 @@ public class OnScreenMessageSystem : MonoBehaviour
     public void PostMessage(Vector3 worldPosition, string message)
     {
         worldPosition.z = -1f;
+        worldPosition.x += Random.Range(-horizontalScatter, horizontalScatter);
+        worldPosition.y += Random.Range(-verticalScatter, verticalScatter);
+
+        worldPosition.z = -1f;
 
         if (openList.Count > 0)
         {
@@ -61,7 +69,7 @@ public class OnScreenMessageSystem : MonoBehaviour
     {
         OnScreenMessage osm = openList[0];
         osm.go.SetActive(true);
-        osm.timeToLive = 6f;
+        osm.timeToLive = timeToLive;
         osm.go.GetComponent<TextMeshPro>().text = message;
         osm.go.transform.position = worldPosition;
         openList.RemoveAt(0);
@@ -77,7 +85,7 @@ public class OnScreenMessageSystem : MonoBehaviour
         tmp.text = message;
 
         OnScreenMessage onScreenMessage = new OnScreenMessage(textGO);
-        onScreenMessage.timeToLive = 6f;
+        onScreenMessage.timeToLive = timeToLive;
         onScreenMessageList.Add(onScreenMessage);
     }
 }

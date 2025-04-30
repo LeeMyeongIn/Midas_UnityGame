@@ -5,9 +5,18 @@ using UnityEngine;
 
 public class Damageable : MonoBehaviour
 {
+    IDamageable damageable;
+
     internal void TakeDamage(int damage)
     {
-        Destroy(gameObject);
+        if (damageable == null)
+        {
+            damageable = GetComponent<IDamageable>();
+        }
+
+        damageable.CalculateDamage(ref damage);
+        damageable.ApplyDamage(damage);
         GameManager.instance.messageSystem.PostMessage(transform.position, damage.ToString());
+        damageable.CheckState();
     }
 }
