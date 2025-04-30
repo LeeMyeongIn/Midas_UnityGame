@@ -12,6 +12,7 @@ public class ObjectSpawner : MonoBehaviour
     int length;
     [SerializeField] float probability = 0.1f;
     [SerializeField] int spawnCount = 1;
+    [SerializeField] int objectSpawnLimit = -1;
 
     [SerializeField] bool oneTime = false;
 
@@ -19,6 +20,7 @@ public class ObjectSpawner : MonoBehaviour
 
     [SerializeField] JSONStringList targetSaveJSONList;
     [SerializeField] int idInList = -1;
+
 
     private void Start()
     {
@@ -48,6 +50,7 @@ public class ObjectSpawner : MonoBehaviour
     void Spawn()
     {
         if(Random.value > probability) { return; }
+        if(objectSpawnLimit <= spawnedObjects.Count && objectSpawnLimit != -1) { return; }
 
         for (int i=0; i<spawnCount; i++)
         {
@@ -85,11 +88,9 @@ public class ObjectSpawner : MonoBehaviour
     {
         ToSave toSave = new ToSave();
 
-        Debug.Log($"[Read] 현재 spawnedObjects.Count = {spawnedObjects.Count}");
 
         for (int i = 0; i < spawnedObjects.Count; i++)
         {
-            Debug.Log($"[Read] 저장 대상 id = {spawnedObjects[i].objId}, pos = {spawnedObjects[i].transform.position}");
             toSave.spawnedObejctDatas.Add(
                 new SpawnedObject.SaveSpawnedObjectData(
                     spawnedObjects[i].objId,
@@ -98,7 +99,6 @@ public class ObjectSpawner : MonoBehaviour
                 );
         }
         string json = JsonUtility.ToJson(toSave);
-        Debug.Log("[Read] 직렬화된 json = " + json);
         return json;
     }
 
