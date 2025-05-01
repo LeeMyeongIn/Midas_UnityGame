@@ -37,7 +37,7 @@ public class ObjectSpawner : MonoBehaviour
         }
         else {
             Spawn();
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 
@@ -50,17 +50,21 @@ public class ObjectSpawner : MonoBehaviour
     void Spawn()
     {
         if(Random.value > probability) { return; }
-        if(objectSpawnLimit <= spawnedObjects.Count && objectSpawnLimit != -1) { return; }
+        if(spawnedObjects != null)
+        {
+            if (objectSpawnLimit <= spawnedObjects.Count && objectSpawnLimit != -1) { return; }
+        }
 
         for (int i=0; i<spawnCount; i++)
         {
             int id = Random.Range(0, length);
             GameObject go = Instantiate(spawn[id]);
             Transform t = go.transform;
+            t.SetParent(transform);
 
             if (oneTime == false)
             {
-                t.SetParent(transform);
+                
                 SpawnedObject spawnedObject = go.AddComponent<SpawnedObject>();
                 spawnedObjects.Add(spawnedObject);
                 spawnedObject.objId = id;
@@ -122,6 +126,7 @@ public class ObjectSpawner : MonoBehaviour
 
     private void OnDestroy()
     {
+        if(oneTime == true) { return; }
         SaveData();
     }
 
