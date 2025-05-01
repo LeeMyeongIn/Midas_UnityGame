@@ -40,7 +40,14 @@ public class Character : MonoBehaviour, IDamageable
     [SerializeField] StatusBar staminaBar;
 
     public bool isDead;
-    public bool isExhausted; 
+    public bool isExhausted;
+
+    DisableControls disableControls;
+
+    private void Awake()
+    {
+        disableControls = GetComponent<DisableControls>();
+    }
 
     private void Start()
     {
@@ -58,9 +65,15 @@ public class Character : MonoBehaviour, IDamageable
         hp.Subtract(amount);
         if (hp.currVal <= 0)
         {
-            isDead = true;
+            Dead();
         }
         UpdateHpBar();
+    }
+
+    private void Dead()
+    {
+        isDead = true;
+        disableControls.DisableControl();
     }
 
     private void UpdateHpBar()

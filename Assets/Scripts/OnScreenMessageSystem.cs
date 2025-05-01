@@ -52,7 +52,6 @@ public class OnScreenMessageSystem : MonoBehaviour
         worldPosition.z = -1f;
         worldPosition.x += Random.Range(-horizontalScatter, horizontalScatter);
         worldPosition.y += Random.Range(-verticalScatter, verticalScatter);
-
         worldPosition.z = -1f;
 
         if (openList.Count > 0)

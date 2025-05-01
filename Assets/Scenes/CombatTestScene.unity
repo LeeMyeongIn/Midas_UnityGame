@@ -156,7 +156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.7
   attackSize: {x: 1, y: 1}
-  damage: 1
+  damage: 5
   timeToAttack: 2
 --- !u!114 &96533271
 MonoBehaviour:
@@ -268,7 +268,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.7
   attackSize: {x: 1, y: 1}
-  damage: 1
+  damage: 5
   timeToAttack: 2
 --- !u!114 &595319936
 MonoBehaviour:
@@ -380,7 +380,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.7
   attackSize: {x: 1, y: 1}
-  damage: 1
+  damage: 5
   timeToAttack: 2
 --- !u!114 &623444912
 MonoBehaviour:
@@ -575,7 +575,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.7
   attackSize: {x: 1, y: 1}
-  damage: 1
+  damage: 5
   timeToAttack: 2
 --- !u!114 &1119090583
 MonoBehaviour:
@@ -687,7 +687,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.7
   attackSize: {x: 1, y: 1}
-  damage: 1
+  damage: 5
   timeToAttack: 2
 --- !u!114 &1183360913
 MonoBehaviour:
@@ -3649,7 +3649,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.7
   attackSize: {x: 1, y: 1}
-  damage: 1
+  damage: 5
   timeToAttack: 2
 --- !u!114 &1963006428
 MonoBehaviour:
@@ -3761,7 +3761,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.7
   attackSize: {x: 1, y: 1}
-  damage: 1
+  damage: 5
   timeToAttack: 2
 --- !u!114 &2026213291
 MonoBehaviour:
