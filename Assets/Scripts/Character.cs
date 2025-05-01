@@ -32,7 +32,7 @@ public class Stat
     }
 }
 
-public class Character : MonoBehaviour
+public class Character : MonoBehaviour, IDamageable
 {
     public Stat hp;
     [SerializeField] StatusBar hpBar;
@@ -56,7 +56,7 @@ public class Character : MonoBehaviour
     public void TakeDamage(int amount)
     {
         hp.Subtract(amount);
-        if (hp.currVal < 0)
+        if (hp.currVal <= 0)
         {
             isDead = true;
         }
@@ -122,4 +122,18 @@ public class Character : MonoBehaviour
         }
     }
 
+    public void CalculateDamage(ref int damage)
+    {
+        
+    }
+
+    public void ApplyDamage(int damage)
+    {
+        TakeDamage(damage);
+    }
+
+    public void CheckState()
+    {
+        
+    }
 }
