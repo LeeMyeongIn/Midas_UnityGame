@@ -64,7 +64,7 @@ public class Character : MonoBehaviour, IDamageable
 
     public void TakeDamage(int amount)
     {
-        //if(isDead == true) { return; }
+        if(isDead == true) { return; }
         hp.Subtract(amount);
         if (hp.currVal <= 0)
         {

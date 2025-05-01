@@ -43,7 +43,7 @@ public class GameSceneManager : MonoBehaviour
         }
         else
         {
-
+            MoveCharacter(respawnPointPosition);
         }
     }
 
@@ -72,7 +72,11 @@ public class GameSceneManager : MonoBehaviour
         load = SceneManager.LoadSceneAsync(to, LoadSceneMode.Additive);
         unload = SceneManager.UnloadSceneAsync(currentScene);
         currentScene = to;
+        MoveCharacter(targetPosition);
+    }
 
+    private void MoveCharacter(Vector3 targetPosition)
+    {
         Transform playerTransform = GameManager.instance.player.transform;
 
         CinemachineBrain currentCamera = Camera.main.GetComponent<CinemachineBrain>();
@@ -88,10 +92,10 @@ public class GameSceneManager : MonoBehaviour
             playerTransform.position.z
             );
 
-        if(respawnTransition)
+        if (respawnTransition)
         {
-            playerTransform.GetComponent<Character>().FullRest(0);
-            playerTransform.GetComponent<PlayerRespawn>().StartRespawn();
+            playerTransform.GetComponent<Character>().FullHeal();
+            playerTransform.GetComponent<DisableControls>().EnableControl();
             respawnTransition = false;
         }
     }

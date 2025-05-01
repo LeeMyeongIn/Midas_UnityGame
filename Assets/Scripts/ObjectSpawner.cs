@@ -132,24 +132,18 @@ public class ObjectSpawner : MonoBehaviour
 
     private void SaveData()
     {
-        Debug.Log("[SaveData] call");
-
-        if (CheckJSON() == false)  { Debug.Log("checkJson false"); return; }
+        if (CheckJSON() == false)  { return; }
 
         string jsonString = Read();
-        Debug.Log("[SaveData] jsonString make: " + jsonString);
 
         targetSaveJSONList.SetString(jsonString, idInList);
-        Debug.Log("[SaveData] SetString finish");
     }
 
     private void LoadData()
     {
-        Debug.Log("save start");
-        if (CheckJSON() == false) { Debug.Log("save failed"); return; }
+        if (CheckJSON() == false) { return; }
 
         Load(targetSaveJSONList.GetString(idInList));
-        Debug.Log("Save finish");
     
     }
 
