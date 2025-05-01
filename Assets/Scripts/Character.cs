@@ -43,10 +43,12 @@ public class Character : MonoBehaviour, IDamageable
     public bool isExhausted;
 
     DisableControls disableControls;
+    PlayerRespawn playerRespawn;
 
     private void Awake()
     {
         disableControls = GetComponent<DisableControls>();
+        playerRespawn = GetComponent<PlayerRespawn>();
     }
 
     private void Start()
@@ -62,6 +64,7 @@ public class Character : MonoBehaviour, IDamageable
 
     public void TakeDamage(int amount)
     {
+        //if(isDead == true) { return; }
         hp.Subtract(amount);
         if (hp.currVal <= 0)
         {
@@ -74,6 +77,7 @@ public class Character : MonoBehaviour, IDamageable
     {
         isDead = true;
         disableControls.DisableControl();
+        playerRespawn.StartRespawn();
     }
 
     private void UpdateHpBar()

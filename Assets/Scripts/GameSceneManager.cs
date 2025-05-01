@@ -1,4 +1,5 @@
 using Cinemachine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,8 @@ public class GameSceneManager : MonoBehaviour
     AsyncOperation unload;
     AsyncOperation load;
 
+    bool respawnTransition;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +31,20 @@ public class GameSceneManager : MonoBehaviour
     public void InitSwitchScene(string to, Vector3 targetPosition)
     {
         StartCoroutine(Transition(to, targetPosition));
+    }
+
+    internal void Respawn(Vector3 respawnPointPosition, string respawnPointScene)
+    {
+        respawnTransition = true;
+
+        if (currentScene != respawnPointScene)
+        {
+            InitSwitchScene(respawnPointScene, respawnPointPosition);
+        }
+        else
+        {
+
+        }
     }
 
     IEnumerator Transition(string to, Vector3 targetPosition)
@@ -70,5 +87,12 @@ public class GameSceneManager : MonoBehaviour
             targetPosition.y,
             playerTransform.position.z
             );
+
+        if(respawnTransition)
+        {
+            playerTransform.GetComponent<Character>().FullRest(0);
+            playerTransform.GetComponent<PlayerRespawn>().StartRespawn();
+            respawnTransition = false;
+        }
     }
 }
