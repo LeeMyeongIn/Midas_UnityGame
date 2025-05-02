@@ -19,4 +19,5 @@ public class GameManager : MonoBehaviour
     public PlaceableObjectsReferenceManager placebleObjects;
     public ItemList itemDB;
     public OnScreenMessageSystem messageSystem;
+    public ScreenTint screenTint;
 }

@@ -18,6 +18,7 @@ public class DayTimeController : MonoBehaviour
     float time;
     [SerializeField] float timeScale = 60f;
     [SerializeField] float startAtTime = 28800f;
+    [SerializeField] float morningTime = 28800f;
 
     [SerializeField] Text text;
     [SerializeField] Light2D globalLight;
@@ -75,7 +76,6 @@ public class DayTimeController : MonoBehaviour
         }
     }
 
-
     private void TimeValueCalculation()
     {
         int hh = (int)Hours;
@@ -130,5 +130,21 @@ public class DayTimeController : MonoBehaviour
         timeToSkip += hours * 3600f;
 
         time += timeToSkip;
+    }
+
+    public void SkipToMorning()
+    {
+        float secondsToSkip = 0f;   
+
+        if(time > morningTime)
+        {
+            secondsToSkip += secondsInDay - time + morningTime;
+        }
+        else
+        {
+            secondsToSkip += morningTime - time;
+        }
+
+        SkipTime(secondsToSkip);
     }
 }
