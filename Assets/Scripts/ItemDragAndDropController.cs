@@ -85,7 +85,7 @@ public class ItemDragAndDropController : MonoBehaviour
         UpdateIcon();
     }
 
-    private void UpdateIcon()
+    public void UpdateIcon()
     {
         if (itemSlot.item == null)
         {
@@ -114,6 +114,14 @@ public class ItemDragAndDropController : MonoBehaviour
         {
             itemSlot.Clear();
         }
-        UpdateIcon() ;
+        UpdateIcon();
+    }
+
+    public bool CheckForSale()
+    {
+        if (itemSlot.item != null) { return false; }
+        if (itemSlot.item.canBeSold == false) { return false; }
+
+        return true;
     }
 }

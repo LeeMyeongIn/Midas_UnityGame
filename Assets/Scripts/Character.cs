@@ -102,9 +102,16 @@ public class Character : MonoBehaviour, IDamageable
         stamina.Subtract(amount);
         if (stamina.currVal < 0)
         {
-            isExhausted = true;
+            Exhausted();
         }
         UpdateStaminaBar();
+    }
+
+    private void Exhausted()
+    {
+        isExhausted = true;
+        disableControls.DisableControl();
+        playerRespawn.StartRespawn();
     }
 
     public void Rest(int amount)

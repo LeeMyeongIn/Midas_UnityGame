@@ -25,6 +25,8 @@ public class ItemPanel : MonoBehaviour
 
     private void LateUpdate()
     {
+        if(inventory == null) {return;}
+
         if(inventory.isDirty)
         {
             Show();
@@ -43,6 +45,8 @@ public class ItemPanel : MonoBehaviour
 
     public virtual void Show()
     {
+        if (inventory == null) { return; }
+
         for (int i = 0; i < inventory.slots.Count && i < buttons.Count; i++)
         {
             if (inventory.slots[i].item == null)
