@@ -119,7 +119,7 @@ public class ItemDragAndDropController : MonoBehaviour
 
     public bool CheckForSale()
     {
-        if (itemSlot.item != null) { return false; }
+        if (itemSlot.item == null) { return false; }
         if (itemSlot.item.canBeSold == false) { return false; }
 
         return true;
