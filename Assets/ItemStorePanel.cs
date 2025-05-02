@@ -9,9 +9,23 @@ public class ItemStorePanel : ItemPanel
 
     public override void OnClick(int id)
     {
-        SellItem();
+        if(GameManager.instance.dragAndDropController.itemSlot.item != null)
+        {
+            BuyItem(id);
+        }
+        else
+        {
+            SellItem();
+        }
+
+            SellItem();
 
         Show();
+    }
+
+    private void BuyItem(int id)
+    {
+        trading.BuyItem(id);
     }
 
     private void SellItem()

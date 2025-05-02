@@ -14,6 +14,18 @@ public class Currency : MonoBehaviour
         UpdateText();
     }
 
+    internal bool Check(int totalPrice)
+    {
+        return amount >= totalPrice;
+    }
+
+    internal void Decrease(int totalPrice)
+    {
+        amount -= totalPrice;
+        if(amount < 0) {amount = 0;}
+        UpdateText();
+    }
+
     private void Start()
     {
         amount = 1000;
