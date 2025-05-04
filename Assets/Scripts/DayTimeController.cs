@@ -22,7 +22,7 @@ public class DayTimeController : MonoBehaviour
 
     [SerializeField] Text text;
     [SerializeField] Light2D globalLight;
-    private int days;
+    public int days;
 
     List<TimeAgent> agents;
 
@@ -107,7 +107,7 @@ public class DayTimeController : MonoBehaviour
             oldPhase += 1;
             for (int i = 0; i < agents.Count; i++)
             {
-                agents[i].Invoke();
+                agents[i].Invoke(this);
             }
         }
     }

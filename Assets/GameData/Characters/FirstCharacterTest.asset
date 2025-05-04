@@ -24,4 +24,7 @@ MonoBehaviour:
   romancableGender: 0
   itemLikes: []
   itemDislikes: []
+  generalDialogues:
+  - {fileID: 11400000, guid: b5e5d6b7f112a1645950af3b6e5c571a, type: 2}
+  - {fileID: 11400000, guid: 7971e3c3ed74a984ba82925bc923498f, type: 2}
   schedule: 

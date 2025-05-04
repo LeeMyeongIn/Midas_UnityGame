@@ -27,7 +27,7 @@ public class WeatherManager : TimeAgent
         UpdateWeather();
     }
 
-    public void RandomWeatherChangeCheck()
+    public void RandomWeatherChangeCheck(DayTimeController dayTimeController)
     {
         if (UnityEngine.Random.value < chanceToChangeWeather)
         {

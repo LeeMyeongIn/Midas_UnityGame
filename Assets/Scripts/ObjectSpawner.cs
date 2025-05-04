@@ -36,7 +36,7 @@ public class ObjectSpawner : MonoBehaviour
             LoadData();
         }
         else {
-            Spawn();
+            Spawn(null);
             //Destroy(gameObject);
         }
     }
@@ -47,7 +47,7 @@ public class ObjectSpawner : MonoBehaviour
         spawnedObjects.Remove(spawnedObject);
     }
 
-    void Spawn()
+    void Spawn(DayTimeController dayTimeController)
     {
         if(Random.value > probability) { return; }
         if(spawnedObjects != null)

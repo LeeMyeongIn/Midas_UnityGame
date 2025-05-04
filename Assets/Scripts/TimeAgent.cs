@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class TimeAgent : MonoBehaviour
 {
-    public Action onTimeTick;
+    public Action<DayTimeController> onTimeTick;
 
     private void Start()
     {
@@ -17,9 +17,9 @@ public class TimeAgent : MonoBehaviour
         GameManager.instance.timeController.Subscribe(this);
     }
 
-    public void Invoke()
+    public void Invoke(DayTimeController dayTimeController)
     {
-        onTimeTick?.Invoke();
+        onTimeTick?.Invoke(dayTimeController);
     }
 
     private void OnDestroy()

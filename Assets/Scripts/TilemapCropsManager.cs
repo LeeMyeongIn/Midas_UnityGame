@@ -46,7 +46,7 @@ public class TilemapCropsManager : TimeAgent
         }
     }
 
-    public void Tick()
+    public void Tick(DayTimeController dayTimeController)
     {
         if (targetTilemap == null) { return; }
 
