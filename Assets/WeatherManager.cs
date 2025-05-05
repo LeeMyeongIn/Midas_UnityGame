@@ -44,7 +44,7 @@ public class WeatherManager : TimeAgent
     private void ChangeToChangeWeather(WeatherStates newWeatherState)
     {
         currentWeatherState = newWeatherState;
-        Debug.Log(currentWeatherState);
+        //Debug.Log(currentWeatherState);
         UpdateWeather();
     }
 

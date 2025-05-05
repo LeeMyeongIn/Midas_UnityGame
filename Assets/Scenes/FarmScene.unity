@@ -5460,8 +5460,12 @@ PrefabInstance:
       value: -0.2117467
       objectReference: {fileID: 0}
     - target: {fileID: 6044415322055424155, guid: 764aa9710af18b34f8f061fe39a7e8d8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 6044415322055424155, guid: 764aa9710af18b34f8f061fe39a7e8d8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.62
+      value: 3.65
       objectReference: {fileID: 0}
     - target: {fileID: 6044415322055424155, guid: 764aa9710af18b34f8f061fe39a7e8d8, type: 3}
       propertyPath: m_LocalPosition.y
