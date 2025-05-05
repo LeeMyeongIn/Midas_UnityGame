@@ -5,6 +5,26 @@ using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 using UnityEngine.UI;
 
+
+public enum DayOfWeek
+{
+    Sunday,
+    Monday,
+    Tuesday,
+    Wednesday,
+    Thursday,
+    Friday,
+    Saturday
+}
+
+public enum Season
+{
+    Winter,
+    Spring,
+    Summer,
+    Autumn
+}
+
 public class DayTimeController : MonoBehaviour
 {
     const float secondsInDay = 86400f;
@@ -20,9 +40,16 @@ public class DayTimeController : MonoBehaviour
     [SerializeField] float startAtTime = 28800f;
     [SerializeField] float morningTime = 28800f;
 
-    [SerializeField] Text text;
+    DayOfWeek dayOfWeek;
+
+    [SerializeField] TMPro.TextMeshProUGUI text;
+    [SerializeField] TMPro.TextMeshProUGUI dayOfTheWeekText;
+    [SerializeField] TMPro.TextMeshProUGUI seasonText;
     [SerializeField] Light2D globalLight;
     public int days;
+
+    Season currentSeason;
+    const int seasonLength = 30;
 
     List<TimeAgent> agents;
 
@@ -34,6 +61,8 @@ public class DayTimeController : MonoBehaviour
     private void Start()
     {
         time = startAtTime;
+        UpdateDayText();
+        UpdateSeasonText();
     }
 
     public void Subscribe(TimeAgent timeAgent)
@@ -121,6 +150,45 @@ public class DayTimeController : MonoBehaviour
     {
         time -= secondsInDay;
         days += 1;
+
+        int dayNum = (int)dayOfWeek;
+        dayNum += 1;
+        if(dayNum >= 7)
+        {
+            dayNum = 0;
+        }
+        dayOfWeek = (DayOfWeek)dayNum;
+        UpdateDayText();
+
+        if(days >= seasonLength)
+        {
+            NextSeason();
+        }
+    }
+
+    private void NextSeason()
+    {
+        days = 0;
+        int seasonNum = (int)currentSeason;
+        seasonNum += 1;
+
+        if(seasonNum >= 4)
+        {
+            seasonNum = 0;
+        }
+
+        currentSeason = (Season)seasonNum;
+        UpdateSeasonText();
+    }
+
+    private void UpdateSeasonText()
+    {
+        seasonText.text = currentSeason.ToString();
+    }
+
+    private void UpdateDayText()
+    {
+        dayOfTheWeekText.text = dayOfWeek.ToString();
     }
 
     public void SkipTime(float seconds = 0, float minute = 0, float hours = 0)
