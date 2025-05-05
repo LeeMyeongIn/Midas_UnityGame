@@ -183,6 +183,18 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6044415320884122631, guid: 764aa9710af18b34f8f061fe39a7e8d8, type: 3}
+      propertyPath: targetPosition.x
+      value: 11.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 6044415320884122631, guid: 764aa9710af18b34f8f061fe39a7e8d8, type: 3}
+      propertyPath: targetPosition.y
+      value: 9.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 6044415320884122631, guid: 764aa9710af18b34f8f061fe39a7e8d8, type: 3}
+      propertyPath: targetPosition.z
+      value: -0.38662654
+      objectReference: {fileID: 0}
+    - target: {fileID: 6044415320884122631, guid: 764aa9710af18b34f8f061fe39a7e8d8, type: 3}
       propertyPath: sceneNameToTransition
       value: FarmScene
       objectReference: {fileID: 0}
