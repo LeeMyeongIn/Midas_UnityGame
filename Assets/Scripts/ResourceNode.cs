@@ -27,6 +27,12 @@ public class ResourceNode : ToolHit
             ItemSpawnManager.instance.SpawnItem(position, item, itemCountInOneDrop);
         }
 
+        SpawnedObject spawnedObject = GetComponent<SpawnedObject>();
+        if(spawnedObject != null)
+        {
+            spawnedObject.SpawnedObjectDestroyed();
+        }
+
         Destroy(gameObject);
     }
 

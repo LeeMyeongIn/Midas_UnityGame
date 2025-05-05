@@ -5259,7 +5259,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3228944938573782122, guid: d76eb996738046d4591bbe6124ad65f5, type: 3}
       propertyPath: spawnCount
-      value: 1
+      value: 44
       objectReference: {fileID: 0}
     - target: {fileID: 3228944938573782122, guid: d76eb996738046d4591bbe6124ad65f5, type: 3}
       propertyPath: probability
@@ -5267,12 +5267,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3228944938573782122, guid: d76eb996738046d4591bbe6124ad65f5, type: 3}
       propertyPath: objectSpawnLimit
-      value: 10
+      value: 49
+      objectReference: {fileID: 0}
+    - target: {fileID: 3228944938573782122, guid: d76eb996738046d4591bbe6124ad65f5, type: 3}
+      propertyPath: spawn.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3228944938573782122, guid: d76eb996738046d4591bbe6124ad65f5, type: 3}
       propertyPath: targetSaveJSONList
       value: 
       objectReference: {fileID: 11400000, guid: ba6657be8db90d6449107a5a580ffe0a, type: 2}
+    - target: {fileID: 3228944938573782122, guid: d76eb996738046d4591bbe6124ad65f5, type: 3}
+      propertyPath: spawn.Array.data[1]
+      value: 
+      objectReference: {fileID: 1910217270924069895, guid: e28394d799c9e0343af8a26bdb496f44, type: 3}
     - target: {fileID: 3228944938573782123, guid: d76eb996738046d4591bbe6124ad65f5, type: 3}
       propertyPath: m_Name
       value: ObjectSpawner (1)

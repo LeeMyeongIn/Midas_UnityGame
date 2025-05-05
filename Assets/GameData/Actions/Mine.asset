@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d23073ebd6cb6e6449d12c45ed4a31ea, type: 3}
   m_Name: Mine
   m_EditorClassIdentifier: 
-  energyCost: 5
+  energyCost: 10
+  skillType: 1
+  skillExperienceReward: 100
   sizeOfInteractableArea: 1
   canHitNodesOfTypes: 02000000

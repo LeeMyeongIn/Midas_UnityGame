@@ -5746,6 +5746,7 @@ GameObject:
   - component: {fileID: 631060375}
   - component: {fileID: 631060376}
   - component: {fileID: 631060377}
+  - component: {fileID: 631060378}
   m_Layer: 0
   m_Name: MainCharacter
   m_TagString: Player
@@ -5920,6 +5921,7 @@ MonoBehaviour:
   onTilePickUp: {fileID: 11400000, guid: 18a22eab862384b469e9956ca27b7f8f, type: 2}
   iconHighlight: {fileID: 1575953806}
   weaponEnergyCost: 5
+  toolTimeOut: 1
 --- !u!114 &631060365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5952,8 +5954,8 @@ MonoBehaviour:
     currVal: 20
   hpBar: {fileID: 90372446}
   stamina:
-    maxVal: 50
-    currVal: 30
+    maxVal: 500
+    currVal: 400
   staminaBar: {fileID: 919296156}
   isDead: 0
   isExhausted: 0
@@ -6106,6 +6108,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   amount: 0
   text: {fileID: 1359719255}
+--- !u!114 &631060378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 631060357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e87b6045bbab07341afc814777d2ff3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  woodcutting:
+    level: 0
+    experience: 0
+    skillType: 0
+  mining:
+    level: 0
+    experience: 0
+    skillType: 0
+  fighting:
+    level: 0
+    experience: 0
+    skillType: 0
 --- !u!224 &671226458 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3580542897121026232, guid: b639b425e14f00642903cfabc6ba8b66, type: 3}
