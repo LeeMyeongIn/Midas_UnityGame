@@ -14,7 +14,6 @@ public enum DayOfWeek
     Saturday,
     Sunday
 }
-
 public enum Season
 {
     Spring,
@@ -46,6 +45,7 @@ public class DayTimeController : MonoBehaviour
     [SerializeField] TMPro.TextMeshProUGUI dateText;
     [SerializeField] Light2D globalLight;
     public int days;
+    public int years;
 
     Season currentSeason;
     const int seasonLength = 28;    //one month = 28 days
@@ -175,6 +175,7 @@ public class DayTimeController : MonoBehaviour
         if(seasonNum >= 4)
         {
             seasonNum = 0;
+            years += 1;
         }
 
         currentSeason = (Season)seasonNum;
@@ -184,7 +185,22 @@ public class DayTimeController : MonoBehaviour
 
     private void UpdateSeasonText()
     {
-        seasonText.text = currentSeason.ToString();
+        string seasonName = currentSeason.ToString().ToUpper();
+        seasonText.text = $"{GetOrdinal(years)} YEAR of {seasonName}";
+        //seasonText.text = currentSeason.ToString();
+    }
+    private string GetOrdinal(int number)
+    {
+        if (number % 100 >= 11 && number % 100 <= 13)
+            return number + "th";
+
+        switch (number % 10)
+        {
+            case 1: return number + "st";
+            case 2: return number + "nd";
+            case 3: return number + "rd";
+            default: return number + "th";
+        }
     }
 
     /*private void UpdateDayText()
