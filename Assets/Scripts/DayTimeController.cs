@@ -4,25 +4,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 using UnityEngine.UI;
-
-
 public enum DayOfWeek
 {
-    Sunday,
     Monday,
     Tuesday,
     Wednesday,
     Thursday,
     Friday,
-    Saturday
+    Saturday,
+    Sunday
 }
 
 public enum Season
 {
-    Winter,
     Spring,
     Summer,
-    Autumn
+    Fall,
+    Winter
 }
 
 public class DayTimeController : MonoBehaviour
@@ -43,13 +41,14 @@ public class DayTimeController : MonoBehaviour
     DayOfWeek dayOfWeek;
 
     [SerializeField] TMPro.TextMeshProUGUI text;
-    [SerializeField] TMPro.TextMeshProUGUI dayOfTheWeekText;
+    //[SerializeField] TMPro.TextMeshProUGUI dayOfTheWeekText;
     [SerializeField] TMPro.TextMeshProUGUI seasonText;
+    [SerializeField] TMPro.TextMeshProUGUI dateText;
     [SerializeField] Light2D globalLight;
     public int days;
 
     Season currentSeason;
-    const int seasonLength = 30;
+    const int seasonLength = 28;    //one month = 28 days
 
     List<TimeAgent> agents;
 
@@ -61,8 +60,9 @@ public class DayTimeController : MonoBehaviour
     private void Start()
     {
         time = startAtTime;
-        UpdateDayText();
+        //UpdateDayText();
         UpdateSeasonText();
+        UpdateDateText();
     }
 
     public void Subscribe(TimeAgent timeAgent)
@@ -112,7 +112,6 @@ public class DayTimeController : MonoBehaviour
         text.text = hh.ToString("00") + ":" + mm.ToString("00");
     }
 
-
     private void DayLight()
     {
         float v = nightTimeCurve.Evaluate(Hours);
@@ -158,9 +157,10 @@ public class DayTimeController : MonoBehaviour
             dayNum = 0;
         }
         dayOfWeek = (DayOfWeek)dayNum;
-        UpdateDayText();
+        //UpdateDayText();
+        UpdateDateText();
 
-        if(days >= seasonLength)
+        if (days >= seasonLength)
         {
             NextSeason();
         }
@@ -179,6 +179,7 @@ public class DayTimeController : MonoBehaviour
 
         currentSeason = (Season)seasonNum;
         UpdateSeasonText();
+        UpdateDateText();
     }
 
     private void UpdateSeasonText()
@@ -186,9 +187,15 @@ public class DayTimeController : MonoBehaviour
         seasonText.text = currentSeason.ToString();
     }
 
-    private void UpdateDayText()
+    /*private void UpdateDayText()
     {
         dayOfTheWeekText.text = dayOfWeek.ToString();
+    }*/
+
+    private void UpdateDateText()
+    {
+        int displayDay = days + 1;
+        dateText.text = $"Day: {displayDay}, {dayOfWeek}";
     }
 
     public void SkipTime(float seconds = 0, float minute = 0, float hours = 0)

@@ -13,7 +13,7 @@ public class ToolsCharacterController : MonoBehaviour
     ToolbarController toolbarController;
     Animator animator;
     [SerializeField] float offsetDistance = 1f;
-    [SerializeField] float sizeOfInteractableArea = 1.2f;
+    //[SerializeField] float sizeOfInteractableArea = 1.2f;
     [SerializeField] MarkerManager markerManager;
     [SerializeField] TileMapReadController tileMapReadcontroller;
     [SerializeField] float maxDistance = 1.5f;
