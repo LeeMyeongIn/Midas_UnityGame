@@ -108,7 +108,7 @@ public class DayTimeController : MonoBehaviour
     private void TimeValueCalculation()
     {
         int hh = (int)Hours;
-        int mm = (int)Minutes;
+        int mm = ((int)Minutes / 10) * 10;
         text.text = hh.ToString("00") + ":" + mm.ToString("00");
     }
 
