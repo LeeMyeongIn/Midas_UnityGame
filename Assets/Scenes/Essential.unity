@@ -2297,8 +2297,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1803, y: 818}
-  m_SizeDelta: {x: 195.912, y: 73.58}
+  m_AnchoredPosition: {x: 1667.1335, y: 818}
+  m_SizeDelta: {x: 467.6451, y: 73.58}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &312552528
 MonoBehaviour:
@@ -2320,7 +2320,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: time text
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3efa5b738ba96c8458901d0bf9ba8a1b, type: 2}
   m_sharedMaterial: {fileID: 4825378426325413569, guid: 3efa5b738ba96c8458901d0bf9ba8a1b, type: 2}
@@ -2347,8 +2347,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45
-  m_fontSizeBase: 45
+  m_fontSize: 55
+  m_fontSizeBase: 55
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3403,13 +3403,22 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
+      time: -0.078113556
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: 0.086581275
+      outSlope: 0.086581275
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.21801901
+      value: 1.0256395
+      inSlope: 0.017156973
+      outSlope: 0.017156973
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 4.014516
@@ -3448,7 +3457,7 @@ MonoBehaviour:
       inWeight: 0.31092978
       outWeight: 0.2157036
     - serializedVersion: 3
-      time: 24
+      time: 24.156174
       value: 1
       inSlope: 0
       outSlope: 0
@@ -3460,14 +3469,16 @@ MonoBehaviour:
     m_PostInfinity: 0
     m_RotationOrder: 4
   dayLightColor: {r: 1, g: 1, b: 1, a: 1}
-  timeScale: 2000
-  startAtTime: 28800
-  morningTime: 28800
+  timeScale: 5000
+  startAtTime: 21600
+  morningTime: 21600
+  screenTint: {fileID: 1734395991}
   text: {fileID: 312552528}
   seasonText: {fileID: 673809440}
   dateText: {fileID: 1263776019}
   globalLight: {fileID: 1631282790}
   days: 0
+  years: 0
 --- !u!114 &416943246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6197,8 +6208,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1803, y: 908}
-  m_SizeDelta: {x: 195.912, y: 73.58}
+  m_AnchoredPosition: {x: 1667.1335, y: 908}
+  m_SizeDelta: {x: 467.6451, y: 73.58}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &673809440
 MonoBehaviour:
@@ -6220,7 +6231,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: year / season text
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3efa5b738ba96c8458901d0bf9ba8a1b, type: 2}
   m_sharedMaterial: {fileID: 4825378426325413569, guid: 3efa5b738ba96c8458901d0bf9ba8a1b, type: 2}
@@ -6247,8 +6258,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45
-  m_fontSizeBase: 45
+  m_fontSize: 55
+  m_fontSizeBase: 55
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -20651,8 +20662,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1803, y: 862}
-  m_SizeDelta: {x: 195.912, y: 73.58}
+  m_AnchoredPosition: {x: 1551.9502, y: 862}
+  m_SizeDelta: {x: 698.0116, y: 73.58}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1263776019
 MonoBehaviour:
@@ -20674,7 +20685,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: date / day of the week  text
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3efa5b738ba96c8458901d0bf9ba8a1b, type: 2}
   m_sharedMaterial: {fileID: 4825378426325413569, guid: 3efa5b738ba96c8458901d0bf9ba8a1b, type: 2}
@@ -20701,8 +20712,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45
-  m_fontSizeBase: 45
+  m_fontSize: 55
+  m_fontSizeBase: 55
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -20737,7 +20748,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -149.55292, y: 0, z: 0, w: 0}
+  m_margin: {x: 0.08686543, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -21147,8 +21158,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 999999999999999
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3efa5b738ba96c8458901d0bf9ba8a1b, type: 2}
+  m_sharedMaterial: {fileID: 4825378426325413569, guid: 3efa5b738ba96c8458901d0bf9ba8a1b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -21172,8 +21183,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -32455,6 +32466,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: HPBarBackground
       objectReference: {fileID: 0}
+    - target: {fileID: 352754562546481587, guid: 90d1f85a0d9f1c54eb4cf91294866802, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 652f7165b7c30ab46af6c4aad90a639b, type: 2}
+    - target: {fileID: 352754562546481587, guid: 90d1f85a0d9f1c54eb4cf91294866802, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 2232981067676883559, guid: 90d1f85a0d9f1c54eb4cf91294866802, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -32583,6 +32602,14 @@ PrefabInstance:
     - target: {fileID: 221365107662577962, guid: 90d1f85a0d9f1c54eb4cf91294866802, type: 3}
       propertyPath: m_Name
       value: StanimaBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 352754562546481587, guid: 90d1f85a0d9f1c54eb4cf91294866802, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 652f7165b7c30ab46af6c4aad90a639b, type: 2}
+    - target: {fileID: 352754562546481587, guid: 90d1f85a0d9f1c54eb4cf91294866802, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 2232981067676883559, guid: 90d1f85a0d9f1c54eb4cf91294866802, type: 3}
       propertyPath: m_AnchorMax.x

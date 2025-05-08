@@ -34,8 +34,10 @@ public class DayTimeController : MonoBehaviour
 
     float time;
     [SerializeField] float timeScale = 60f;
-    [SerializeField] float startAtTime = 28800f;
-    [SerializeField] float morningTime = 28800f;
+    [SerializeField] float startAtTime = 21601f;
+    [SerializeField] float morningTime = 2160f;
+    
+    [SerializeField] ScreenTint screenTint;
 
     DayOfWeek dayOfWeek;
 
@@ -46,6 +48,7 @@ public class DayTimeController : MonoBehaviour
     [SerializeField] Light2D globalLight;
     public int days;
     public int years;
+    bool isDayChanging = false;
 
     Season currentSeason;
     const int seasonLength = 28;    //one month = 28 days
@@ -87,29 +90,58 @@ public class DayTimeController : MonoBehaviour
 
     private void Update()
     {
+        if (isDayChanging)
+            return;
+
         time += Time.deltaTime * timeScale;
 
         TimeValueCalculation();
         DayLight();
 
-        if (time > secondsInDay)
+        if (!isDayChanging && Hours >= 2f && time >= (morningTime + 72000f)) // 6시부터 8시간 = 2시
         {
-            NextDay();
+            isDayChanging = true;
+            StartCoroutine(NextDayRoutine());
+            return;
         }
 
         TimeAgents();
-
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            SkipTime(hours: 4);
-        }
     }
 
+
+    private IEnumerator NextDayRoutine()
+    {
+        screenTint.Tint();
+        yield return new WaitForSeconds(1.5f);
+
+        time = morningTime;
+
+        days += 1;
+        int dayNum = ((int)dayOfWeek + 1) % 7;
+        dayOfWeek = (DayOfWeek)dayNum;
+
+        UpdateDateText();
+
+        if (days >= seasonLength)
+        {
+            NextSeason();
+        }
+
+        screenTint.UnTint();
+        yield return new WaitForSeconds(1f);
+        isDayChanging = false;
+    }
     private void TimeValueCalculation()
     {
-        int hh = (int)Hours;
+        int totalHours = (int)Hours % 24;
         int mm = ((int)Minutes / 10) * 10;
-        text.text = hh.ToString("00") + ":" + mm.ToString("00");
+
+        string period = totalHours >= 12 ? "PM" : "AM";
+
+        int hh12 = totalHours % 12;
+        if (hh12 == 0) hh12 = 12;
+
+        text.text = $"{hh12:00}:{mm:00} {period}";
     }
 
     private void DayLight()
@@ -145,7 +177,7 @@ public class DayTimeController : MonoBehaviour
         return (int)(time / phaseLenght) + (int)(days * phasesInDay);
     }
 
-    private void NextDay()
+    /*private void NextDay()
     {
         time -= secondsInDay;
         days += 1;
@@ -164,7 +196,7 @@ public class DayTimeController : MonoBehaviour
         {
             NextSeason();
         }
-    }
+    }*/
 
     private void NextSeason()
     {
@@ -186,7 +218,7 @@ public class DayTimeController : MonoBehaviour
     private void UpdateSeasonText()
     {
         string seasonName = currentSeason.ToString().ToUpper();
-        seasonText.text = $"{GetOrdinal(years)} YEAR of {seasonName}";
+        seasonText.text = $"{GetOrdinal(years + 1)} YEAR of {seasonName}";
         //seasonText.text = currentSeason.ToString();
     }
     private string GetOrdinal(int number)
