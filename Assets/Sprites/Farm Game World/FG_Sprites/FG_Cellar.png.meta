@@ -9649,13 +9649,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FG_Cellar_454
+      name: Door_Open
       rect:
         serializedVersion: 2
         x: 320
         y: 192
         width: 16
-        height: 16
+        height: 21
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
