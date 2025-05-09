@@ -4987,13 +4987,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FG_Village_Winter_232
+      name: Background_winter_2
       rect:
         serializedVersion: 2
         x: 256
-        y: 368
-        width: 16
-        height: 16
+        y: 350
+        width: 61
+        height: 31
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -6142,13 +6142,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FG_Village_Winter_287
+      name: Background_winter_1
       rect:
         serializedVersion: 2
-        x: 272
-        y: 336
-        width: 16
-        height: 16
+        x: 258
+        y: 319
+        width: 62
+        height: 31
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -16348,13 +16348,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FG_Village_Winter_773
+      name: Background_winter_4
       rect:
         serializedVersion: 2
         x: 0
         y: 48
-        width: 16
-        height: 16
+        width: 31
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
