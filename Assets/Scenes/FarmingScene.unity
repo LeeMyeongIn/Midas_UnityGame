@@ -464,7 +464,7 @@ GameObject:
   - component: {fileID: 20892301}
   - component: {fileID: 20892304}
   m_Layer: 0
-  m_Name: FG_Village_Normal
+  m_Name: Spring/Summer/Fall House
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1091,6 +1091,7 @@ GameObject:
   m_Component:
   - component: {fileID: 57802464}
   - component: {fileID: 57802463}
+  - component: {fileID: 57802465}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -1130,6 +1131,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &57802465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57802462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 892a8b4e440c67c41b26347c9451fc03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  springTilemap: {fileID: 1257203378}
+  summerTilemap: {fileID: 1938132115}
+  fallTilemap: {fileID: 72308868}
+  winterTilemap: {fileID: 1943931621}
+  SpringSummerFall: {fileID: 20892300}
+  Winter: {fileID: 1279472712}
 --- !u!1 &57809953
 GameObject:
   m_ObjectHideFlags: 0
@@ -81063,7 +81082,7 @@ GameObject:
   - component: {fileID: 1279472716}
   - component: {fileID: 1279472715}
   m_Layer: 0
-  m_Name: FG_Village_Snow
+  m_Name: WinterHouse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

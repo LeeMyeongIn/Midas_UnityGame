@@ -36,8 +36,9 @@ public class DayTimeController : MonoBehaviour
     [SerializeField] float timeScale = 60f;
     [SerializeField] float startAtTime = 21601f;
     [SerializeField] float morningTime = 2160f;
-    
+
     [SerializeField] ScreenTint screenTint;
+    [SerializeField] SeasonTilemapController seasonTilemapController;
 
     DayOfWeek dayOfWeek;
 
@@ -62,10 +63,15 @@ public class DayTimeController : MonoBehaviour
 
     private void Start()
     {
+        if (seasonTilemapController == null)
+        {
+            seasonTilemapController = FindObjectOfType<SeasonTilemapController>();
+        }
+
         time = startAtTime;
-        //UpdateDayText();
         UpdateSeasonText();
         UpdateDateText();
+        seasonTilemapController?.UpdateSeason(currentSeason);
     }
 
     public void Subscribe(TimeAgent timeAgent)
@@ -155,14 +161,14 @@ public class DayTimeController : MonoBehaviour
 
     private void TimeAgents()
     {
-        if(oldPhase == -1)
+        if (oldPhase == -1)
         {
             oldPhase = CalculatePhase();
         }
 
         int currentPhase = CalculatePhase();
 
-        while(oldPhase < currentPhase)
+        while (oldPhase < currentPhase)
         {
             oldPhase += 1;
             for (int i = 0; i < agents.Count; i++)
@@ -204,7 +210,7 @@ public class DayTimeController : MonoBehaviour
         int seasonNum = (int)currentSeason;
         seasonNum += 1;
 
-        if(seasonNum >= 4)
+        if (seasonNum >= 4)
         {
             seasonNum = 0;
             years += 1;
@@ -213,6 +219,7 @@ public class DayTimeController : MonoBehaviour
         currentSeason = (Season)seasonNum;
         UpdateSeasonText();
         UpdateDateText();
+        seasonTilemapController.UpdateSeason(currentSeason);
     }
 
     private void UpdateSeasonText()
@@ -257,9 +264,9 @@ public class DayTimeController : MonoBehaviour
 
     public void SkipToMorning()
     {
-        float secondsToSkip = 0f;   
+        float secondsToSkip = 0f;
 
-        if(time > morningTime)
+        if (time > morningTime)
         {
             secondsToSkip += secondsInDay - time + morningTime;
         }
