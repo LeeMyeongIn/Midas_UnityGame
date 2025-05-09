@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenuScene.unity
     guid: 306cb1c713a9fdd4cbab287c8dc3cced
+  - enabled: 1
+    path: Assets/Scenes/FarmingScene.unity
+    guid: 9c41d4c1016b8f649b0ad702503b50c9
   m_configObjects: {}

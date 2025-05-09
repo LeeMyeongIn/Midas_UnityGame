@@ -58479,10 +58479,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cfa030ed81bd0e43977142772d788d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plowed: {fileID: 0}
-  seeded: {fileID: 0}
-  cropsSpritePrefab: {fileID: 0}
-  container: {fileID: 0}
+  plowed: {fileID: 11400000, guid: c9d35ab03e775b445b6360ff1f43651c, type: 2}
+  seeded: {fileID: 11400000, guid: 7803ba2fefc895145857dd9483513dd1, type: 2}
+  cropsSpritePrefab: {fileID: 2760416932741745417, guid: b9485cbc6be750345a05aeb10436cc6c, type: 3}
+  container: {fileID: 11400000, guid: cce359ad9389827468e187cc66e62306, type: 2}
 --- !u!483693784 &825053129
 TilemapRenderer:
   m_ObjectHideFlags: 0
