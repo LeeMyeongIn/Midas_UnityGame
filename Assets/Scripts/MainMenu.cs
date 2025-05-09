@@ -13,6 +13,8 @@ public class MainMenu : MonoBehaviour
     public Gender selectedGender;
     public TMPro.TMP_Text genderText;
     public TMPro.TMP_InputField nameInputField;
+    public TMPro.TMP_InputField farmInputField;
+    public TMPro.TMP_InputField aboutTheFarmInputField;
 
     AsyncOperation operation;
 
@@ -20,6 +22,8 @@ public class MainMenu : MonoBehaviour
     {
         SetGenderFemale();
         UpdateName();
+        UpdateFarmName();
+        UpdateAboutTheFarm();
     }
 
     public void ExitGame()
@@ -53,9 +57,18 @@ public class MainMenu : MonoBehaviour
         playerData.characterName = nameInputField.text;
     }
 
+    public void UpdateFarmName()
+    {
+        playerData.farmName = farmInputField.text;
+    }
+
+    public void UpdateAboutTheFarm()
+    {
+        playerData.aboutTheFarm = aboutTheFarmInputField.text;
+    }
+
     public void SetSavingSlot(int num)
     {
         playerData.saveSlotId = num;
-
     }
 }
