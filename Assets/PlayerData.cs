@@ -10,4 +10,5 @@ public class PlayerData : ScriptableObject
     public string aboutTheFarm;
     public Gender playerCharacterGender;
     public int saveSlotId;
+    public int selectedCharacterIndex;
 }
