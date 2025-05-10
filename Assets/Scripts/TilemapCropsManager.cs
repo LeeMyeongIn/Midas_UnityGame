@@ -70,15 +70,16 @@ public class TilemapCropsManager : TimeAgent
 
             cropTile.growTimer += 1;
 
-            if(cropTile.growTimer >= cropTile.crop.growthStageTime[cropTile.growStage])
+            if (cropTile.growStage < cropTile.crop.growthStageTime.Count &&
+                cropTile.growStage < cropTile.crop.sprites.Count &&
+                cropTile.growTimer >= cropTile.crop.growthStageTime[cropTile.growStage])
             {
+                targetTilemap.SetTile(cropTile.position, plowed);
+
                 cropTile.renderer.gameObject.SetActive(true);
                 cropTile.renderer.sprite = cropTile.crop.sprites[cropTile.growStage];
-
                 cropTile.growStage += 1;
             }
-
-            
         }
     }
 
