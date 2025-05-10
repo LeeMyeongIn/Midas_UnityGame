@@ -12,9 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a472705407ee63f4ca2821047f0cce1c, type: 3}
   m_Name: TomatoCrop
   m_EditorClassIdentifier: 
-  timeToGrow: 10
-  yield: {fileID: 0}
+  timeToGrow: 9
+  yield: {fileID: 11400000, guid: 5ba4582d40ac44b469593ddf98b00de2, type: 2}
   count: 1
-  sprites: []
-  growthStageTime: 
-  seasons: 
+  sprites:
+  - {fileID: -7971055261418388396, guid: 660c8a71913c5d846abe7be78b5a1cbf, type: 3}
+  - {fileID: -2142682494729518216, guid: 660c8a71913c5d846abe7be78b5a1cbf, type: 3}
+  - {fileID: 2529556779308654033, guid: 660c8a71913c5d846abe7be78b5a1cbf, type: 3}
+  - {fileID: 3445738448468270975, guid: 660c8a71913c5d846abe7be78b5a1cbf, type: 3}
+  growthStageTime: 01000000030000000300000001000000
+  seasons: 01000000

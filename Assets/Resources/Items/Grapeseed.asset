@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: 
   id: 0
-  stackable: 0
-  icon: {fileID: 0}
+  stackable: 1
+  icon: {fileID: 6944317059694909869, guid: 2197b0c12f5218f4ea15be1268ac118f, type: 3}
   onAction: {fileID: 0}
-  onTileMapAction: {fileID: 0}
-  onItemUsed: {fileID: 0}
-  crop: {fileID: 0}
+  onTileMapAction: {fileID: 11400000, guid: a234021fc4129c1409b53962ac3f14e5, type: 2}
+  onItemUsed: {fileID: 11400000, guid: a234021fc4129c1409b53962ac3f14e5, type: 2}
+  crop: {fileID: 11400000, guid: f61ed852ed1d96c48905be99fb9533a2, type: 2}
   iconHighlight: 0
   itemPrefab: {fileID: 0}
   isWeapon: 0

@@ -53,6 +53,11 @@ public class DayTimeController : MonoBehaviour
     bool isDayChanging = false;
 
     Season currentSeason;
+    public Season CurrentSeason
+    {
+        get { return currentSeason; }
+    }
+
     const int seasonLength = 28;    //one month = 28 days
 
     List<TimeAgent> agents;
@@ -227,11 +232,6 @@ public class DayTimeController : MonoBehaviour
         string seasonName = currentSeason.ToString().ToUpper();
         seasonText.text = $"{GetOrdinal(years + 1)} YEAR of {seasonName}";
         //seasonText.text = currentSeason.ToString();
-    }
-
-    public Season CurrentSeason
-    {
-        get { return currentSeason; }
     }
 
     private string GetOrdinal(int number)

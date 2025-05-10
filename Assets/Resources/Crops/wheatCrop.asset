@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a472705407ee63f4ca2821047f0cce1c, type: 3}
   m_Name: wheatCrop
   m_EditorClassIdentifier: 
-  timeToGrow: 10
-  yield: {fileID: 0}
+  timeToGrow: 4
+  yield: {fileID: 11400000, guid: 49ab9eee8e8f567469c9f32ebd2f9295, type: 2}
   count: 1
-  sprites: []
-  growthStageTime: 
-  seasons: 
+  sprites:
+  - {fileID: 1912590780206392614, guid: c27456f9a14ded446ab3040bf755695e, type: 3}
+  - {fileID: -1951673724704857569, guid: c27456f9a14ded446ab3040bf755695e, type: 3}
+  - {fileID: 8937418228069923953, guid: c27456f9a14ded446ab3040bf755695e, type: 3}
+  growthStageTime: 010000000100000001000000
+  seasons: 01000000

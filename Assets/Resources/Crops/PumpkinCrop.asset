@@ -12,9 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a472705407ee63f4ca2821047f0cce1c, type: 3}
   m_Name: PumpkinCrop
   m_EditorClassIdentifier: 
-  timeToGrow: 10
-  yield: {fileID: 0}
+  timeToGrow: 13
+  yield: {fileID: 11400000, guid: 2d95e545668b57e4d8fe2c1020ea7e19, type: 2}
   count: 1
-  sprites: []
-  growthStageTime: 
-  seasons: 
+  sprites:
+  - {fileID: 21300000, guid: b14a11a999a76b848862149cbeaa1d15, type: 3}
+  - {fileID: 21300000, guid: e597adf111e17904c8052c3bad119fdf, type: 3}
+  - {fileID: 21300000, guid: 49cd93e66d7f78d4c84dbe0830b4dd99, type: 3}
+  - {fileID: 21300000, guid: 796124be75c353f4c83f8b4d6d7eccfe, type: 3}
+  - {fileID: 21300000, guid: bd3bab4ed3e11eb46b71a5f8eedcd48b, type: 3}
+  growthStageTime: 0100000003000000030000000400000001000000
+  seasons: 02000000
