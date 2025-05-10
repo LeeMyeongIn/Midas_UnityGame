@@ -73,7 +73,7 @@ public class TilemapCropsManager : TimeAgent
             if(cropTile.growTimer >= cropTile.crop.growthStageTime[cropTile.growStage])
             {
                 cropTile.renderer.gameObject.SetActive(true);
-                cropTile.renderer.sprite = cropTile.crop.sprrites[cropTile.growStage];
+                cropTile.renderer.sprite = cropTile.crop.sprites[cropTile.growStage];
 
                 cropTile.growStage += 1;
             }
@@ -123,7 +123,7 @@ public class TilemapCropsManager : TimeAgent
         cropTile.renderer.gameObject.SetActive(growing);
         if(growing == true)
         {
-            cropTile.renderer.sprite = cropTile.crop.sprrites[cropTile.growStage-1];
+            cropTile.renderer.sprite = cropTile.crop.sprites[cropTile.growStage-1];
         }
     }
 

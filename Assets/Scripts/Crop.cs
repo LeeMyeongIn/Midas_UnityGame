@@ -9,7 +9,7 @@ public class Crop : ScriptableObject
     public Item yield;
     public int count = 1;
 
-    public List<Sprite> sprrites;
+    public List<Sprite> sprites;
     public List<int> growthStageTime;
 
 }
