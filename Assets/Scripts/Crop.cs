@@ -12,4 +12,5 @@ public class Crop : ScriptableObject
     public List<Sprite> sprites;
     public List<int> growthStageTime;
 
+    public List<Season> seasons;
 }

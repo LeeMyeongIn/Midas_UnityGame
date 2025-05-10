@@ -56,11 +56,21 @@ public class TilemapCropsManager : TimeAgent
 
         // 하루에 한 번만 성장
         if (lastUpdatedDay == dayTimeController.days) return;
-        lastUpdatedDay = dayTimeController.days;
+            lastUpdatedDay = dayTimeController.days;
 
         foreach (CropTile cropTile in container.crops)
         {
             if (cropTile.crop == null) continue;
+
+            //현재 계절이 아닌 경우 작물이 바로 상함
+            Season currentSeason = dayTimeController.CurrentSeason;
+            if (!cropTile.crop.seasons.Contains(currentSeason))
+            {
+                Debug.Log($"[Tick] {cropTile.crop.name}은 {currentSeason}에 자랄 수 없습니다. 즉시 상함.");
+                cropTile.Harvested();
+                targetTilemap.SetTile(cropTile.position, plowed);
+                continue;
+            }
 
             cropTile.damage += 0.02f;
             if (cropTile.damage >= 1f)
@@ -105,9 +115,18 @@ public class TilemapCropsManager : TimeAgent
     public void Seed(Vector3Int position, Crop toSeed)
     {
         CropTile tile = container.Get(position);
-
         if(tile == null) { return; }
-        
+
+        // 현재 계절 가져오기
+        Season currentSeason = GameManager.instance.timeController.CurrentSeason;
+
+        // 심으려는 작물이 현재 계절에 심을 수 있는지 확인
+        if (!toSeed.seasons.Contains(currentSeason))
+        {
+            Debug.Log($"[Seed] {toSeed.name}은 {currentSeason}에 심을 수 없습니다.");
+            return;
+        }
+
         targetTilemap.SetTile(position, seeded);
 
         tile.crop = toSeed;

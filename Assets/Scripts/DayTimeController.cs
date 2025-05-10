@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 using UnityEngine.UI;
+
 public enum DayOfWeek
 {
     Monday,
@@ -227,6 +228,12 @@ public class DayTimeController : MonoBehaviour
         seasonText.text = $"{GetOrdinal(years + 1)} YEAR of {seasonName}";
         //seasonText.text = currentSeason.ToString();
     }
+
+    public Season CurrentSeason
+    {
+        get { return currentSeason; }
+    }
+
     private string GetOrdinal(int number)
     {
         if (number % 100 >= 11 && number % 100 <= 13)
