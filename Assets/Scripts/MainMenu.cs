@@ -18,6 +18,11 @@ public class MainMenu : MonoBehaviour
 
     AsyncOperation operation;
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(playerData);
+    }
+
     private void Start()
     {
         SetGenderFemale();

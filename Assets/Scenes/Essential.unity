@@ -5793,7 +5793,7 @@ Animator:
   m_GameObject: {fileID: 631060357}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8def163466dc9e54f9e4ba4f5f7da696, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -6161,7 +6161,13 @@ MonoBehaviour:
   - {fileID: 4523160643217506750, guid: f4bd3fafc1c06314ebe7a50d2e963b3d, type: 3}
   - {fileID: 23845320829890886, guid: e6b3df32df9f4114986e101de18e5026, type: 3}
   - {fileID: -7500476609912205459, guid: 18b58d336530fe744af4c92c59a45929, type: 3}
-  - {fileID: 0}
+  - {fileID: -1951046585220413907, guid: b815b473fdcef4c408016ca00587c72e, type: 3}
+  characterAnimators:
+  - {fileID: 9100000, guid: 8def163466dc9e54f9e4ba4f5f7da696, type: 2}
+  - {fileID: 9100000, guid: 35ac47439048f7242bda7453c1b50014, type: 2}
+  - {fileID: 9100000, guid: 3ef8c894349979d4d8e858b4f22eb432, type: 2}
+  - {fileID: 9100000, guid: 9575dcc2fbaf47c4ba981de8969a5fc6, type: 2}
+  - {fileID: 9100000, guid: 92bfc592e2140154fa29ac24d8e2d349, type: 2}
   playerData: {fileID: 11400000, guid: b84028d12ff653b41bcd5f39e05299f5, type: 2}
 --- !u!224 &671226458 stripped
 RectTransform:

@@ -35,7 +35,14 @@ public class CharacterSelectorUI : MonoBehaviour
 
     public void ConfirmCharacterSelection()
     {
-        playerData.selectedCharacterIndex = currentIndex;
-        Debug.Log("선택된 캐릭터 인덱스: " + currentIndex);
+        if (currentIndex >= 0 && currentIndex < characterSprites.Length)
+        {
+            playerData.selectedCharacterIndex = currentIndex;
+            Debug.Log("선택된 캐릭터 인덱스: " + currentIndex);
+        }
+        else
+        {
+            Debug.LogWarning("Invalid character index selected");
+        }
     }
 }
