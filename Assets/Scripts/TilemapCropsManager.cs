@@ -16,6 +16,10 @@ public class TilemapCropsManager : TimeAgent
     [SerializeField] GameObject cropsSpritePrefab;
 
     [SerializeField] CropsContainer container;
+
+    //새로운 날 일때만 증가하는 조건
+    private int lastUpdatedDay = -1;
+
     public Tilemap GetTilemap()
     {
         return targetTilemap;
@@ -48,14 +52,17 @@ public class TilemapCropsManager : TimeAgent
 
     public void Tick(DayTimeController dayTimeController)
     {
-        if (targetTilemap == null) { return; }
+        if (targetTilemap == null) return;
+
+        // 하루에 한 번만 성장
+        if (lastUpdatedDay == dayTimeController.days) return;
+        lastUpdatedDay = dayTimeController.days;
 
         foreach (CropTile cropTile in container.crops)
         {
-            if(cropTile.crop == null) { continue; }
+            if (cropTile.crop == null) continue;
 
             cropTile.damage += 0.02f;
-
             if (cropTile.damage >= 1f)
             {
                 cropTile.Harvested();
@@ -63,20 +70,21 @@ public class TilemapCropsManager : TimeAgent
                 continue;
             }
 
-            if (cropTile.Complete)
-            {
-                continue;
-            }
+            if (cropTile.Complete) continue;
 
             cropTile.growTimer += 1;
 
             if (cropTile.growStage < cropTile.crop.growthStageTime.Count &&
                 cropTile.growStage < cropTile.crop.sprites.Count &&
                 cropTile.growTimer >= cropTile.crop.growthStageTime[cropTile.growStage])
+
             {
                 targetTilemap.SetTile(cropTile.position, plowed);
-
-                cropTile.renderer.gameObject.SetActive(true);
+                if (cropTile.renderer != null)
+                {
+                    cropTile.renderer.gameObject.SetActive(true);
+                    cropTile.renderer.sprite = cropTile.crop.sprites[cropTile.growStage];
+                }
                 cropTile.renderer.sprite = cropTile.crop.sprites[cropTile.growStage];
                 cropTile.growStage += 1;
             }
@@ -122,10 +130,11 @@ public class TilemapCropsManager : TimeAgent
             cropTile.growTimer >= cropTile.crop.growthStageTime[0];
 
         cropTile.renderer.gameObject.SetActive(growing);
-        if(growing == true)
+        if (growing && cropTile.growStage > 0 && cropTile.growStage <= cropTile.crop.sprites.Count)
         {
-            cropTile.renderer.sprite = cropTile.crop.sprites[cropTile.growStage-1];
+            cropTile.renderer.sprite = cropTile.crop.sprites[cropTile.growStage - 1];
         }
+
     }
 
     private void CreatePlowedTile(Vector3Int position)

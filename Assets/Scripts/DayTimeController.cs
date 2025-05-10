@@ -114,7 +114,6 @@ public class DayTimeController : MonoBehaviour
         TimeAgents();
     }
 
-
     private IEnumerator NextDayRoutine()
     {
         screenTint.Tint();
