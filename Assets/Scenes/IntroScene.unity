@@ -415,8 +415,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 371, y: -251}
-  m_SizeDelta: {x: 42.1804, y: 30}
+  m_AnchoredPosition: {x: 377.36734, y: -251.88368}
+  m_SizeDelta: {x: 33.7151, y: 28.2326}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &614623332
 MonoBehaviour:
@@ -494,8 +494,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: -2605026454886752972, guid: fc3839296902bc044b6e2f636e42a3bd, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -738,7 +738,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: next
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -866,7 +866,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.21698111, g: 0.15990153, b: 0.06891537, a: 1}
+  m_Color: {r: 0.3018868, g: 0.2153182, b: 0.07309835, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1072,10 +1072,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: "\uB9C8\uCE68\uB0B4 \uB300\uD559\uC744 \uC878\uC5C5\uD588\uB2E4."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3efa5b738ba96c8458901d0bf9ba8a1b, type: 2}
-  m_sharedMaterial: {fileID: 4825378426325413569, guid: 3efa5b738ba96c8458901d0bf9ba8a1b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 78c34990c362ef04fa8115e767ae1027, type: 2}
+  m_sharedMaterial: {fileID: 8729391114746358537, guid: 78c34990c362ef04fa8115e767ae1027, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1099,8 +1099,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
