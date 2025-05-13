@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: Galmuri9 SDF_Korean
+  m_Name: Galmuri9_IntroText SDF
   m_EditorClassIdentifier: 
-  hashCode: -1095662942
+  hashCode: -392518739
   material: {fileID: 8729391114746358537}
-  materialHashCode: -31151294
+  materialHashCode: -1974703507
   m_Version: 1.1.0
   m_SourceFontFileGUID: 9517304c6adb97d4bbd00749890ce0dc
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 9517304c6adb97d4bbd00749890ce0dc, type: 3}
