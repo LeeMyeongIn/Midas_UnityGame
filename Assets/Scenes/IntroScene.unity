@@ -157,8 +157,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 48.739}
-  m_SizeDelta: {x: -0.0001, y: -97.477}
+  m_AnchoredPosition: {x: 0, y: 48.246}
+  m_SizeDelta: {x: -0.0001, y: -96.491}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &149326798
 CanvasRenderer:
@@ -230,7 +230,38 @@ MonoBehaviour:
   cutsceneImage: {fileID: 149326799}
   cutsceneText: {fileID: 1765062179}
   clockUI: {fileID: 249246549}
-  cutscenes: []
+  cutscenes:
+  - image: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    text: "\uB9C8\uCE68\uB0B4 \uB300\uD559\uC744 \uC878\uC5C5\uD588\uB2E4."
+    showClock: 0
+  - image: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    text: "\uD558\uC9C0\uB9CC \uCDE8\uC5C5\uC774\uB77C\uB294 \uC0C8\uB85C\uC6B4 \uAD00\uBB38\uC774
+      \uC0DD\uACBC\uB2E4.\n\uC774\uB825\uC11C\uB3C4 \uB123\uC5B4\uBCF4\uACE0, \uCDE8\uC5C5
+      \uC0C1\uB2F4\uB3C4 \uB9CE\uC774 \uD574\uBD24\uC9C0\uB9CC \uB3CC\uC544\uC624\uB294
+      \uB2F5\uBCC0\uC740 \uC5C6\uC5C8\uB2E4."
+    showClock: 0
+  - image: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    text: "\uB0A8\uB4E4\uC740 \uB2E4 \uBC14\uC058\uAC8C \uC0B4\uC544\uAC00\uB294
+      \uAC83 \uAC19\uC740\uB370, \uB0B4 \uC2DC\uAC04\uB9CC \uC65C \uBA48\uCDC4\uC744\uAE4C.."
+    showClock: 1
+  - image: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+    text: "\uC810\uC810 \uC9C0\uCCD0\uAC00\uB358 \uC5B4\uB290 \uB0A0, \uB0B4 \uB208\uC5D0
+      \uB748 \uD55C \uC904\uC758 \uAD11\uACE0"
+    showClock: 1
+  - image: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+    text: "<\uB204\uAD6C\uB098\uC2DC\uACE8\uB85C\uB300\uCD9C>-3\uB144 \uC548\uC5D0
+      \uAC1A\uC73C\uBA74 \uD3C9\uC0DD \uB0B4 \uC9D1!"
+    showClock: 1
+  - image: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+    text: "\uB098\uB294 \uBB34\uC791\uC815 \uC2E0\uCCAD\uC744 \uD588\uACE0, \uBA70\uCE60
+      \uB4A4 \uB09C \uC2DC\uACE8\uD589 \uAE30\uCC28 \uC548\uC5D0 \uC788\uC5C8\uB2E4."
+    showClock: 1
+  - image: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+    text: "- \uC9D1 \uB3C4\uCC29 -"
+    showClock: 1
+  - image: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+    text: "\uADF8\uB798, \uC5EC\uAE30\uC11C \uB2E4\uC2DC \uC2DC\uC791\uD574\uBCF4\uB294\uAC70\uC57C!"
+    showClock: 1
 --- !u!4 &174803740
 Transform:
   m_ObjectHideFlags: 0
@@ -376,7 +407,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -350.06, y: -155.88}
+  m_AnchoredPosition: {x: -349, y: -99}
   m_SizeDelta: {x: 99.8788, y: 37.7606}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &614623330
@@ -415,7 +446,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 377.36734, y: -251.88368}
+  m_AnchoredPosition: {x: 377.8, y: -195.4}
   m_SizeDelta: {x: 33.7151, y: 28.2326}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &614623332
@@ -850,8 +881,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000034003, y: -223.5}
-  m_SizeDelta: {x: 800, y: 97.478}
+  m_AnchoredPosition: {x: -0.000054002, y: -166.13}
+  m_SizeDelta: {x: 800, y: 96.496}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &932607936
 MonoBehaviour:

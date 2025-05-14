@@ -23,18 +23,6 @@ public class CutSceneManager : MonoBehaviour
 
     void Start()
     {
-        cutscenes = new List<CutSceneElement>  // 임시 컷
-        {
-            new CutSceneElement { text = "마침내 대학을 졸업했다.", showClock = true },
-            new CutSceneElement { text = "second cut", showClock = true },
-            new CutSceneElement { text = "third cut", showClock = true },
-            new CutSceneElement { text = "fourth cut", showClock = true },
-            new CutSceneElement { text = "fifth cut", showClock = true },
-            new CutSceneElement { text = "sixth cut", showClock = true },
-            new CutSceneElement { text = "seventh cut", showClock = true },
-            new CutSceneElement { text = "eighth cut", showClock = true }
-        };
-
         ShowCut(index);
     }
 
