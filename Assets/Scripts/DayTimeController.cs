@@ -40,6 +40,7 @@ public class DayTimeController : MonoBehaviour
 
     [SerializeField] ScreenTint screenTint;
     [SerializeField] SeasonTilemapController seasonTilemapController;
+    [SerializeField] WeatherManager weatherManager;
 
     DayOfWeek dayOfWeek;
 
@@ -73,6 +74,11 @@ public class DayTimeController : MonoBehaviour
         {
             seasonTilemapController = FindObjectOfType<SeasonTilemapController>();
         }
+
+        /*if (weatherManager == null)
+        {
+            weatherManager = FindObjectOfType<WeatherManager>();
+        }*/
 
         time = startAtTime;
         UpdateSeasonText();
@@ -132,6 +138,11 @@ public class DayTimeController : MonoBehaviour
         dayOfWeek = (DayOfWeek)dayNum;
 
         UpdateDateText();
+
+        if (weatherManager != null)
+        {
+            weatherManager.GenerateDailyWeather(currentSeason);
+        }
 
         if (days >= seasonLength)
         {
