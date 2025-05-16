@@ -11,6 +11,9 @@ TextureImporter:
   - first:
       213: 6866464857702916786
     second: CodexBase
+  - first:
+      213: -6768044818946543642
+    second: CodexTitle
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
