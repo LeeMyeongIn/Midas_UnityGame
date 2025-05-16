@@ -2604,7 +2604,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &303684173
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12011,8 +12011,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06636f457d23775439437f43ab217cba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawnPointPosition: {x: -24.99, y: 10.78, z: 0}
-  respawnPointScene: FarmScene
+  respawnPointPosition: {x: -44.36, y: 11.65, z: -15.49737}
+  respawnPointScene: FarmingScene
 --- !u!114 &631060376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38838,12 +38838,12 @@ MonoBehaviour:
   petalsObject: {fileID: 585120298}
   leavesObject: {fileID: 816122461}
   springChances:
-    clear: 0
+    clear: 0.5
     rain: 0.2
     heavyRain: 0
     rainAndThunder: 0
     snow: 0
-    petals: 0.8
+    petals: 0.3
     leaves: 0
   summerChances:
     clear: 0.4
