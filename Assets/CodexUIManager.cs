@@ -10,9 +10,9 @@ public class CodexUIManager : MonoBehaviour
     [SerializeField] private GameObject codexRootUI; // CodexUI 전체 패널 (배경 포함)
 
     [Header("각 도감 페이지")]
-    [SerializeField] private GameObject foodPage;     // 요리 도감 페이지
-    [SerializeField] private GameObject cropPage;     // 작물 도감 페이지
-    [SerializeField] private GameObject triumphPage;  // 업적 도감 페이지
+    [SerializeField] private GameObject foodPage;
+    [SerializeField] private GameObject cropPage;
+    [SerializeField] private GameObject triumphPage;
 
     private void Awake()
     {
@@ -29,13 +29,13 @@ public class CodexUIManager : MonoBehaviour
             codexRootUI.SetActive(false);
     }
 
-    /// <summary>
-    /// 도감 UI 열기 (기본은 요리 탭으로 시작)
-    /// </summary>
+
+
     public void OpenCodex()
     {
         if (codexRootUI != null)
             codexRootUI.SetActive(true);
+
 
         ShowFoodPage(); // 기본으로 요리 탭
     }

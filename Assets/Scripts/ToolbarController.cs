@@ -35,6 +35,12 @@ public class ToolbarController : MonoBehaviour
 
     private void Update()
     {
+        HandleScroll();
+        HandleRightClick();
+    }
+
+    private void HandleScroll()
+    {
         float delta = Input.mouseScrollDelta.y;
         if (delta != 0)
         {
@@ -52,6 +58,18 @@ public class ToolbarController : MonoBehaviour
         }
     }
 
+    private void HandleRightClick()
+    {
+        if (Input.GetMouseButtonDown(1)) // ¿ìÅ¬¸¯
+        {
+            Item item = GetItem;
+            if (item != null && item.onItemUsed != null)
+            {
+                item.onItemUsed.OnItemUsed(item, GameManager.instance.inventoryContainer);
+            }
+        }
+    }
+
     internal void Set(int id)
     {
         selectedTool = id;
@@ -60,7 +78,7 @@ public class ToolbarController : MonoBehaviour
     public void UpdateHighlightIcon(int id = 0)
     {
         Item item = GetItem;
-        if(item == null)
+        if (item == null)
         {
             iconHighlight.Show = false;
             return;
