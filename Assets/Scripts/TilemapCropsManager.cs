@@ -1,10 +1,52 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
 
+[Serializable]
+public class CropTileset
+{
+    public int growTimer = 0;
+    public int growStage = 0;
+
+    public CropTileSet crop = null; 
+    public SpriteRenderer renderer = null;
+    public float damage = 0f;
+    public Vector3Int position;
+
+    public bool Complete
+    {
+        get
+        {
+            if (crop == null || crop.growthStageTime == null || crop.growthStageTime.Count == 0)
+                return false;
+
+            int totalRequiredTime = 0;
+            foreach (int t in crop.growthStageTime)
+            {
+                totalRequiredTime += t;
+            }
+
+            return growTimer >= totalRequiredTime;
+        }
+    }
+
+    public void Harvested()
+    {
+        growTimer = 0;
+        growStage = 0;
+        crop = null;
+        damage = 0f;
+
+        if (renderer != null)
+        {
+            renderer.gameObject.SetActive(false);
+        }
+    }
+}
 
 public class TilemapCropsManager : TimeAgent
 {
@@ -16,6 +58,9 @@ public class TilemapCropsManager : TimeAgent
     [SerializeField] GameObject cropsSpritePrefab;
 
     [SerializeField] CropsContainer container;
+
+    [SerializeField] private TileBase baseSoilTile; //농장 바닥 땅 타일
+
 
     //새로운 날 일때만 증가하는 조건
     private int lastUpdatedDay = -1;
@@ -87,17 +132,28 @@ public class TilemapCropsManager : TimeAgent
             if (cropTile.growStage < cropTile.crop.growthStageTime.Count &&
                 cropTile.growStage < cropTile.crop.sprites.Count &&
                 cropTile.growTimer >= cropTile.crop.growthStageTime[cropTile.growStage])
-
             {
+                // 씨앗 타일을 제거하고 밭 타일로 덮기
                 targetTilemap.SetTile(cropTile.position, plowed);
+
+                // 렌더러가 존재한다면 위치와 스프라이트 업데이트
                 if (cropTile.renderer != null)
                 {
-                    cropTile.renderer.gameObject.SetActive(true);
+                    // 위치 보정: 타일 중심에 맞추기
+                    Vector3 basePosition = targetTilemap.CellToWorld(cropTile.position);
+                    Vector3 tileSize = targetTilemap.cellSize;
+                    cropTile.renderer.transform.position = basePosition + new Vector3(tileSize.x * 0.5f, tileSize.y * 0.5f, 0f);
+                    cropTile.renderer.transform.position -= Vector3.forward * 0.01f;
+
+                    // 스프라이트 업데이트
                     cropTile.renderer.sprite = cropTile.crop.sprites[cropTile.growStage];
+                    cropTile.renderer.gameObject.SetActive(true);
                 }
-                cropTile.renderer.sprite = cropTile.crop.sprites[cropTile.growStage];
+
+                // 다음 성장 단계로 진행
                 cropTile.growStage += 1;
             }
+
         }
     }
 
@@ -130,6 +186,11 @@ public class TilemapCropsManager : TimeAgent
         targetTilemap.SetTile(position, seeded);
 
         tile.crop = toSeed;
+
+        //작물 중복 방지
+        tile.growStage = 0;
+        tile.growTimer = 0;
+
     }
 
     public void VisualizeTile(CropTile cropTile)
@@ -181,11 +242,12 @@ public class TilemapCropsManager : TimeAgent
                 tile.crop.yield,
                 tile.crop.count
                 );
-            
+
+            //작물 데이터 초기화
             tile.Harvested();
-            VisualizeTile(tile);
+
+            //밭을 농장 기본 땅으로 바꿈
+            targetTilemap.SetTile(gridPosition, baseSoilTile);
         }
     }
-
-
 }

@@ -3,7 +3,12 @@ guid: 8cfa030ed81bd0e43977142772d788d4
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - plowed: {instanceID: 0}
+  - seeded: {instanceID: 0}
+  - cropsSpritePrefab: {instanceID: 0}
+  - container: {instanceID: 0}
+  - baseSoilTile: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
