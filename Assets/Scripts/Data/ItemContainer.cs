@@ -126,5 +126,17 @@ public class ItemContainer : ScriptableObject
         return true;
     }
 
-   
+    public int GetItemCount(Item target)
+    {
+        int total = 0;
+        foreach (var slot in slots)
+        {
+            if (slot.item == target)
+            {
+                total += slot.count;
+            }
+        }
+        return total;
+    }
+
 }

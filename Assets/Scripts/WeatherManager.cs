@@ -48,7 +48,7 @@ public class WeatherManager : MonoBehaviour
     [SerializeField] ParticleSystem leavesObject;
 
     [Header("Season Weather Chances")]
-    public WeatherChances springChances = new WeatherChances(0.7f, 0.2f, 0f, 0f, 0f, 0.1f, 0f);
+    public WeatherChances springChances = new WeatherChances(0.5f, 0.2f, 0f, 0f, 0f, 0.3f, 0f);
     public WeatherChances summerChances = new WeatherChances(0.4f, 0.3f, 0.2f, 0.1f, 0f, 0f, 0f);
     public WeatherChances fallChances = new WeatherChances(0.6f, 0.1f, 0f, 0f, 0f, 0f, 0.3f);
     public WeatherChances winterChances = new WeatherChances(0.5f, 0f, 0f, 0f, 0.5f, 0f, 0f);
