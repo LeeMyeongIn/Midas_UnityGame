@@ -11,7 +11,7 @@ public class PlaceableObjectsReferenceManager : MonoBehaviour
     {
         if(placeableObjectsManager == null)
         {
-            Debug.LogWarning("No placeableObjecctManager reference detected");
+            Debug.LogWarning("No placeableObjectManager reference detected");
             return;
         }
         placeableObjectsManager.Place(item, pos);
@@ -21,7 +21,7 @@ public class PlaceableObjectsReferenceManager : MonoBehaviour
     {
         if (placeableObjectsManager == null)
         {
-            Debug.LogWarning("No placeableObjecctManager reference detected");
+            Debug.LogWarning("No placeableObjectManager reference detected");
             return;
         }
 
@@ -32,7 +32,7 @@ public class PlaceableObjectsReferenceManager : MonoBehaviour
     {
         if (placeableObjectsManager == null)
         {
-            Debug.LogWarning("No placeableObjecctManager reference detected");
+            Debug.LogWarning("No placeableObjectManager reference detected");
             return false;
         }
 

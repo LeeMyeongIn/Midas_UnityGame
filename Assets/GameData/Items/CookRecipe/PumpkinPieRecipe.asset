@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23db0a5d7b83e4848a74b75547f13c1f, type: 3}
+  m_Name: PumpkinPieRecipe
+  m_EditorClassIdentifier: 
+  recipeId: 11
+  recipeName: PumpkinPie
+  recipeIcon: {fileID: 21300000, guid: 7e05a722249608941b2974219ef1993b, type: 3}
+  ingredients:
+  - item: {fileID: 11400000, guid: 49ab9eee8e8f567469c9f32ebd2f9295, type: 2}
+    amount: 1
+  - item: {fileID: 11400000, guid: 2d95e545668b57e4d8fe2c1020ea7e19, type: 2}
+    amount: 1
+  - item: {fileID: 11400000, guid: 6db6aae6ad3e73546918c665ce2c7e47, type: 2}
+    amount: 1
+  resultItem: {fileID: 11400000, guid: 158812228d88fa1488f84d279094c5a2, type: 2}

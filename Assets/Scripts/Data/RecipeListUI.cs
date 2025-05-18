@@ -1,6 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class RecipeListUI : MonoBehaviour
 {
@@ -16,6 +16,9 @@ public class RecipeListUI : MonoBehaviour
 
     private void Start()
     {
+        RecipeUnlockManager.Instance.Unlock(0);
+        RecipeUnlockManager.Instance.Unlock(1);
+
         RefreshRecipeList();
     }
 
@@ -26,12 +29,38 @@ public class RecipeListUI : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        foreach (var recipe in allRecipes)
+        unlockedRecipeIds = RecipeUnlockManager.Instance.GetUnlockedList();
+
+
+        var sortedRecipes = allRecipes
+            .OrderByDescending(recipe => unlockedRecipeIds.Contains(recipe.recipeId))
+            .ThenBy(recipe => recipe.recipeName)
+            .ToList();
+
+
+        foreach (var recipe in sortedRecipes)
         {
             GameObject go = Instantiate(recipeSlotPrefab, contentParent);
             RecipeSlotUI slot = go.GetComponent<RecipeSlotUI>();
             bool isUnlocked = unlockedRecipeIds.Contains(recipe.recipeId);
             slot.Initialize(recipe, isUnlocked);
+        }
+    }
+
+    public void BuyRecipe(int recipeId)
+    {
+        if (RecipeUnlockManager.Instance.IsUnlocked(recipeId)) return;
+
+        RecipeUnlockManager.Instance.Unlock(recipeId);
+        RefreshRecipeList();
+    }
+
+    public void UnlockRecipe(int recipeId)
+    {
+        if (!unlockedRecipeIds.Contains(recipeId))
+        {
+            unlockedRecipeIds.Add(recipeId);
+            RefreshRecipeList();
         }
     }
 }
