@@ -5,12 +5,11 @@ using UnityEngine.Tilemaps;
 
 public class TileMapReadController : MonoBehaviour
 {
-
     [SerializeField] Tilemap tilemap;
     public CropsManager cropsManager;
     public PlaceableObjectsReferenceManager objectsManager;
 
-
+   
     public Vector3Int GetGridPosition(Vector2 position, bool mousePosition)
     {
         if (tilemap == null)
@@ -32,7 +31,6 @@ public class TileMapReadController : MonoBehaviour
         }
 
         Vector3Int gridPosition = tilemap.WorldToCell(worldPosition);
-
         return gridPosition;
     }
 
@@ -44,9 +42,7 @@ public class TileMapReadController : MonoBehaviour
         }
 
         if (tilemap == null) { return null; }
-
         TileBase tile = tilemap.GetTile(gridPosition);
-
         return tile;
     }
 }

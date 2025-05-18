@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: SuperPlowAction
   m_EditorClassIdentifier: 
   energyCost: 3
+  skillType: 0
+  skillExperienceReward: 100
   canPlow:
   - {fileID: 11400000, guid: 06f69f101921e454ea0cf8dfc47674a2, type: 2}
   - {fileID: 11400000, guid: 4e953739427a5e84490c0644a3ffeaee, type: 2}

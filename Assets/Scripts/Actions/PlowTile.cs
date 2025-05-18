@@ -14,17 +14,20 @@ public class PlowTile : ToolAction
         TileMapReadController tileMapReadController, 
         Item item)
     {
-        TileBase tileToPlow = tileMapReadController.GetTileBase(gridPosition);
+        Debug.Log($"[DEBUG] PlowTile.OnApplyToTileMap 호출됨: {gridPosition}");
 
-        if(canPlow.Contains(tileToPlow) == false)
+        TileBase tileToPlow = tileMapReadController.GetTileBase(gridPosition);
+        Debug.Log($"[DEBUG] 현재 타일: {tileToPlow}");
+
+        if (canPlow.Contains(tileToPlow) == false)
         {
+            Debug.Log($"[DEBUG] 현재 클릭한 타일 이름: {tileToPlow?.name}");
+            Debug.LogWarning("[DEBUG] 이 타일은 쟁기질할 수 없습니다.");
             return false;
         }
 
         tileMapReadController.cropsManager.Plow(gridPosition);
-
         AudioManager.instance.Play(onPlowUsed);
-
         return true;
     }
 }
