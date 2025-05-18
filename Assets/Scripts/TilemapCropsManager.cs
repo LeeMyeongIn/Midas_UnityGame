@@ -105,14 +105,10 @@ public class TilemapCropsManager : TimeAgent
         if (lastUpdatedDay == dayTimeController.days) return;
             lastUpdatedDay = dayTimeController.days;
 
-        // 하루 시작 시 밭에 물 준 상태 초기화
-        foreach (CropTile tile in container.crops)
-        {
-            tile.isWatered = false;
-        }
+
 
         // 비 오는 날은 자동 물주기
-        if (dayTimeController.weatherManager.IsRaining)
+        if (dayTimeController.weatherManager != null && dayTimeController.weatherManager.IsRaining)
         {
             foreach (CropTile tile in container.crops)
             {
@@ -120,6 +116,7 @@ public class TilemapCropsManager : TimeAgent
             }
         }
 
+        // 작물 성장 처리
         foreach (CropTile cropTile in container.crops)
         {
             if (cropTile.crop == null) continue;
@@ -141,6 +138,7 @@ public class TilemapCropsManager : TimeAgent
                 continue;
             }
 
+            //작물 상함
             cropTile.damage += 0.02f;
             if (cropTile.damage >= 1f)
             {
@@ -176,8 +174,12 @@ public class TilemapCropsManager : TimeAgent
 
                 // 다음 성장 단계로 진행
                 cropTile.growStage += 1;
-                cropTile.growTimer += 1;
             }
+        }
+        // 하루 시작 시 밭에 물 준 상태 초기화
+        foreach (CropTile tile in container.crops)
+        {
+            tile.isWatered = false;
         }
     }
 
@@ -304,7 +306,7 @@ public class TilemapCropsManager : TimeAgent
             return;
         }
 
-        // 5.이미 물을 줬다면 중복 방지
+        // 5.물주기 중복 방지
         if (cropTile.isWatered)
         {
             Debug.LogWarning($"[Water] {position} 위치는 이미 물을 준 상태입니다.");
