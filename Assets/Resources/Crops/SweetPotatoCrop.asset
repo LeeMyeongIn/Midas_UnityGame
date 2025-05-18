@@ -12,9 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a472705407ee63f4ca2821047f0cce1c, type: 3}
   m_Name: SweetPotatoCrop
   m_EditorClassIdentifier: 
-  timeToGrow: 10
-  yield: {fileID: 0}
+  timeToGrow: 5
+  yield: {fileID: 11400000, guid: e0fe9c0bea8179147875092a6f1cd38c, type: 2}
   count: 1
-  sprites: []
-  growthStageTime: 
-  seasons: 
+  sprites:
+  - {fileID: 21300000, guid: 19e955bd100743f47aa75795a6bd5a64, type: 3}
+  - {fileID: 21300000, guid: a2246ab16681c1643be1408ac1879deb, type: 3}
+  - {fileID: 21300000, guid: 3081b13e4c685ba4ea3a3eb9e8d3b42d, type: 3}
+  - {fileID: 21300000, guid: 2652e8b5508e92c4d81dd9f0ecb3e2fa, type: 3}
+  growthStageTime: 01000000010000000100000001000000
+  seasons: 00000000

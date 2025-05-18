@@ -21,4 +21,4 @@ MonoBehaviour:
   - {fileID: 2529556779308654033, guid: 660c8a71913c5d846abe7be78b5a1cbf, type: 3}
   - {fileID: 3445738448468270975, guid: 660c8a71913c5d846abe7be78b5a1cbf, type: 3}
   growthStageTime: 01000000030000000300000001000000
-  seasons: 01000000
+  seasons: 00000000
