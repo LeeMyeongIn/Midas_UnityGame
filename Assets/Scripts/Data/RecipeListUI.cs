@@ -24,15 +24,12 @@ public class RecipeListUI : MonoBehaviour
 
     public void RefreshRecipeList()
     {
-
-        unlockedRecipeIds = RecipeUnlockManager.Instance.GetUnlockedList();
-        Debug.Log($"[RecipeListUI] 해금된 레시피 ID 목록: {string.Join(", ", unlockedRecipeIds)}");
-
-
         foreach (Transform child in contentParent)
         {
             Destroy(child.gameObject);
         }
+
+        unlockedRecipeIds = RecipeUnlockManager.Instance.GetUnlockedList();
 
 
         var sortedRecipes = allRecipes
@@ -40,15 +37,9 @@ public class RecipeListUI : MonoBehaviour
             .ThenBy(recipe => recipe.recipeName)
             .ToList();
 
-        Debug.Log($"[RecipeListUI] allRecipes 개수: {allRecipes.Count}");
-        foreach (var r in allRecipes)
-            Debug.Log($"[RecipeListUI] 전체 레시피: ID={r.recipeId}, 이름={r.recipeName}");
-
 
         foreach (var recipe in sortedRecipes)
         {
-            Debug.Log($"[RecipeListUI] 슬롯 생성 중: ID={recipe.recipeId}, 이름={recipe.recipeName}, 해금여부={unlockedRecipeIds.Contains(recipe.recipeId)}");
-
             GameObject go = Instantiate(recipeSlotPrefab, contentParent);
             RecipeSlotUI slot = go.GetComponent<RecipeSlotUI>();
             bool isUnlocked = unlockedRecipeIds.Contains(recipe.recipeId);
@@ -56,15 +47,14 @@ public class RecipeListUI : MonoBehaviour
         }
     }
 
-
     public void BuyRecipe(int recipeId)
     {
         if (RecipeUnlockManager.Instance.IsUnlocked(recipeId)) return;
 
         RecipeUnlockManager.Instance.Unlock(recipeId);
-        FindObjectOfType<RecipeListUI>().RefreshRecipeList();
-        Debug.Log("레시피 해금됨!");
+        RefreshRecipeList();
     }
+
     public void UnlockRecipe(int recipeId)
     {
         if (!unlockedRecipeIds.Contains(recipeId))
@@ -74,4 +64,3 @@ public class RecipeListUI : MonoBehaviour
         }
     }
 }
-
