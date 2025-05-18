@@ -10,11 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a472705407ee63f4ca2821047f0cce1c, type: 3}
-  m_Name: hopCrop
+  m_Name: HopCrop
   m_EditorClassIdentifier: 
-  timeToGrow: 10
-  yield: {fileID: 0}
+  timeToGrow: 7
+  yield: {fileID: 11400000, guid: 202b91d5156798e42a9f65faac9bc004, type: 2}
   count: 1
-  sprites: []
-  growthStageTime: 
-  seasons: 
+  sprites:
+  - {fileID: 21300000, guid: cd8db7aaccc278d4da5fc9c78474780e, type: 3}
+  - {fileID: 21300000, guid: 4b633395cfb9b874b9fca639dfeab882, type: 3}
+  - {fileID: 21300000, guid: 2baaa8961924f61499fa74bd5bf24a12, type: 3}
+  - {fileID: 21300000, guid: e8fff5951093c414f967b2e405cfe1bf, type: 3}
+  - {fileID: 21300000, guid: 89c994baa625e174391f54957f1c0462, type: 3}
+  - {fileID: 21300000, guid: 56bcc63b750f25c4497ebc14e56c1aaa, type: 3}
+  growthStageTime: 010000000100000001000000010000000100000001000000
+  seasons: 00000000
