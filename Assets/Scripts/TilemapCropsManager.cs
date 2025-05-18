@@ -16,6 +16,7 @@ public class CropTileset
     public SpriteRenderer renderer = null;
     public float damage = 0f;
     public Vector3Int position;
+    public bool isWatered = false;
 
     public bool Complete
     {
@@ -40,6 +41,7 @@ public class CropTileset
         growStage = 0;
         crop = null;
         damage = 0f;
+        isWatered = false;
 
         if (renderer != null)
         {
@@ -103,11 +105,33 @@ public class TilemapCropsManager : TimeAgent
         if (lastUpdatedDay == dayTimeController.days) return;
             lastUpdatedDay = dayTimeController.days;
 
+        // 하루 시작 시 밭에 물 준 상태 초기화
+        foreach (CropTile tile in container.crops)
+        {
+            tile.isWatered = false;
+        }
+
+        // 비 오는 날은 자동 물주기
+        if (dayTimeController.weatherManager.IsRaining)
+        {
+            foreach (CropTile tile in container.crops)
+            {
+                tile.isWatered = true;
+            }
+        }
+
         foreach (CropTile cropTile in container.crops)
         {
             if (cropTile.crop == null) continue;
 
-            //현재 계절이 아닌 경우 작물이 바로 상함
+            // 밭에 물 안주면 안자람
+            if (cropTile.isWatered == false)
+            {
+                Debug.Log($"[Tick] {cropTile.position} 타일은 물을 안 줘서 자라지 않습니다.");
+                continue;
+            }
+
+            // 현재 계절이 아닌 경우 작물이 바로 상함
             Season currentSeason = dayTimeController.CurrentSeason;
             if (!cropTile.crop.seasons.Contains(currentSeason))
             {
@@ -139,7 +163,7 @@ public class TilemapCropsManager : TimeAgent
                 // 렌더러가 존재한다면 위치와 스프라이트 업데이트
                 if (cropTile.renderer != null)
                 {
-                    // 위치 보정: 타일 중심에 맞추기
+                    // 작물 위치 보정: 타일 중심에 맞추기
                     Vector3 basePosition = targetTilemap.CellToWorld(cropTile.position);
                     Vector3 tileSize = targetTilemap.cellSize;
                     cropTile.renderer.transform.position = basePosition + new Vector3(tileSize.x * 0.5f, tileSize.y * 0.5f, 0f);
@@ -152,10 +176,11 @@ public class TilemapCropsManager : TimeAgent
 
                 // 다음 성장 단계로 진행
                 cropTile.growStage += 1;
+                cropTile.growTimer += 1;
             }
-
         }
     }
+
 
     internal bool Check(Vector3Int position)
     {
@@ -221,11 +246,9 @@ public class TilemapCropsManager : TimeAgent
     {
         CropTile crop = new CropTile();
         container.Add(crop);       
-
         crop.position = position;
 
         VisualizeTile(crop);
-
         targetTilemap.SetTile(position, plowed);
     }
 
@@ -250,4 +273,47 @@ public class TilemapCropsManager : TimeAgent
             targetTilemap.SetTile(gridPosition, baseSoilTile);
         }
     }
+
+    public void Water(Vector3Int position)
+    {
+        // 1.타일맵에서 해당 위치의 타일을 가져옴
+        TileBase tile = targetTilemap.GetTile(position);
+
+        // 2.타일 이름 확인
+        Debug.Log($"[DEBUG] 현재 타일: {tile?.name}");
+        Debug.Log($"[DEBUG] plowed 타일 이름: {plowed?.name}, seeded 타일 이름: {seeded?.name}");
+
+        // 3.Seeded / Plowed가 아니면 물을 줄 수 없음
+        if (tile == null || (tile.name != seeded.name && tile.name != plowed.name))
+        {
+            Debug.LogWarning($"[Water] {position} 타일은 물 줄 수 없는 타일입니다.");
+            return;
+        }
+
+        // 4.CropTile이 있는지 확인
+        CropTile cropTile = container.Get(position);
+        if (cropTile == null)
+        {
+            Debug.LogWarning($"[Water] {position} 위치에 CropTile이 없습니다.");
+            return;
+        }
+
+        if (cropTile.crop == null)
+        {
+            Debug.LogWarning($"[Water] {position} 위치에 작물이 없습니다.");
+            return;
+        }
+
+        // 5.이미 물을 줬다면 중복 방지
+        if (cropTile.isWatered)
+        {
+            Debug.LogWarning($"[Water] {position} 위치는 이미 물을 준 상태입니다.");
+            return;
+        }
+
+        // 6.물 주기
+        cropTile.isWatered = true;
+        Debug.Log($"[Water] {position} 위치에 물을 주었습니다!");
+    }
+
 }

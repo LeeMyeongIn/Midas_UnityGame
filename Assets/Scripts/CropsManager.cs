@@ -15,6 +15,7 @@ public class CropTile
     public SpriteRenderer renderer;
     public float damage;
     public Vector3Int position;
+    public bool isWatered = false;
 
     public bool Complete
     {
@@ -79,6 +80,16 @@ public class CropsManager : MonoBehaviour
 
         cropsManager.Plow(position);
     }
+    public void Water(Vector3Int position)
+    {
+        if (cropsManager == null)
+        {
+            Debug.LogWarning("No tilemap crops manager are referenced in the crops manager");
+            return;
+        }
+        cropsManager.Water(position);
+    }
+
 }
 
 

@@ -40,7 +40,7 @@ public class DayTimeController : MonoBehaviour
 
     [SerializeField] ScreenTint screenTint;
     [SerializeField] SeasonTilemapController seasonTilemapController;
-    [SerializeField] WeatherManager weatherManager;
+    public WeatherManager weatherManager;
 
     DayOfWeek dayOfWeek;
 

@@ -115,4 +115,8 @@ public class WeatherManager : MonoBehaviour
         petalsObject?.gameObject.SetActive(state == WeatherStates.Petals);
         leavesObject?.gameObject.SetActive(state == WeatherStates.Leaves);
     }
+    public bool IsRaining =>
+        currentWeatherState == WeatherStates.Rain ||
+        currentWeatherState == WeatherStates.HeavyRain ||
+        currentWeatherState == WeatherStates.RainAndThunder;
 }

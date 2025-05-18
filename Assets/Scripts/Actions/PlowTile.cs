@@ -17,6 +17,7 @@ public class PlowTile : ToolAction
         Debug.Log($"[DEBUG] PlowTile.OnApplyToTileMap 호출됨: {gridPosition}");
 
         TileBase tileToPlow = tileMapReadController.GetTileBase(gridPosition);
+
         Debug.Log($"[DEBUG] 현재 타일: {tileToPlow}");
 
         if (canPlow.Contains(tileToPlow) == false)
