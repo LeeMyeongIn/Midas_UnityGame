@@ -3,7 +3,7 @@ guid: 4a85140200fc0484b93bfc4e4472b660
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 12
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -20,12 +20,10 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -64,8 +62,6 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
-  swizzle: 50462976
-  cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -77,7 +73,6 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -90,7 +85,6 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -103,7 +97,6 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -116,7 +109,6 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -2820,137 +2812,9 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      Character_018_0: 286182938
-      Character_018_1: 2139836187
-      Character_018_10: -1841078516
-      Character_018_100: -2101638662
-      Character_018_101: -1586511819
-      Character_018_102: -2124813110
-      Character_018_103: -1232587857
-      Character_018_104: 1702901417
-      Character_018_105: 1628515598
-      Character_018_106: 734175801
-      Character_018_107: -1228443039
-      Character_018_108: -481708455
-      Character_018_109: 2144756905
-      Character_018_11: 1207879723
-      Character_018_110: 340645373
-      Character_018_111: -1141073683
-      Character_018_112: 996687964
-      Character_018_113: 1760756794
-      Character_018_114: 1213946615
-      Character_018_115: 1127267526
-      Character_018_116: -1476155145
-      Character_018_117: -847764182
-      Character_018_118: 1929106488
-      Character_018_119: 695739021
-      Character_018_12: 1279846448
-      Character_018_120: -1380407047
-      Character_018_121: 436092216
-      Character_018_122: 427216550
-      Character_018_123: 972468031
-      Character_018_124: -1555357751
-      Character_018_125: 1758067908
-      Character_018_126: -1344746269
-      Character_018_127: 1018417027
-      Character_018_13: -1077590411
-      Character_018_14: 705122097
-      Character_018_15: 1041935127
-      Character_018_16: 809211783
-      Character_018_17: -603978456
-      Character_018_18: 1991316978
-      Character_018_19: -1586831302
-      Character_018_2: 547037397
-      Character_018_20: 75579512
-      Character_018_21: -234216144
-      Character_018_22: 1904284894
-      Character_018_23: -1422015097
-      Character_018_24: 477886304
-      Character_018_25: -266991526
-      Character_018_26: 406838155
-      Character_018_27: 1844025824
-      Character_018_28: -1267641172
-      Character_018_29: 855758446
-      Character_018_3: -1968075649
-      Character_018_30: -1428624135
-      Character_018_31: -1943893826
-      Character_018_32: 848608836
-      Character_018_33: -1501442750
-      Character_018_34: -1243049318
-      Character_018_35: -60395590
-      Character_018_36: -1081834800
-      Character_018_37: -1089052697
-      Character_018_38: -888013037
-      Character_018_39: 438235700
-      Character_018_4: 1986032108
-      Character_018_40: 1370644148
-      Character_018_41: 632662132
-      Character_018_42: -1602837679
-      Character_018_43: -528993691
-      Character_018_44: -1105529237
-      Character_018_45: -2125303061
-      Character_018_46: -619712953
-      Character_018_47: -1573704216
-      Character_018_48: -1915520763
-      Character_018_49: -268887237
-      Character_018_5: -1789362787
-      Character_018_50: 727545492
-      Character_018_51: 306763159
-      Character_018_52: 1681519706
-      Character_018_53: -963471157
-      Character_018_54: 1959920565
-      Character_018_55: -1980277513
-      Character_018_56: -1139445219
-      Character_018_57: 626537082
-      Character_018_58: -1381625263
-      Character_018_59: 2364855
-      Character_018_6: -1359854886
-      Character_018_60: -1298454986
-      Character_018_61: 915069899
-      Character_018_62: 914469460
-      Character_018_63: 497573126
-      Character_018_64: 2072416816
-      Character_018_65: 1534072165
-      Character_018_66: 1747602121
-      Character_018_67: -531625066
-      Character_018_68: 765957947
-      Character_018_69: 1672315254
-      Character_018_7: -526081882
-      Character_018_70: 593230464
-      Character_018_71: -6904715
-      Character_018_72: -558078300
-      Character_018_73: -1269809880
-      Character_018_74: 858012458
-      Character_018_75: 1707494493
-      Character_018_76: -1747642453
-      Character_018_77: -1200896989
-      Character_018_78: 1093501648
-      Character_018_79: -2043463947
-      Character_018_8: 1391971622
-      Character_018_80: -1840001237
-      Character_018_81: 144541863
-      Character_018_82: -1404275720
-      Character_018_83: 1397175176
-      Character_018_84: 1490327562
-      Character_018_85: 432947386
-      Character_018_86: -1365149755
-      Character_018_87: 1787114741
-      Character_018_88: -851831504
-      Character_018_89: -793826113
-      Character_018_9: -27272199
-      Character_018_90: 2050583373
-      Character_018_91: 1015920996
-      Character_018_92: 1724424791
-      Character_018_93: -1285060004
-      Character_018_94: -60720181
-      Character_018_95: 135588699
-      Character_018_96: -1399760260
-      Character_018_97: -197211380
-      Character_018_98: 1449257947
-      Character_018_99: 2068110658
-  mipmapLimitGroupName: 
+  spritePackingTag: 
   pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
