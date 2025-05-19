@@ -8,6 +8,7 @@ public class RecipeSlotUI : MonoBehaviour
 {
     [Header("UI 요소")]
     public Image recipeIconImage;
+    public TextMeshProUGUI recipeText;
     public Transform ingredientParentTransform;
     public GameObject ingredientUIPrefab;
     public GameObject lockOverlayObject;
@@ -17,16 +18,17 @@ public class RecipeSlotUI : MonoBehaviour
 
     public void Initialize(CookRecipe recipe, bool isUnlocked)
     {
-
         currentRecipe = recipe;
         recipeUnlocked = isUnlocked;
 
-        if (recipeIconImage == null || lockOverlayObject == null || ingredientUIPrefab == null || ingredientParentTransform == null)
+        if (recipeIconImage == null || recipeText == null || lockOverlayObject == null || ingredientUIPrefab == null || ingredientParentTransform == null)
         {
+            Debug.LogWarning("[RecipeSlotUI] UI 요소가 하나 이상 누락되었습니다.");
             return;
         }
 
         recipeIconImage.sprite = recipe.recipeIcon;
+        recipeText.text = recipe.recipeName;
 
         lockOverlayObject.SetActive(!isUnlocked);
 
@@ -62,24 +64,15 @@ public class RecipeSlotUI : MonoBehaviour
 
     private void OnCookClicked()
     {
-        if (!recipeUnlocked)
-        {
-            return;
-        }
+        if (!recipeUnlocked) return;
 
         var inventory = GameManager.instance.inventoryContainer;
-        if (inventory == null)
-        {
-            return;
-        }
+        if (inventory == null) return;
 
         foreach (var ing in currentRecipe.ingredients)
         {
             int owned = inventory.GetItemCount(ing.item);
-            if (owned < ing.amount)
-            {
-                return;
-            }
+            if (owned < ing.amount) return;
         }
 
         foreach (var ing in currentRecipe.ingredients)
@@ -89,5 +82,7 @@ public class RecipeSlotUI : MonoBehaviour
 
         inventory.Add(currentRecipe.resultItem, 1);
         inventory.isDirty = true;
+
+        Debug.Log($"[RecipeSlotUI] 요리 완료: {currentRecipe.recipeName}");
     }
 }

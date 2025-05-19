@@ -234,7 +234,7 @@ MonoBehaviour:
   m_IgnoreLayout: 0
   m_MinWidth: -1
   m_MinHeight: -1
-  m_PreferredWidth: 200
+  m_PreferredWidth: 500
   m_PreferredHeight: -1
   m_FlexibleWidth: 0
   m_FlexibleHeight: -1
@@ -442,10 +442,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8b10c7bcd55f0348b0a9cc2ea8a6c50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recipeIconImage: {fileID: 0}
-  ingredientParentTransform: {fileID: 0}
-  ingredientUIPrefab: {fileID: 0}
-  lockOverlayObject: {fileID: 0}
+  recipeIconImage: {fileID: 4293979361990108885}
+  recipeText: {fileID: 3480393041359241135}
+  ingredientParentTransform: {fileID: 2154586127149415614}
+  ingredientUIPrefab: {fileID: 7406951727214174351}
+  lockOverlayObject: {fileID: 10642389954631235}
 --- !u!114 &6528702677316278364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -746,7 +747,7 @@ MonoBehaviour:
   m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
-  m_fontSizeMin: 18
+  m_fontSizeMin: 10
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
@@ -917,6 +918,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efc589091ef0b1d45aba6934cff26470, type: 3}
+--- !u!1 &7406951727214174351 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1210647220531701404, guid: efc589091ef0b1d45aba6934cff26470, type: 3}
+  m_PrefabInstance: {fileID: 8504997738336355859}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1482928333397081787 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7103224549662308520, guid: efc589091ef0b1d45aba6934cff26470, type: 3}
