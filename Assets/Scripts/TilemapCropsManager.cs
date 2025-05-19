@@ -45,6 +45,7 @@ public class CropTileset
 
         if (renderer != null)
         {
+            renderer.sprite = null;
             renderer.gameObject.SetActive(false);
         }
     }
@@ -190,10 +191,34 @@ public class TilemapCropsManager : TimeAgent
     }
 
     public void Plow(Vector3Int position)
-    {   
-        if(Check(position) == true) { return; }
-        CreatePlowedTile(position);
+    {
+        CropTile tile = container.Get(position);
+
+        if (tile != null)
+        {
+            tile.crop = null;
+            tile.growTimer = 0;
+            tile.growStage = 0;
+            tile.damage = 0f;
+            tile.isWatered = false;
+
+            if (tile.renderer != null)
+            {
+                tile.renderer.sprite = null;
+                tile.renderer.gameObject.SetActive(false);
+            }
+
+            // 타일을 시각적으로 plowed로 갱신
+            targetTilemap.SetTile(position, plowed);
+            targetTilemap.RefreshTile(position);
+        }
+        else
+        {
+            // cropTile이 존재하지 않으면 새로 생성
+            CreatePlowedTile(position);
+        }
     }
+
 
     public void Seed(Vector3Int position, Crop toSeed)
     {
@@ -222,7 +247,8 @@ public class TilemapCropsManager : TimeAgent
 
     public void VisualizeTile(CropTile cropTile)
     {
-        targetTilemap.SetTile(cropTile.position, cropTile.crop != null ? seeded : plowed);       
+        targetTilemap.SetTile(cropTile.position, cropTile.crop != null ? seeded : plowed);
+        targetTilemap.RefreshTile(cropTile.position);
 
         if (cropTile.renderer == null)
         {
@@ -247,8 +273,8 @@ public class TilemapCropsManager : TimeAgent
     private void CreatePlowedTile(Vector3Int position)
     {
         CropTile crop = new CropTile();
-        container.Add(crop);       
         crop.position = position;
+        container.Add(crop);       
 
         VisualizeTile(crop);
         targetTilemap.SetTile(position, plowed);
@@ -272,7 +298,7 @@ public class TilemapCropsManager : TimeAgent
             tile.Harvested();
 
             //밭을 농장 기본 땅으로 바꿈
-            targetTilemap.SetTile(gridPosition, baseSoilTile);
+            targetTilemap.SetTile(gridPosition, null);
         }
     }
 

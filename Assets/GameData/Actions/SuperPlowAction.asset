@@ -18,4 +18,6 @@ MonoBehaviour:
   canPlow:
   - {fileID: 11400000, guid: 06f69f101921e454ea0cf8dfc47674a2, type: 2}
   - {fileID: 11400000, guid: 4e953739427a5e84490c0644a3ffeaee, type: 2}
+  - {fileID: 11400000, guid: 2f39d703e56f48a40a54ef3100c8d070, type: 2}
+  - {fileID: 11400000, guid: 3c6cf379a4816ea43aa7369786fb18fb, type: 2}
   onPlowUsed: {fileID: 0}
