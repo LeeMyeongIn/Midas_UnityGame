@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TomatoSeed
   m_EditorClassIdentifier: 
   Name: 
-  id: 0
+  id: 1215
   stackable: 1
   icon: {fileID: 21300000, guid: 29b7cd43fa3d71e408db8cb8821f35aa, type: 3}
   onAction: {fileID: 0}

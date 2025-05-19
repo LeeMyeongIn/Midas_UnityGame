@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PeaSeed
   m_EditorClassIdentifier: 
   Name: 
-  id: 0
+  id: 1209
   stackable: 1
   icon: {fileID: 346221205932666763, guid: fc3839296902bc044b6e2f636e42a3bd, type: 3}
   onAction: {fileID: 0}

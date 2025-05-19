@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: PaleAle
   m_EditorClassIdentifier: 
   Name: 
-  id: 0
-  stackable: 0
+  id: 1009
+  stackable: 1
   icon: {fileID: 21300000, guid: bbb736a68a32ba04a8ccb4aa146d3f96, type: 3}
   onAction: {fileID: 0}
   onTileMapAction: {fileID: 0}

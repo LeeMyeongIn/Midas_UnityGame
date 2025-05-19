@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23db0a5d7b83e4848a74b75547f13c1f, type: 3}
   m_Name: BeanStewRecipe
   m_EditorClassIdentifier: 
-  recipeId: 0
+  recipeId: 1001
   recipeName: BeanStew
   recipeIcon: {fileID: 21300000, guid: 2cd12159b93bb0d478e5f6cafe97508b, type: 3}
   ingredients:

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Wine
   m_EditorClassIdentifier: 
   Name: 
-  id: 0
-  stackable: 0
+  id: 1018
+  stackable: 1
   icon: {fileID: 21300000, guid: e4e1269bf12dcd44a809787b5f27a715, type: 3}
   onAction: {fileID: 0}
   onTileMapAction: {fileID: 0}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PotatoItem
   m_EditorClassIdentifier: 
   Name: 
-  id: 0
+  id: 1110
   stackable: 1
   icon: {fileID: 21300000, guid: ea473f0d29ef1874e8970debc808c11f, type: 3}
   onAction: {fileID: 0}

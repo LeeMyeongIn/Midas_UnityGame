@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Spaghetti
   m_EditorClassIdentifier: 
   Name: 
-  id: 0
-  stackable: 0
+  id: 1014
+  stackable: 1
   icon: {fileID: 21300000, guid: b34f6c41f422dd347a91aa230a4f1fa2, type: 3}
   onAction: {fileID: 0}
   onTileMapAction: {fileID: 0}

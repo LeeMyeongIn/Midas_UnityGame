@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Bread
   m_EditorClassIdentifier: 
   Name: 
-  id: 0
-  stackable: 0
+  id: 1002
+  stackable: 1
   icon: {fileID: 21300000, guid: b19443346baa80b44abff06d38bc39e7, type: 3}
   onAction: {fileID: 0}
   onTileMapAction: {fileID: 0}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23db0a5d7b83e4848a74b75547f13c1f, type: 3}
   m_Name: StrangeBunRecipe
   m_EditorClassIdentifier: 
-  recipeId: 14
+  recipeId: 1015
   recipeName: StrangeBun
   recipeIcon: {fileID: 21300000, guid: 7e05a722249608941b2974219ef1993b, type: 3}
   ingredients:

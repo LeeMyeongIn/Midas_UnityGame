@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HopSeed
   m_EditorClassIdentifier: 
   Name: 
-  id: 0
+  id: 1208
   stackable: 1
   icon: {fileID: 21300000, guid: cd8db7aaccc278d4da5fc9c78474780e, type: 3}
   onAction: {fileID: 0}

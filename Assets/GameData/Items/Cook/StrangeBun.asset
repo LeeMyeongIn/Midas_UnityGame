@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: StrangeBun
   m_EditorClassIdentifier: 
   Name: 
-  id: 0
-  stackable: 0
+  id: 1015
+  stackable: 1
   icon: {fileID: 21300000, guid: 8f968340ca7309046ada13b14c6bb42f, type: 3}
   onAction: {fileID: 0}
   onTileMapAction: {fileID: 0}

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: GreenTea
   m_EditorClassIdentifier: 
   Name: 
-  id: 0
-  stackable: 0
+  id: 1006
+  stackable: 1
   icon: {fileID: 21300000, guid: 808534f1d566b454c8b65925968a6a5a, type: 3}
   onAction: {fileID: 0}
   onTileMapAction: {fileID: 0}

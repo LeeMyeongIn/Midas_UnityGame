@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PumpkinItem
   m_EditorClassIdentifier: 
   Name: 
-  id: 0
+  id: 1111
   stackable: 1
   icon: {fileID: 5912099813312793879, guid: fc3839296902bc044b6e2f636e42a3bd, type: 3}
   onAction: {fileID: 0}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HopItem
   m_EditorClassIdentifier: 
   Name: 
-  id: 0
+  id: 1108
   stackable: 1
   icon: {fileID: 21300000, guid: 211996cc871f1ab4682553986fcd5a4d, type: 3}
   onAction: {fileID: 0}

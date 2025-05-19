@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BeetSeed
   m_EditorClassIdentifier: 
   Name: 
-  id: 0
+  id: 1201
   stackable: 1
   icon: {fileID: 21300000, guid: 6cce4481761725f47b403fdb0efe5c5d, type: 3}
   onAction: {fileID: 0}

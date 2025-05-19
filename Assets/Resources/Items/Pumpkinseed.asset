@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pumpkinseed
   m_EditorClassIdentifier: 
   Name: 
-  id: 0
+  id: 1211
   stackable: 1
   icon: {fileID: 21300000, guid: 74a64765dea46904fa8552e85b73e89e, type: 3}
   onAction: {fileID: 0}

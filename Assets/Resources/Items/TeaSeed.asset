@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TeaSeed
   m_EditorClassIdentifier: 
   Name: 
-  id: 0
+  id: 1214
   stackable: 1
   icon: {fileID: 21300000, guid: c1768fa1ccbf0644b8e09123853c4dde, type: 3}
   onAction: {fileID: 0}

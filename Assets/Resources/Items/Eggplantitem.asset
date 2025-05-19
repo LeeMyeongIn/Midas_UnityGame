@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Eggplantitem
   m_EditorClassIdentifier: 
   Name: 
-  id: 0
+  id: 1106
   stackable: 1
   icon: {fileID: 4212231547936548902, guid: 2197b0c12f5218f4ea15be1268ac118f, type: 3}
   onAction: {fileID: 0}

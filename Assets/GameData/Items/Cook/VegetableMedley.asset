@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: VegetableMedley
   m_EditorClassIdentifier: 
   Name: 
-  id: 0
-  stackable: 0
+  id: 1017
+  stackable: 1
   icon: {fileID: 21300000, guid: 57b048aea05f33e45b0be4103ab82c5e, type: 3}
   onAction: {fileID: 0}
   onTileMapAction: {fileID: 0}

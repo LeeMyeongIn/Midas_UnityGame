@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: HashBrown
   m_EditorClassIdentifier: 
   Name: 
-  id: 0
-  stackable: 0
+  id: 1007
+  stackable: 1
   icon: {fileID: 21300000, guid: ee0f75b1edeabac45b65030aaee82f51, type: 3}
   onAction: {fileID: 0}
   onTileMapAction: {fileID: 0}

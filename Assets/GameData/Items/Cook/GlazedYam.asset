@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: GlazedYam
   m_EditorClassIdentifier: 
   Name: 
-  id: 0
-  stackable: 0
+  id: 1005
+  stackable: 1
   icon: {fileID: 21300000, guid: 758b1f0879ecd6442b2cd5329e7e93c5, type: 3}
   onAction: {fileID: 0}
   onTileMapAction: {fileID: 0}

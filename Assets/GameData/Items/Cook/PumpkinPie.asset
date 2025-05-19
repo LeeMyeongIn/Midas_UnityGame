@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: PumpkinPie
   m_EditorClassIdentifier: 
   Name: 
-  id: 0
-  stackable: 0
+  id: 1012
+  stackable: 1
   icon: {fileID: 21300000, guid: bd99e7f26eba10f48a7973d7bda878be, type: 3}
   onAction: {fileID: 0}
   onTileMapAction: {fileID: 0}

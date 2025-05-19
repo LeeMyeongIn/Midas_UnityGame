@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: LuckyLunch
   m_EditorClassIdentifier: 
   Name: 
-  id: 0
-  stackable: 0
+  id: 1008
+  stackable: 1
   icon: {fileID: 21300000, guid: e108cdeac2e991644882fafeec6c221d, type: 3}
   onAction: {fileID: 0}
   onTileMapAction: {fileID: 0}

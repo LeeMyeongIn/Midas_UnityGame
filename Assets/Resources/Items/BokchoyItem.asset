@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BokchoyItem
   m_EditorClassIdentifier: 
   Name: 
-  id: 0
+  id: 1102
   stackable: 1
   icon: {fileID: 21300000, guid: 38577f4640e7a1c4d98fce516002e020, type: 3}
   onAction: {fileID: 0}

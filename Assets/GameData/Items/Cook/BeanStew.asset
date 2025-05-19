@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: BeanStew
   m_EditorClassIdentifier: 
   Name: 
-  id: 0
-  stackable: 0
+  id: 1001
+  stackable: 1
   icon: {fileID: 21300000, guid: 2cd12159b93bb0d478e5f6cafe97508b, type: 3}
   onAction: {fileID: 0}
   onTileMapAction: {fileID: 0}

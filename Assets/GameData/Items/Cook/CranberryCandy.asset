@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: CranberryCandy
   m_EditorClassIdentifier: 
   Name: 
-  id: 0
-  stackable: 0
+  id: 1003
+  stackable: 1
   icon: {fileID: 21300000, guid: e6ee9fe96be3f7d4eab2af89815ab205, type: 3}
   onAction: {fileID: 0}
   onTileMapAction: {fileID: 0}

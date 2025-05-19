@@ -16,8 +16,8 @@ public class RecipeListUI : MonoBehaviour
 
     private void Start()
     {
-        RecipeUnlockManager.Instance.Unlock(0);
-        RecipeUnlockManager.Instance.Unlock(1);
+        RecipeUnlockManager.Instance.Unlock(1001);
+        RecipeUnlockManager.Instance.Unlock(1002);
 
         RefreshRecipeList();
     }

@@ -1,11 +1,8 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Xml.Serialization;
 using UnityEngine;
 
 [Serializable]
-
 public class ItemSlot
 {
     public Item item;
@@ -30,7 +27,7 @@ public class ItemSlot
     }
 }
 
-[CreateAssetMenu(menuName ="Data/Item Container")]
+[CreateAssetMenu(menuName = "Data/Item Container")]
 public class ItemContainer : ScriptableObject
 {
     public List<ItemSlot> slots;
@@ -39,7 +36,7 @@ public class ItemContainer : ScriptableObject
     internal void Init()
     {
         slots = new List<ItemSlot>();
-        for(int i = 0; i < 36; i++)
+        for (int i = 0; i < 36; i++)
         {
             slots.Add(new ItemSlot());
         }
@@ -47,96 +44,100 @@ public class ItemContainer : ScriptableObject
 
     public void Add(Item item, int count = 1)
     {
+        if (item == null || count <= 0)
+            return;
+
         isDirty = true;
 
-        if(item.stackable == true)
+        if (item.stackable)
         {
-            ItemSlot itemSlot = slots.Find(x => x.item == item);
-            if(itemSlot != null)
+            // 같은 id의 아이템이 있는 슬롯 찾기
+            ItemSlot existingSlot = slots.Find(x => x.item != null && x.item.id == item.id);
+            if (existingSlot != null)
             {
-                itemSlot.count += count;
-            }
-            else
-            {
-                itemSlot = slots.Find(x => x.item == null);
-                if(itemSlot != null)
-                {
-                    itemSlot.item = item;
-                    itemSlot.count = count;
-                }
+                existingSlot.count += count;
+                return;
             }
         }
-        else
-        {   //인벤토리에 non stackable한 아이템이 추가될 때
-            ItemSlot itemSlot = slots.Find(x => x.item == null);
-            if (itemSlot != null)
+
+        // 비어 있는 슬롯에 새로 추가
+        foreach (ItemSlot slot in slots)
+        {
+            if (slot.item == null)
             {
-                itemSlot.item = item;
+                slot.Set(item, item.stackable ? count : 1);
+                return;
             }
         }
+
+        Debug.LogWarning("Inventory full - 아이템을 추가할 수 없습니다.");
     }
 
     public void Remove(Item itemToRemove, int count = 1)
     {
+        if (itemToRemove == null || count <= 0)
+            return;
+
         isDirty = true;
 
         if (itemToRemove.stackable)
         {
-            ItemSlot itemSlot = slots.Find(x => x.item == itemToRemove);
-            if (itemSlot == null) { return; }
+            ItemSlot slot = slots.Find(x => x.item != null && x.item.id == itemToRemove.id);
+            if (slot == null) return;
 
-            itemSlot.count -= count;
-            if (itemSlot.count <= 0)
+            slot.count -= count;
+            if (slot.count <= 0)
             {
-                itemSlot.Clear();
+                slot.Clear();
             }
         }
-        else {
-            while (count > 0) {
-                count -= 1;
-
-                ItemSlot itemSlot = slots.Find(x => x.item == itemToRemove);
-                if(itemSlot == null) { break; }
-
-                itemSlot.Clear();
+        else
+        {
+            int removed = 0;
+            foreach (ItemSlot slot in slots)
+            {
+                if (slot.item != null && slot.item.id == itemToRemove.id)
+                {
+                    slot.Clear();
+                    removed++;
+                    if (removed >= count) break;
+                }
             }
         }
     }
 
-    internal bool CheckFreeSpace()
+    public bool CheckFreeSpace()
     {
-        for (int i = 0; i < slots.Count; i++) {
-            if (slots[i].item == null)
-            {
-                return true;
-            }
-        }
-
-         return false;
+        return slots.Exists(slot => slot.item == null);
     }
 
-    internal bool CheckItem(ItemSlot checkingItem)
+    public bool CheckItem(ItemSlot checkingItem)
     {
-        ItemSlot itemSlot = slots.Find(x => x.item == checkingItem.item);
+        if (checkingItem == null || checkingItem.item == null)
+            return false;
 
-        if (itemSlot == null) { return false; }
+        ItemSlot slot = slots.Find(x => x.item != null && x.item.id == checkingItem.item.id);
+        if (slot == null) return false;
 
-        if(checkingItem.item.stackable) { return itemSlot.count > checkingItem.count; }
+        if (checkingItem.item.stackable)
+            return slot.count >= checkingItem.count;
 
-        return true;
+        int owned = slots.FindAll(x => x.item != null && x.item.id == checkingItem.item.id).Count;
+        return owned >= checkingItem.count;
     }
 
     public int GetItemCount(Item target)
     {
+        if (target == null) return 0;
+
         int total = 0;
         foreach (var slot in slots)
         {
-            if (slot.item == target)
+            if (slot.item != null && slot.item.id == target.id)
             {
                 total += slot.count;
             }
         }
         return total;
     }
-
 }

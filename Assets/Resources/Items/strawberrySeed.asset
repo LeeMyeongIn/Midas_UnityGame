@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: strawberrySeed
   m_EditorClassIdentifier: 
   Name: 
-  id: 0
+  id: 1212
   stackable: 1
   icon: {fileID: -8587153275683238300, guid: fc3839296902bc044b6e2f636e42a3bd, type: 3}
   onAction: {fileID: 0}

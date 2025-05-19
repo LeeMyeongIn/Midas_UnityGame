@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SweetPotatoSeed
   m_EditorClassIdentifier: 
   Name: 
-  id: 0
+  id: 1213
   stackable: 1
   icon: {fileID: 21300000, guid: 580fdc07b1eb96243b74b3098dc6eeab, type: 3}
   onAction: {fileID: 0}

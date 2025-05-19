@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Pizza
   m_EditorClassIdentifier: 
   Name: 
-  id: 0
-  stackable: 0
+  id: 1011
+  stackable: 1
   icon: {fileID: 21300000, guid: 88262e751087c284c8f42d627659e70e, type: 3}
   onAction: {fileID: 0}
   onTileMapAction: {fileID: 0}

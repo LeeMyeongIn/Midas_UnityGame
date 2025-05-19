@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PeaItem
   m_EditorClassIdentifier: 
   Name: 
-  id: 0
+  id: 1109
   stackable: 1
   icon: {fileID: -8619822982687423624, guid: fc3839296902bc044b6e2f636e42a3bd, type: 3}
   onAction: {fileID: 0}

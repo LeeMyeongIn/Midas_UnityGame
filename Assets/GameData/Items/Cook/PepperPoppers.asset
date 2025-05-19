@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: PepperPoppers
   m_EditorClassIdentifier: 
   Name: 
-  id: 0
-  stackable: 0
+  id: 1010
+  stackable: 1
   icon: {fileID: 21300000, guid: 7bb75a585a4b74a4497b88b6a5f0bc0d, type: 3}
   onAction: {fileID: 0}
   onTileMapAction: {fileID: 0}
