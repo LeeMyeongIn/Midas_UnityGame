@@ -32,7 +32,7 @@ public class HelpNPC : Interactable
     private TMP_Text saveButtonText;
 
     private Queue<string> textQueue = new Queue<string>();
-    
+    private bool isTalking = false;
     private bool isWaitingForNext = false;
 
     [TextArea(3, 10)]
@@ -69,6 +69,9 @@ public class HelpNPC : Interactable
 
     public override void Interact(Character character)
     {
+        if (isTalking) return;  // 대화 도중 우클릭해도 무시하기
+
+        isTalking = true;
         helpDialoguePanel.SetActive(true);
         questionText.text = dialogueText;
 
@@ -185,6 +188,7 @@ public class HelpNPC : Interactable
     {
         yield return new WaitForSeconds(delay);
         helpDialoguePanel.SetActive(false);
+        isTalking = false;  // 대화 종료
     }
 
     void OnNextClicked()
