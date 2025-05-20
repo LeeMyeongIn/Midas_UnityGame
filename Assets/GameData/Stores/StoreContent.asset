@@ -12,5 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62227ca3b9bd7db42b20b4f0005e18a0, type: 3}
   m_Name: StoreContent
   m_EditorClassIdentifier: 
-  slots: []
+  slots:
+  - item: {fileID: 11400000, guid: 0aeef3937271fdb4591993c45b3d6515, type: 2}
+    count: 0
+  - item: {fileID: 11400000, guid: d4e261e37396945418d43c7e3abeaa36, type: 2}
+    count: 0
+  - item: {fileID: 11400000, guid: faf9b38dcaf97a84fa88ac6fd06e1f84, type: 2}
+    count: 0
   isDirty: 0

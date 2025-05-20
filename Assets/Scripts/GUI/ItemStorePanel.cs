@@ -9,7 +9,7 @@ public class ItemStorePanel : ItemPanel
 
     public override void OnClick(int id)
     {
-        if(GameManager.instance.dragAndDropController.itemSlot.item != null)
+        if(GameManager.instance.dragAndDropController.itemSlot.item == null)
         {
             BuyItem(id);
         }
