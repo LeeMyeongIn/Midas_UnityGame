@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] string nameEssentialScene;
     [SerializeField] string nameNewGameStartScene;
 
     [SerializeField] PlayerData playerData;
@@ -40,7 +39,6 @@ public class MainMenu : MonoBehaviour
     public void StartNewGame()
     {
         SceneManager.LoadScene(nameNewGameStartScene, LoadSceneMode.Single);
-        SceneManager.LoadScene(nameEssentialScene, LoadSceneMode.Additive);
     }
 
     public void SetGenderMale()

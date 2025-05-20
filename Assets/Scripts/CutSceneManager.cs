@@ -31,7 +31,9 @@ public class CutSceneManager : MonoBehaviour
         index++;
         if (index >= cutscenes.Count)
         {
-            SceneManager.LoadScene("MainMenuScene");
+            SceneManager.LoadScene("FarmingScene", LoadSceneMode.Single);
+            SceneManager.LoadScene("Essential", LoadSceneMode.Additive);
+            SceneManager.LoadScene("HelpScene", LoadSceneMode.Additive);
             return;
         }
         ShowCut(index);

@@ -3128,8 +3128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 922f0fa3754504d4ba67632e25956e37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameEssentialScene: Essential
-  nameNewGameStartScene: FarmingScene
+  nameNewGameStartScene: IntroScene
   playerData: {fileID: 11400000, guid: b84028d12ff653b41bcd5f39e05299f5, type: 2}
   selectedGender: 0
   genderText: {fileID: 434057290}

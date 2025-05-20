@@ -18,6 +18,12 @@ EditorBuildSettings:
     path: Assets/Scenes/ForestScene.unity
     guid: e5ac3dc2c92a21b4fa3af7c30010c280
   - enabled: 1
+    path: Assets/Scenes/HelpScene.unity
+    guid: 2b753da8d2a8ff840a0ec1fc0cb36878
+  - enabled: 1
+    path: Assets/Scenes/IntroScene.unity
+    guid: 9d7cc87f8158fdb4f885055e2ed011bf
+  - enabled: 1
     path: Assets/Scenes/BeachScene.unity
     guid: b18f151e6bb43f84494d6189afb315d6
   - enabled: 1
