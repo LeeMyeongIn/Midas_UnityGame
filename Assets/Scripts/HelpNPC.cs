@@ -9,6 +9,7 @@ public class HelpNPC : Interactable
     public TMP_Text questionText;
 
     public GameObject topicButtonContainer;
+    public GameObject nextButton;
 
     public GameObject yesButtonObj;
     public GameObject noButtonObj;
@@ -30,8 +31,12 @@ public class HelpNPC : Interactable
     private TMP_Text wandererButtonText;
     private TMP_Text saveButtonText;
 
+    private Queue<string> textQueue = new Queue<string>();
+    
+    private bool isWaitingForNext = false;
+
     [TextArea(3, 10)]
-    public string dialogueText = "May I help you?";
+    public string dialogueText = "궁금한거 있어?";
 
     void Start()
     {
@@ -57,6 +62,9 @@ public class HelpNPC : Interactable
         storeButtonObj.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(OnStoreClicked);
         wandererButtonObj.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(OnWandererClicked);
         saveButtonObj.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(OnSaveClicked);
+
+        nextButton.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(OnNextClicked);
+        nextButton.SetActive(false);
     }
 
     public override void Interact(Character character)
@@ -71,51 +79,121 @@ public class HelpNPC : Interactable
 
     void OnYesClicked()
     {
-        questionText.text = "what?";
+        questionText.text = "어떤게 궁금해?";
         yesButtonObj.gameObject.SetActive(false);
         noButtonObj.gameObject.SetActive(false);
         topicButtonContainer.SetActive(true);
-        Debug.Log("응 버튼 눌림");
     }
 
     void OnNoClicked()
     {
-        Debug.Log("아니 버튼 눌림");
         helpDialoguePanel.SetActive(false);
     }
 
     void OnBookClicked()
     {
-        Debug.Log("도감?");
+        topicButtonContainer.SetActive(false);
+        TypeTexts("인벤토리에 있는 책을 우클릭하면 도감을 열 수 있어");
     }
 
     void OnCookingClicked()
     {
-        Debug.Log("요리?");
+        topicButtonContainer.SetActive(false);
+        TypeTexts("집 안의 냉장고를 클릭하면, 요리대가 열려\n",
+            "상인에게 구매한 레시피가 있어야 요리할 수 있으니깐 주의해");
     }
 
     void OnSeasonClicked()
     {
-        Debug.Log("계절?");
+        topicButtonContainer.SetActive(false);
+        TypeTexts("한 달 주기는 21일이고, 계절은 봄, 여름, 가을, 겨울이 있어",
+            "봄에는 예쁜 꽃잎이 흩날리고, 여름에는 비가 많이 와\n",
+            "가을에는 낙엽이 떨어지고, 겨울에는 눈이 내려\n",
+            "봄, 가을에도 비가 내리지만 여름보다는 덜 내릴거야!");
     }
 
     void OnFarmingClicked()
     {
-        Debug.Log("농사?");
+        topicButtonContainer.SetActive(false);
+        TypeTexts("씨앗은 상인한테서 사면 되고,\n괭이로 밭을 갈아야 씨앗을 심을 수 있어\n",
+            "계절별로 심을 수 있는 작물이 정해져있고,\n계절과 맞지 않는 작물은 심을 수 없어\n",
+            "또, 작물이 다 성장하였는데도 이틀간 수확하지 않으면 작물이 사라져\n",
+            "작물마다 성장 시간이 다르니깐 조심해!\n","참고로 물은 하루에 한 번만 주면 돼");
     }
 
     void OnStoreClicked()
     {
-        Debug.Log("상인?");
+        topicButtonContainer.SetActive(false);
+        TypeTexts("상인");
     }
 
     void OnWandererClicked()
     {
-        Debug.Log("떠돌이 상인?");
+        topicButtonContainer.SetActive(false);
+        TypeTexts("떠돌이 상인");
     }
 
     void OnSaveClicked()
     {
-        Debug.Log("저장?");
+        topicButtonContainer.SetActive(false);
+        TypeTexts("저장 및 불러오기");
+    }
+
+    private Coroutine typingCoroutine;
+
+    void TypeTexts(params string[] texts)
+    {
+        textQueue.Clear();
+        foreach (string t in texts)
+            textQueue.Enqueue(t);
+
+        nextButton.SetActive(false);
+        ShowNextText();
+    }
+
+    void ShowNextText()
+    {
+        if (typingCoroutine != null)
+            StopCoroutine(typingCoroutine);
+
+        if (textQueue.Count > 0)
+        {
+            string nextText = textQueue.Dequeue();
+            typingCoroutine = StartCoroutine(TypeTextCoroutine(nextText));
+        }
+        else
+        {
+            typingCoroutine = StartCoroutine(TypeTextCoroutine("궁금한 거 있으면 또 물어봐!", false));
+            StartCoroutine(CloseAfterDelay(2f));
+        }
+    }
+
+    IEnumerator TypeTextCoroutine(string text, bool showNextButton = true)
+    {
+        questionText.text = "";
+        foreach (char c in text)
+        {
+            questionText.text += c;
+            yield return new WaitForSeconds(0.05f);
+        }
+
+        nextButton.SetActive(showNextButton);
+        isWaitingForNext = showNextButton;
+    }
+
+    IEnumerator CloseAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        helpDialoguePanel.SetActive(false);
+    }
+
+    void OnNextClicked()
+    {
+        if (isWaitingForNext)
+        {
+            isWaitingForNext = false;
+            nextButton.SetActive(false);
+            ShowNextText();
+        }
     }
 }
