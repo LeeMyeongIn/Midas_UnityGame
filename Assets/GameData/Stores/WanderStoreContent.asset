@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62227ca3b9bd7db42b20b4f0005e18a0, type: 3}
-  m_Name: StoreContent
+  m_Name: WanderStoreContent
   m_EditorClassIdentifier: 
   slots:
-  - item: {fileID: 11400000, guid: 0aeef3937271fdb4591993c45b3d6515, type: 2}
+  - item: {fileID: 11400000, guid: 1f793481ecf5de84092eb1338f3111e9, type: 2}
     count: 0
-  - item: {fileID: 11400000, guid: d4e261e37396945418d43c7e3abeaa36, type: 2}
+  - item: {fileID: 11400000, guid: ca100755e90e5b848a3675ec9b7bb098, type: 2}
     count: 0
-  - item: {fileID: 11400000, guid: faf9b38dcaf97a84fa88ac6fd06e1f84, type: 2}
+  - item: {fileID: 11400000, guid: 0c0a69b325cef894d84d703524868a4a, type: 2}
     count: 0
-  - item: {fileID: 11400000, guid: 02c74c8699797b14f99792c1302b49e7, type: 2}
+  - item: {fileID: 11400000, guid: cfd221009ab97584ebbb670c46a38b82, type: 2}
     count: 0
   isDirty: 0
