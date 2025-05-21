@@ -60,7 +60,7 @@ public class ToolbarController : MonoBehaviour
 
     private void HandleRightClick()
     {
-        if (Input.GetMouseButtonDown(1)) // ¿ìÅ¬¸¯
+        if (Input.GetMouseButtonDown(1))
         {
             Item item = GetItem;
             if (item != null && item.onItemUsed != null)

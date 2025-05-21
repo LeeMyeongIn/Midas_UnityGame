@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcf269aafe05fa4ea64ac464b62134c, type: 3}
   m_Name: HashBrown
   m_EditorClassIdentifier: 
+  description: 
   Name: 
-  id: 1007
+  id: 907
   stackable: 1
   icon: {fileID: 21300000, guid: ee0f75b1edeabac45b65030aaee82f51, type: 3}
   onAction: {fileID: 0}

@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcf269aafe05fa4ea64ac464b62134c, type: 3}
   m_Name: RoastedSweetPotato
   m_EditorClassIdentifier: 
+  description: 
   Name: 
-  id: 1013
+  id: 913
   stackable: 1
   icon: {fileID: 21300000, guid: d84da1595711ae041ab8be9e84ec2a46, type: 3}
   onAction: {fileID: 0}

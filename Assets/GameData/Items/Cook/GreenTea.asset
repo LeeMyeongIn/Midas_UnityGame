@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcf269aafe05fa4ea64ac464b62134c, type: 3}
   m_Name: GreenTea
   m_EditorClassIdentifier: 
+  description: 
   Name: 
-  id: 1006
+  id: 906
   stackable: 1
   icon: {fileID: 21300000, guid: 808534f1d566b454c8b65925968a6a5a, type: 3}
   onAction: {fileID: 0}

@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcf269aafe05fa4ea64ac464b62134c, type: 3}
   m_Name: StrangeBun
   m_EditorClassIdentifier: 
+  description: 
   Name: 
-  id: 1015
+  id: 915
   stackable: 1
   icon: {fileID: 21300000, guid: 8f968340ca7309046ada13b14c6bb42f, type: 3}
   onAction: {fileID: 0}
