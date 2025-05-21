@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcf269aafe05fa4ea64ac464b62134c, type: 3}
   m_Name: BeanStew
   m_EditorClassIdentifier: 
+  description: 
   Name: 
-  id: 1001
+  id: 901
   stackable: 1
   icon: {fileID: 21300000, guid: 2cd12159b93bb0d478e5f6cafe97508b, type: 3}
   onAction: {fileID: 0}

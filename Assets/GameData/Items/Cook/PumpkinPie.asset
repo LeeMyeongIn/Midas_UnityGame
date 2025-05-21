@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcf269aafe05fa4ea64ac464b62134c, type: 3}
   m_Name: PumpkinPie
   m_EditorClassIdentifier: 
+  description: 
   Name: 
-  id: 1012
+  id: 912
   stackable: 1
   icon: {fileID: 21300000, guid: bd99e7f26eba10f48a7973d7bda878be, type: 3}
   onAction: {fileID: 0}

@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcf269aafe05fa4ea64ac464b62134c, type: 3}
   m_Name: Pizza
   m_EditorClassIdentifier: 
+  description: 
   Name: 
-  id: 1011
+  id: 911
   stackable: 1
   icon: {fileID: 21300000, guid: 88262e751087c284c8f42d627659e70e, type: 3}
   onAction: {fileID: 0}

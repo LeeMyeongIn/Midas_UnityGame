@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcf269aafe05fa4ea64ac464b62134c, type: 3}
   m_Name: VegetableMedley
   m_EditorClassIdentifier: 
+  description: 
   Name: 
-  id: 1017
+  id: 917
   stackable: 1
   icon: {fileID: 21300000, guid: 57b048aea05f33e45b0be4103ab82c5e, type: 3}
   onAction: {fileID: 0}
