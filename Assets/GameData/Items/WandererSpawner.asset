@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcf269aafe05fa4ea64ac464b62134c, type: 3}
   m_Name: WandererSpawner
   m_EditorClassIdentifier: 
+  description: It can sommon WandererShop
   Name: Wanderer Spawner
   id: 0
   stackable: 0
@@ -24,5 +25,5 @@ MonoBehaviour:
   itemPrefab: {fileID: 0}
   isWeapon: 0
   damage: 10
-  price: 100
+  price: 300
   canBeSold: 1

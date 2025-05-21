@@ -5,6 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Data/Item")]
 public class Item : ScriptableObject
 {
+    [TextArea]
+    public string description;
+
     public string Name;
     public int id;
     public bool stackable;

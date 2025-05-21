@@ -4,15 +4,16 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventoryButton : MonoBehaviour, IPointerClickHandler
+public class InventoryButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] Image icon;
     [SerializeField] Text text;
     [SerializeField] Image highlight;
 
     int myIndex;
-
     ItemPanel itemPanel;
+    ItemSlot currentSlot;
+
     public void SetIndex(int index)
     {
         myIndex = index;
@@ -25,10 +26,12 @@ public class InventoryButton : MonoBehaviour, IPointerClickHandler
 
     public void Set(ItemSlot slot)
     {
+        currentSlot = slot;
+
         icon.gameObject.SetActive(true);
         icon.sprite = slot.item.icon;
 
-        if(slot.item.stackable == true)
+        if (slot.item.stackable)
         {
             text.gameObject.SetActive(true);
             text.text = slot.count.ToString();
@@ -41,6 +44,7 @@ public class InventoryButton : MonoBehaviour, IPointerClickHandler
 
     public void Clean()
     {
+        currentSlot = null;
         icon.sprite = null;
         icon.gameObject.SetActive(false);
         text.gameObject.SetActive(false);
@@ -55,4 +59,19 @@ public class InventoryButton : MonoBehaviour, IPointerClickHandler
     {
         highlight.gameObject.SetActive(b);
     }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (currentSlot != null && currentSlot.item != null)
+        {
+            ItemTooltipManager.Instance.ShowTooltip(currentSlot.item);
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        ItemTooltipManager.Instance.HideTooltip();
+    }
+
 }
+

@@ -11,4 +11,6 @@ public class InventoryPanel : ItemPanel
         GameManager.instance.dragAndDropController.OnClick(inventory.slots[id]);
         Show();
     }
+
 }
+

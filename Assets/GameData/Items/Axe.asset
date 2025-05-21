@@ -12,7 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcf269aafe05fa4ea64ac464b62134c, type: 3}
   m_Name: Axe
   m_EditorClassIdentifier: 
+  description: Strong axe! you can using this cut trees.
   Name: Axe
+  id: 0
   stackable: 0
   icon: {fileID: 21300000, guid: 6c128e0ad4eb62249ad97cb082b23215, type: 3}
   onAction: {fileID: 11400000, guid: f4ca75ab08d7ce14fa23cfaf6f6d6260, type: 2}
+  onTileMapAction: {fileID: 0}
+  onItemUsed: {fileID: 0}
+  crop: {fileID: 0}
+  iconHighlight: 0
+  itemPrefab: {fileID: 0}
+  isWeapon: 0
+  damage: 10
+  price: 888
+  canBeSold: 1
