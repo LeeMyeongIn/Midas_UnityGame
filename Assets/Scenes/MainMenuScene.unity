@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 66974473}
   - component: {fileID: 66974472}
   m_Layer: 5
-  m_Name: Button
+  m_Name: ExitButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -320,8 +320,8 @@ MonoBehaviour:
     m_NormalColor: {r: 0.5647059, g: 0.36862746, b: 0.2509804, a: 1}
     m_HighlightedColor: {r: 0.49019608, g: 0.31764707, b: 0.21568628, a: 1}
     m_PressedColor: {r: 0.44313726, g: 0.2901961, b: 0.19607843, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_SelectedColor: {r: 0.44313726, g: 0.2901961, b: 0.19607843, a: 1}
+    m_DisabledColor: {r: 0.44313726, g: 0.2901961, b: 0.19607843, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -347,18 +347,6 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1727,7 +1715,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 206cc56c0d3d9ce4d8ee25c0989efcfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotNumber: 3
+  slotNumber: 2
   mode: 1
   slotLabel: {fileID: 0}
 --- !u!114 &571692323
@@ -2428,7 +2416,7 @@ GameObject:
   - component: {fileID: 684324763}
   - component: {fileID: 684324762}
   m_Layer: 5
-  m_Name: Button
+  m_Name: NewGameButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2478,8 +2466,8 @@ MonoBehaviour:
     m_NormalColor: {r: 0.5660378, g: 0.3705415, b: 0.249199, a: 1}
     m_HighlightedColor: {r: 0.49056602, g: 0.31894502, b: 0.21597244, a: 1}
     m_PressedColor: {r: 0.4433962, g: 0.28827724, b: 0.19520585, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_SelectedColor: {r: 0.44313726, g: 0.2901961, b: 0.19607843, a: 1}
+    m_DisabledColor: {r: 0.44313726, g: 0.2901961, b: 0.19607843, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -4282,7 +4270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 206cc56c0d3d9ce4d8ee25c0989efcfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotNumber: 3
+  slotNumber: 2
   mode: 0
   slotLabel: {fileID: 0}
 --- !u!1 &1342573323
@@ -5103,7 +5091,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 206cc56c0d3d9ce4d8ee25c0989efcfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotNumber: 1
+  slotNumber: 0
   mode: 1
   slotLabel: {fileID: 0}
 --- !u!114 &1602094279
@@ -5492,7 +5480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 206cc56c0d3d9ce4d8ee25c0989efcfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotNumber: 2
+  slotNumber: 1
   mode: 0
   slotLabel: {fileID: 0}
 --- !u!1 &1666288073
@@ -5547,7 +5535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 206cc56c0d3d9ce4d8ee25c0989efcfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotNumber: 2
+  slotNumber: 1
   mode: 1
   slotLabel: {fileID: 0}
 --- !u!114 &1666288076
@@ -6213,7 +6201,7 @@ GameObject:
   - component: {fileID: 1778401728}
   - component: {fileID: 1778401727}
   m_Layer: 5
-  m_Name: Button
+  m_Name: LoadButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6263,8 +6251,8 @@ MonoBehaviour:
     m_NormalColor: {r: 0.5647059, g: 0.36862746, b: 0.2509804, a: 1}
     m_HighlightedColor: {r: 0.49019608, g: 0.31764707, b: 0.21568628, a: 1}
     m_PressedColor: {r: 0.44313726, g: 0.2901961, b: 0.19607843, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_SelectedColor: {r: 0.44313726, g: 0.2901961, b: 0.19607843, a: 1}
+    m_DisabledColor: {r: 0.44313726, g: 0.2901961, b: 0.19607843, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -7264,7 +7252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 206cc56c0d3d9ce4d8ee25c0989efcfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotNumber: 1
+  slotNumber: 0
   mode: 0
   slotLabel: {fileID: 0}
 --- !u!1 &2076446831

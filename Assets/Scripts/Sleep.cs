@@ -31,6 +31,7 @@ public class Sleep : MonoBehaviour
 
         character.FullHeal();
         character.FullRest(0);
+        SaveGame();  // 게임 저장 기능 추가
         dayTime.SkipToMorning();
 
 
@@ -40,5 +41,23 @@ public class Sleep : MonoBehaviour
         disableControls.EnableControl();
 
         yield return null;
+    }
+
+    private void SaveGame()
+    {
+        var data = CharacterGameManager.Instance.playerData;
+
+        PlayerDataForSave saveData = new PlayerDataForSave
+        {
+            characterName = data.characterName,
+            farmName = data.farmName,
+            aboutTheFarm = data.aboutTheFarm,
+            playerCharacterGender = data.playerCharacterGender,
+            saveSlotId = data.saveSlotId,
+            selectedCharacterIndex = data.selectedCharacterIndex
+        };
+
+        SaveManager.SavePlayerData(saveData, data.saveSlotId);
+        Debug.Log("저장 완료");
     }
 }

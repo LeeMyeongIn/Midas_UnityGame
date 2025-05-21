@@ -32,7 +32,7 @@ public class MainMenu : MonoBehaviour
 
     public void ExitGame()
     {
-        Debug.Log("Quitting the game!");
+        Debug.Log("Exit!");
         Application.Quit(); 
     }
 
