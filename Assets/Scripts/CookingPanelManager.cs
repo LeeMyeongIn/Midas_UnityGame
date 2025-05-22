@@ -8,6 +8,8 @@ public class CookingPanelManager : MonoBehaviour
 
     [SerializeField] private GameObject cookingPanel;
 
+    private HashSet<int> cookedRecipeIds = new HashSet<int>();
+
     private void Awake()
     {
         if (Instance == null)
@@ -19,6 +21,15 @@ public class CookingPanelManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void RegisterCookedRecipe(int recipeId)
+    {
+        cookedRecipeIds.Add(recipeId);
+    }
+    public bool HasCooked(int recipeId)
+    {
+        return cookedRecipeIds.Contains(recipeId);
     }
 
     public void OpenPanel()

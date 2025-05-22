@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recipeId: 1018
   recipeName: Wine
-  recipeIcon: {fileID: 21300000, guid: 7e05a722249608941b2974219ef1993b, type: 3}
+  recipeIcon: {fileID: 21300000, guid: e4e1269bf12dcd44a809787b5f27a715, type: 3}
   ingredients:
   - item: {fileID: 11400000, guid: ceb8dc4a12333ea41953e5c7650340bb, type: 2}
     amount: 2

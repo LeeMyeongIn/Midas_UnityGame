@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recipeId: 1008
   recipeName: LuckyLunch
-  recipeIcon: {fileID: 21300000, guid: 7e05a722249608941b2974219ef1993b, type: 3}
+  recipeIcon: {fileID: 21300000, guid: e108cdeac2e991644882fafeec6c221d, type: 3}
   ingredients:
   - item: {fileID: 11400000, guid: 3c3af748b0d7b3d46bef7574bdb9582b, type: 2}
     amount: 1

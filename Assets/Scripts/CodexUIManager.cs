@@ -1,6 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class CodexUIManager : MonoBehaviour
 {
@@ -13,6 +14,16 @@ public class CodexUIManager : MonoBehaviour
     [SerializeField] private GameObject CodexFoodPanel;
     [SerializeField] private GameObject CodexCropPanel;
     [SerializeField] private GameObject CodexTriumphPanel;
+
+    [Header("레시피 표시용")]
+    [SerializeField] private GameObject recipeEntryPrefab;
+    [SerializeField] private Transform recipeListParent;
+    [SerializeField] private List<CookRecipe> allRecipes;
+
+    [Header("작물 표시용")]
+    [SerializeField] private GameObject cropEntryPrefab;
+    [SerializeField] private Transform cropListParent;
+    [SerializeField] private List<Item> allCropItems;
 
     private void Awake()
     {
@@ -28,8 +39,6 @@ public class CodexUIManager : MonoBehaviour
             CodexUI.SetActive(false);
     }
 
-
-
     public void OpenCodex()
     {
         if (CodexUI != null)
@@ -40,19 +49,19 @@ public class CodexUIManager : MonoBehaviour
         ShowFoodPanel();
     }
 
-
     public void CloseCodex()
     {
         if (CodexUI != null)
             CodexUI.SetActive(false);
     }
 
-
     public void ShowFoodPanel()
     {
         if (CodexFoodPanel != null) CodexFoodPanel.SetActive(true);
         if (CodexCropPanel != null) CodexCropPanel.SetActive(false);
         if (CodexTriumphPanel != null) CodexTriumphPanel.SetActive(false);
+
+        RefreshFoodCodex();
     }
 
     public void ShowCropPanel()
@@ -60,6 +69,8 @@ public class CodexUIManager : MonoBehaviour
         if (CodexFoodPanel != null) CodexFoodPanel.SetActive(false);
         if (CodexCropPanel != null) CodexCropPanel.SetActive(true);
         if (CodexTriumphPanel != null) CodexTriumphPanel.SetActive(false);
+
+        RefreshCropCodex();
     }
 
     public void ShowTriumphPanel()
@@ -67,5 +78,39 @@ public class CodexUIManager : MonoBehaviour
         if (CodexFoodPanel != null) CodexFoodPanel.SetActive(false);
         if (CodexCropPanel != null) CodexCropPanel.SetActive(false);
         if (CodexTriumphPanel != null) CodexTriumphPanel.SetActive(true);
+    }
+
+    private void RefreshFoodCodex()
+    {
+        foreach (Transform child in recipeListParent)
+        {
+            Destroy(child.gameObject);
+        }
+
+        foreach (var recipe in allRecipes)
+        {
+            GameObject go = Instantiate(recipeEntryPrefab, recipeListParent);
+            CodexRecipeEntry entry = go.GetComponent<CodexRecipeEntry>();
+
+            bool isUnlocked = RecipeUnlockManager.Instance.IsUnlocked(recipe.recipeId);
+            entry.Initialize(recipe, isUnlocked);
+        }
+    }
+
+    private void RefreshCropCodex()
+    {
+        foreach (Transform child in cropListParent)
+        {
+            Destroy(child.gameObject);
+        }
+
+        foreach (var item in allCropItems)
+        {
+            GameObject go = Instantiate(cropEntryPrefab, cropListParent);
+            CodexCropEntry entry = go.GetComponent<CodexCropEntry>();
+
+            bool hasSeen = CropSeenManager.Instance.HasSeenItem(item.id);
+            entry.Initialize(item, hasSeen);
+        }
     }
 }
