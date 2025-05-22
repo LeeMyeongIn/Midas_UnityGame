@@ -16,9 +16,10 @@ MonoBehaviour:
   yield: {fileID: 11400000, guid: 5fe2a4c968524da4ca63471a094b0ea8, type: 2}
   count: 1
   sprites:
+  - {fileID: 5500031073754393237, guid: 21af73931d31a8a4dadf8a1f4350eb1a, type: 3}
   - {fileID: -2620676854868960778, guid: 21af73931d31a8a4dadf8a1f4350eb1a, type: 3}
   - {fileID: 7634219204430423007, guid: 21af73931d31a8a4dadf8a1f4350eb1a, type: 3}
   - {fileID: 1125821531911334198, guid: 21af73931d31a8a4dadf8a1f4350eb1a, type: 3}
   - {fileID: -6525030839743888995, guid: 21af73931d31a8a4dadf8a1f4350eb1a, type: 3}
-  growthStageTime: 01000000010000000100000001000000
+  growthStageTime: 0100000001000000010000000100000001000000
   seasons: 00000000

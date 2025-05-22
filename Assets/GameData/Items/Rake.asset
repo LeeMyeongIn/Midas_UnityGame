@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6fcf269aafe05fa4ea64ac464b62134c, type: 3}
-  m_Name: BeetSeed
+  m_Name: Rake
   m_EditorClassIdentifier: 
-  description: 
+  description: Undo plowing
   Name: 
-  id: 1201
-  stackable: 1
-  icon: {fileID: 21300000, guid: 6cce4481761725f47b403fdb0efe5c5d, type: 3}
-  onAction: {fileID: 0}
-  onTileMapAction: {fileID: 11400000, guid: a234021fc4129c1409b53962ac3f14e5, type: 2}
-  onItemUsed: {fileID: 11400000, guid: a234021fc4129c1409b53962ac3f14e5, type: 2}
-  crop: {fileID: 11400000, guid: 539022682ccfae946b124cfc1ac05d48, type: 2}
+  id: 4444
+  stackable: 0
+  icon: {fileID: 21300000, guid: 3ae6cb31eeaa5b6449f152bc682d332e, type: 3}
+  onAction: {fileID: 11400000, guid: 5b5e2228e8e25644499d381d32dd89d3, type: 2}
+  onTileMapAction: {fileID: 11400000, guid: 5b5e2228e8e25644499d381d32dd89d3, type: 2}
+  onItemUsed: {fileID: 0}
+  crop: {fileID: 0}
   iconHighlight: 0
   itemPrefab: {fileID: 0}
   isWeapon: 0

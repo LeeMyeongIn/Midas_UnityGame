@@ -10,7 +10,6 @@ public class TileMapReadController : MonoBehaviour
     public CropsManager cropsManager;
     public PlaceableObjectsReferenceManager objectsManager;
 
-   
     public Vector3Int GetGridPosition(Vector2 position, bool mousePosition)
     {
         if (tilemap == null)
@@ -24,7 +23,8 @@ public class TileMapReadController : MonoBehaviour
 
         if (mousePosition)
         {
-            worldPosition = Camera.main.ScreenToWorldPoint(position);
+            Vector3 correctedPosition = new Vector3(position.x, position.y, Mathf.Abs(Camera.main.transform.position.z));
+            worldPosition = Camera.main.ScreenToWorldPoint(correctedPosition);
         }
         else
         {

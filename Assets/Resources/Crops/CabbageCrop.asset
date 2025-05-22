@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a472705407ee63f4ca2821047f0cce1c, type: 3}
   m_Name: CabbageCrop
   m_EditorClassIdentifier: 
-  timeToGrow: 9
+  timeToGrow: 5
   yield: {fileID: 11400000, guid: 18dd4617c03ab6e4680b52c81e80acf9, type: 2}
   count: 1
   sprites:
+  - {fileID: 2363029465320598390, guid: 3e74d91943ad16d45933ea1905ef8333, type: 3}
   - {fileID: -8782891753834917149, guid: 3e74d91943ad16d45933ea1905ef8333, type: 3}
   - {fileID: -7879797962420173823, guid: 3e74d91943ad16d45933ea1905ef8333, type: 3}
   - {fileID: -6484967144121652972, guid: 3e74d91943ad16d45933ea1905ef8333, type: 3}
   - {fileID: 6378319226821266501, guid: 3e74d91943ad16d45933ea1905ef8333, type: 3}
-  growthStageTime: 01000000030000000300000001000000
+  growthStageTime: 0100000001000000010000000100000001000000
   seasons: 00000000
