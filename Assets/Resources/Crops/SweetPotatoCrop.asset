@@ -16,7 +16,7 @@ MonoBehaviour:
   yield: {fileID: 11400000, guid: e0fe9c0bea8179147875092a6f1cd38c, type: 2}
   count: 1
   sprites:
-  - {fileID: 21300000, guid: ae0e9ac63e5197d42b24a665c167b879, type: 3}
+  - {fileID: 21300000, guid: a16e14a9493cfe34f81b59be1cce18eb, type: 3}
   - {fileID: 21300000, guid: 19e955bd100743f47aa75795a6bd5a64, type: 3}
   - {fileID: 21300000, guid: a2246ab16681c1643be1408ac1879deb, type: 3}
   - {fileID: 21300000, guid: 3081b13e4c685ba4ea3a3eb9e8d3b42d, type: 3}
