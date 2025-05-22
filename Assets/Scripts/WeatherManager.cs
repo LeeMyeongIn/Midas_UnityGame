@@ -54,10 +54,12 @@ public class WeatherManager : MonoBehaviour
     public WeatherChances winterChances = new WeatherChances(0.5f, 0f, 0f, 0f, 0.5f, 0f, 0f);
 
     private WeatherStates currentWeatherState;
+    public string CurrentWeatherText => currentWeatherState.ToString();
+
 
     private void Start()      //test
     {
-        ApplyWeather(WeatherStates.Snow);
+        //ApplyWeather(WeatherStates.Snow);
     }
 
     public void GenerateDailyWeather(Season currentSeason)
@@ -115,6 +117,7 @@ public class WeatherManager : MonoBehaviour
         petalsObject?.gameObject.SetActive(state == WeatherStates.Petals);
         leavesObject?.gameObject.SetActive(state == WeatherStates.Leaves);
     }
+
     public bool IsRaining =>
         currentWeatherState == WeatherStates.Rain ||
         currentWeatherState == WeatherStates.HeavyRain ||

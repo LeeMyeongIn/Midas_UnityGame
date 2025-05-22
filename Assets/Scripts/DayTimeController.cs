@@ -48,6 +48,7 @@ public class DayTimeController : MonoBehaviour
     //[SerializeField] TMPro.TextMeshProUGUI dayOfTheWeekText;
     [SerializeField] TMPro.TextMeshProUGUI seasonText;
     [SerializeField] TMPro.TextMeshProUGUI dateText;
+    [SerializeField] TMPro.TextMeshProUGUI weatherText;
     [SerializeField] Light2D globalLight;
     public int days;
     public int years;
@@ -84,6 +85,12 @@ public class DayTimeController : MonoBehaviour
         UpdateSeasonText();
         UpdateDateText();
         seasonTilemapController?.UpdateSeason(currentSeason);
+
+        if (weatherManager != null)
+        {
+            weatherManager.GenerateDailyWeather(currentSeason);
+            UpdateWeatherText();
+        }
     }
 
     public void Subscribe(TimeAgent timeAgent)
@@ -142,6 +149,7 @@ public class DayTimeController : MonoBehaviour
         if (weatherManager != null)
         {
             weatherManager.GenerateDailyWeather(currentSeason);
+            UpdateWeatherText();
         }
 
         if (days >= seasonLength)
@@ -153,6 +161,16 @@ public class DayTimeController : MonoBehaviour
         yield return new WaitForSeconds(1f);
         isDayChanging = false;
     }
+
+    private void UpdateWeatherText()
+    {
+        if (weatherManager != null && weatherText != null)
+        {
+            weatherText.text = $"{weatherManager.CurrentWeatherText}";
+        }
+    }
+
+
     private void TimeValueCalculation()
     {
         int totalHours = (int)Hours % 24;
@@ -241,11 +259,11 @@ public class DayTimeController : MonoBehaviour
     private void UpdateSeasonText()
     {
         string seasonName = currentSeason.ToString().ToUpper();
-        seasonText.text = $"{GetOrdinal(years + 1)} YEAR of {seasonName}";
+        seasonText.text = $"{seasonName}";
         //seasonText.text = currentSeason.ToString();
     }
 
-    private string GetOrdinal(int number)
+    /*private string GetOrdinal(int number)
     {
         if (number % 100 >= 11 && number % 100 <= 13)
             return number + "th";
@@ -257,7 +275,7 @@ public class DayTimeController : MonoBehaviour
             case 3: return number + "rd";
             default: return number + "th";
         }
-    }
+    }*/
 
     /*private void UpdateDayText()
     {
