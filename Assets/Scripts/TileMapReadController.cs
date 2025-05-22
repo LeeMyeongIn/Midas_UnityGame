@@ -35,13 +35,6 @@ public class TileMapReadController : MonoBehaviour
 
         Vector3Int gridPosition = tilemap.WorldToCell(worldPosition);
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            Debug.Log($"[DEBUG] 마우스 위치: {position}");
-            Debug.Log($"[DEBUG] World Position: {worldPosition}");
-            Debug.Log($"[DEBUG] Grid Position: {gridPosition}");
-        }
-
         return gridPosition;
     }
 
