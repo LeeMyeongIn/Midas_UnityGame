@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recipeId: 1006
   recipeName: GreenTea
-  recipeIcon: {fileID: 21300000, guid: 7e05a722249608941b2974219ef1993b, type: 3}
+  recipeIcon: {fileID: 21300000, guid: 808534f1d566b454c8b65925968a6a5a, type: 3}
   ingredients:
   - item: {fileID: 11400000, guid: 7c477a3ee2f2ad84c97118aa84eaf752, type: 2}
     amount: 1

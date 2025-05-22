@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recipeId: 1010
   recipeName: PepperPoppers
-  recipeIcon: {fileID: 21300000, guid: 7e05a722249608941b2974219ef1993b, type: 3}
+  recipeIcon: {fileID: 21300000, guid: 7bb75a585a4b74a4497b88b6a5f0bc0d, type: 3}
   ingredients:
   - item: {fileID: 11400000, guid: 5ba4582d40ac44b469593ddf98b00de2, type: 2}
     amount: 1

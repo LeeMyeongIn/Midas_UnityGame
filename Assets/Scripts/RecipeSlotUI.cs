@@ -83,6 +83,8 @@ public class RecipeSlotUI : MonoBehaviour
         inventory.Add(currentRecipe.resultItem, 1);
         inventory.isDirty = true;
 
+        CookingPanelManager.Instance.RegisterCookedRecipe(currentRecipe.recipeId);
+
         Debug.Log($"[RecipeSlotUI] 요리 완료: {currentRecipe.recipeName}");
     }
 }

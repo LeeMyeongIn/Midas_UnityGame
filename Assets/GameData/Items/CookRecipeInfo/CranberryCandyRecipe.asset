@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recipeId: 1003
   recipeName: CranberryCandy
-  recipeIcon: {fileID: 21300000, guid: 7e05a722249608941b2974219ef1993b, type: 3}
+  recipeIcon: {fileID: 21300000, guid: e6ee9fe96be3f7d4eab2af89815ab205, type: 3}
   ingredients:
   - item: {fileID: 11400000, guid: db5ad463e456a3645bc7fb0c86aa6750, type: 2}
     amount: 1

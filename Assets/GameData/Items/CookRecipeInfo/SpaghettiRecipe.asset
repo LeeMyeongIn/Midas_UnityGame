@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recipeId: 1014
   recipeName: Spaghetti
-  recipeIcon: {fileID: 21300000, guid: 7e05a722249608941b2974219ef1993b, type: 3}
+  recipeIcon: {fileID: 21300000, guid: b34f6c41f422dd347a91aa230a4f1fa2, type: 3}
   ingredients:
   - item: {fileID: 11400000, guid: 49ab9eee8e8f567469c9f32ebd2f9295, type: 2}
     amount: 1

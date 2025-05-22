@@ -50,6 +50,7 @@ public class RecipeUnlockManager : MonoBehaviour
     private void Load()
     {
         string path = Application.persistentDataPath + "/" + SaveFileName;
+        Debug.Log(Application.persistentDataPath);
         if (File.Exists(path))
         {
             string json = File.ReadAllText(path);

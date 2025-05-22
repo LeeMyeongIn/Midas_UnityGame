@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recipeId: 1004
   recipeName: EggplantParmesan
-  recipeIcon: {fileID: 21300000, guid: 7e05a722249608941b2974219ef1993b, type: 3}
+  recipeIcon: {fileID: 21300000, guid: 07274df4451691340bc028bcd7eff89f, type: 3}
   ingredients:
   - item: {fileID: 11400000, guid: 5fe2a4c968524da4ca63471a094b0ea8, type: 2}
     amount: 1

@@ -54,6 +54,8 @@ public class WeatherManager : MonoBehaviour
     public WeatherChances winterChances = new WeatherChances(0.5f, 0f, 0f, 0f, 0.5f, 0f, 0f);
 
     private WeatherStates currentWeatherState;
+    public WeatherStates CurrentWeather => currentWeatherState;
+
     public string CurrentWeatherText => currentWeatherState.ToString();
 
 
