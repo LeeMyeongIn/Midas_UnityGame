@@ -12,9 +12,8 @@ public class PickUpItem : MonoBehaviour
     public Item item;
     public int count = 1;
 
-
     private void Awake()
-    { 
+    {
         player = GameManager.instance.player.transform;
     }
 
@@ -30,34 +29,41 @@ public class PickUpItem : MonoBehaviour
     private void Update()
     {
         ttl -= Time.deltaTime;
-        if (ttl < 0) { Destroy(gameObject); }
+        if (ttl < 0f)
+        {
+            Destroy(gameObject);
+            return;
+        }
 
         float distance = Vector3.Distance(transform.position, player.position);
 
-    
         if (distance > pickUpDistance)
         {
             return;
         }
-       
+
         transform.position = Vector3.MoveTowards(
             transform.position,
             player.position,
             speed * Time.deltaTime
-            );
+        );
 
         if (distance < 0.1f)
-        {   
-            //여기보단 다른 구체적인 컨트롤러로 옮겨야 함
-            if(GameManager.instance.inventoryContainer != null)
+        {
+            if (InventoryController.Instance != null)
             {
-                GameManager.instance.inventoryContainer.Add(item, count);
+                for (int i = 0; i < count; i++)
+                {
+                    InventoryController.Instance.AddItem(item);
+                }
+
                 CropSeenManager.Instance?.RegisterSeenItem(item.id);
             }
             else
             {
-                Debug.LogWarning("NO INVENTORY CONTAINER ATTACHED TO THE GAME MANAGER");
+                Debug.LogWarning("InventoryController.Instance is null!");
             }
+
             Destroy(gameObject);
         }
     }

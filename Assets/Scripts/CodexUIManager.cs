@@ -23,7 +23,12 @@ public class CodexUIManager : MonoBehaviour
     [Header("작물 표시용")]
     [SerializeField] private GameObject cropEntryPrefab;
     [SerializeField] private Transform cropListParent;
-    [SerializeField] private List<Item> allCropItems;
+
+    [Header("작물 데이터")]
+    [SerializeField] public List<Item> allCropItems;
+
+    [Header("업적 패널")]
+    [SerializeField] private TriumphPanelManager triumphPanelManager;
 
     private void Awake()
     {
@@ -78,6 +83,15 @@ public class CodexUIManager : MonoBehaviour
         if (CodexFoodPanel != null) CodexFoodPanel.SetActive(false);
         if (CodexCropPanel != null) CodexCropPanel.SetActive(false);
         if (CodexTriumphPanel != null) CodexTriumphPanel.SetActive(true);
+
+        if (triumphPanelManager != null)
+        {
+            triumphPanelManager.RefreshUI();
+        }
+        else
+        {
+            Debug.LogWarning("TriumphPanelManager가 연결되지 않았습니다.");
+        }
     }
 
     private void RefreshFoodCodex()

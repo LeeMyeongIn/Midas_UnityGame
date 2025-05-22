@@ -349,8 +349,10 @@ public class TilemapCropsManager : TimeAgent
                 tile.crop.count
                 );
 
+
             //¿€π∞ µ•¿Ã≈Õ √ ±‚»≠
             tile.Harvested();
+
 
             //πÁ¿ª ≥Û¿Â ±‚∫ª ∂•¿∏∑Œ πŸ≤ﬁ
             //targetTilemap.SetTile(gridPosition, null);

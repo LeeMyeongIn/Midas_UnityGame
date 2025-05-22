@@ -26,7 +26,10 @@ public class CookingPanelManager : MonoBehaviour
     public void RegisterCookedRecipe(int recipeId)
     {
         cookedRecipeIds.Add(recipeId);
+
+        TriumphManager.Instance?.UpdateProgressByType(TriumphType.Cook, 1);
     }
+
     public bool HasCooked(int recipeId)
     {
         return cookedRecipeIds.Contains(recipeId);

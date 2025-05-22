@@ -51,7 +51,6 @@ public class ItemContainer : ScriptableObject
 
         if (item.stackable)
         {
-            // 같은 id의 아이템이 있는 슬롯 찾기
             ItemSlot existingSlot = slots.Find(x => x.item != null && x.item.id == item.id);
             if (existingSlot != null)
             {
@@ -60,7 +59,6 @@ public class ItemContainer : ScriptableObject
             }
         }
 
-        // 비어 있는 슬롯에 새로 추가
         foreach (ItemSlot slot in slots)
         {
             if (slot.item == null)
@@ -140,4 +138,43 @@ public class ItemContainer : ScriptableObject
         }
         return total;
     }
+    public bool HasSpaceFor(Item item)
+    {
+        if (item == null) return false;
+
+        if (item.stackable)
+        {
+            if (slots.Exists(slot => slot.item != null && slot.item.id == item.id))
+                return true;
+        }
+
+        return slots.Exists(slot => slot.item == null);
+    }
+
+    public bool HasSpaceFor(List<Item> items)
+    {
+        int availableSlots = slots.FindAll(s => s.item == null).Count;
+        HashSet<int> existingStackables = new HashSet<int>();
+
+        foreach (var slot in slots)
+        {
+            if (slot.item != null && slot.item.stackable)
+            {
+                existingStackables.Add(slot.item.id);
+            }
+        }
+
+        int neededSlots = 0;
+
+        foreach (var item in items)
+        {
+            if (item.stackable && existingStackables.Contains(item.id))
+                continue;
+
+            neededSlots++;
+        }
+
+        return neededSlots <= availableSlots;
+    }
+
 }

@@ -33,6 +33,9 @@ public class RecipeUnlockManager : MonoBehaviour
         {
             saveData.unlockedRecipeIds.Add(recipeId);
             Save();
+            Debug.Log($"[업적] 레시피 해금 업적 카운트 추가");
+
+            TriumphManager.Instance?.UpdateProgressByType(TriumphType.RecipeUnlock, 1);
         }
     }
 

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5945be15fd004bd4d8e5fc1abe064be4, type: 3}
+  m_Name: BeginnerChef
+  m_EditorClassIdentifier: 
+  data:
+    id: Cook_Beginner
+    name: beginner chef
+    description: 
+    type: 0
+    currentCount: 0
+    targetCount: 1
+    isCompleted: 0
+    isRewardClaimed: 0
+    rewardItems:
+    - {fileID: 11400000, guid: 51d3d32bea25f5b46bf0312619a7c9ce, type: 2}
