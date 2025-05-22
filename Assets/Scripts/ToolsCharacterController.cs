@@ -186,4 +186,10 @@ public class ToolsCharacterController : MonoBehaviour
 
         onTilePickUp.OnApplyToTileMap(selectedTilePosition, tileMapReadcontroller, null);
     }
+
+    public Item GetCurrentItem()
+    {
+        return toolbarController.GetItem;
+    }
+
 }

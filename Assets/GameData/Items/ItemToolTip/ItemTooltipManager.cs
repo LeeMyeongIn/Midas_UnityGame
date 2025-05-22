@@ -72,9 +72,6 @@ public class ItemTooltipManager : MonoBehaviour
 
     }
 
-
-
-
     public void ShowTooltip(Item item)
     {
         tooltipPanel.SetActive(true);

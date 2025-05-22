@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a472705407ee63f4ca2821047f0cce1c, type: 3}
   m_Name: StrawberryCrop
   m_EditorClassIdentifier: 
-  timeToGrow: 6
+  timeToGrow: 5
   yield: {fileID: 11400000, guid: db5ad463e456a3645bc7fb0c86aa6750, type: 2}
   count: 1
   sprites:
+  - {fileID: -1948045415480136559, guid: 487d170e89c97314bab5f75aa4b342b2, type: 3}
   - {fileID: -7702887417278301594, guid: 487d170e89c97314bab5f75aa4b342b2, type: 3}
   - {fileID: 4496051531289152143, guid: 487d170e89c97314bab5f75aa4b342b2, type: 3}
   - {fileID: 8246506777031243381, guid: 487d170e89c97314bab5f75aa4b342b2, type: 3}
   - {fileID: 6886178508049371069, guid: 487d170e89c97314bab5f75aa4b342b2, type: 3}
-  growthStageTime: 01000000010000000200000001000000
+  growthStageTime: 0100000001000000010000000100000001000000
   seasons: 00000000

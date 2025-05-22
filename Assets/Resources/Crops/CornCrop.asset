@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a472705407ee63f4ca2821047f0cce1c, type: 3}
   m_Name: CornCrop
   m_EditorClassIdentifier: 
-  timeToGrow: 12
+  timeToGrow: 5
   yield: {fileID: 11400000, guid: 3c3af748b0d7b3d46bef7574bdb9582b, type: 2}
   count: 1
   sprites:
+  - {fileID: 2341945593613269548, guid: 7e689ea00425b064985308b1176332eb, type: 3}
   - {fileID: 1651890005190620534, guid: 7e689ea00425b064985308b1176332eb, type: 3}
   - {fileID: 7700263081886866806, guid: 7e689ea00425b064985308b1176332eb, type: 3}
   - {fileID: -4011496705481235470, guid: 7e689ea00425b064985308b1176332eb, type: 3}
   - {fileID: -287848675656970236, guid: 7e689ea00425b064985308b1176332eb, type: 3}
-  growthStageTime: 03000000030000000400000001000000
+  growthStageTime: 0100000001000000010000000100000001000000
   seasons: 00000000

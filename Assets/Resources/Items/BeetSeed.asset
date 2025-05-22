@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcf269aafe05fa4ea64ac464b62134c, type: 3}
   m_Name: BeetSeed
   m_EditorClassIdentifier: 
+  description: 
   Name: 
   id: 1201
   stackable: 1
