@@ -20,5 +20,5 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c8960ec62ea6cef4782ac345f9a328c5, type: 3}
   - {fileID: 21300000, guid: 7ced02e5a9c59f04da024d0534794aae, type: 3}
   - {fileID: 21300000, guid: ba2b36ca7dd1acb48ad9da57c5ee808d, type: 3}
-  growthStageTime: 01000000010000000100000001000000
+  growthStageTime: 01000000010000000100000000000000
   seasons: 00000000
