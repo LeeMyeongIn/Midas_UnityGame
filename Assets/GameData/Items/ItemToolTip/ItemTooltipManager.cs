@@ -12,7 +12,6 @@ public class ItemTooltipManager : MonoBehaviour
     public TextMeshProUGUI descriptionText;
     public TextMeshProUGUI priceText;
 
-
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -79,7 +78,7 @@ public class ItemTooltipManager : MonoBehaviour
         itemNameText.text = item.Name;
         descriptionText.text = item.description;
         priceText.text = item.canBeSold
-            ? $"Buy:{item.price*1.5f}    <sprite name=Coin2> \nSell:{item.price*0.5f}    <sprite name=Coin2>" 
+            ? $"Buy:{item.price*1.5f}G\nSell:{item.price*0.5f}G" 
               : "Can't sell";
     }
 
