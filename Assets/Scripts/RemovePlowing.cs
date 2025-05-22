@@ -8,7 +8,8 @@ public class RemovePlowing : ToolAction
 {
     public override bool OnApply(Vector2 worldPoint)
     {
-        Vector3Int gridPos = GameManager.instance.gridLayout.WorldToCell(worldPoint);
+        Vector3Int gridPos = GameManager.instance.tileMapReadController.GetGridPosition(Input.mousePosition, true);
+
         Item item = GameObject.FindObjectOfType<ToolsCharacterController>().GetCurrentItem();
         return OnApplyToTileMap(gridPos, GameManager.instance.tileMapReadController, item);
     }
