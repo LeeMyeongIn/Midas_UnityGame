@@ -50,4 +50,12 @@ public class TileMapReadController : MonoBehaviour
         TileBase tile = tilemap.GetTile(gridPosition);
         return tile;
     }
+
+    //잔디용
+    public void DebugMouseGridPosition()
+    {
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3Int grid = tilemap.WorldToCell(mousePos);
+        Debug.Log($"현재 마우스 위치 타일 좌표: {grid}");
+    }
 }

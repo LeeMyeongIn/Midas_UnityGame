@@ -212,6 +212,13 @@ public class TilemapCropsManager : TimeAgent
 
     public void Plow(Vector3Int position)
     {
+        //잔디부분
+        if (IsBlockedArea(position))
+        {
+            Debug.Log($"[Plow] 차단된 영역입니다: {position}");
+            return;
+        }
+
         CropTile tile = container.Get(position);
 
         if (tile != null)
@@ -241,6 +248,13 @@ public class TilemapCropsManager : TimeAgent
 
     public void Seed(Vector3Int position, Crop toSeed)
     {
+        //잔디용
+        if (IsBlockedArea(position))
+        {
+            Debug.Log($"[Water] 차단된 영역입니다: {position}");
+            return;
+        }
+
         CropTile tile = container.Get(position);
         if (tile == null) { return; }
 
@@ -316,6 +330,13 @@ public class TilemapCropsManager : TimeAgent
 
     internal void PickUp(Vector3Int gridPosition)
     {
+        //잔디용
+        if (IsBlockedArea(gridPosition))
+        {
+            Debug.Log($"[PickUp] 차단된 영역입니다: {gridPosition}");
+            return;
+        }
+
         Vector2Int position = (Vector2Int)gridPosition;
         CropTile tile = container.Get(gridPosition);
         if (tile == null) { return; }
@@ -339,6 +360,13 @@ public class TilemapCropsManager : TimeAgent
 
     public void Water(Vector3Int position)
     {
+        //잔디용
+        if (IsBlockedArea(position))
+        {
+            Debug.Log($"[Water] 차단된 영역입니다: {position}");
+            return;
+        }
+
         // 1.타일맵에서 해당 위치의 타일을 가져옴
         TileBase tile = targetTilemap.GetTile(position);
 
@@ -378,5 +406,11 @@ public class TilemapCropsManager : TimeAgent
         cropTile.isWatered = true;
         targetTilemap.SetTile(position, watered);
         Debug.Log($"[Water] {position} 위치에 물을 주었습니다!");
+    }
+
+    //잔디부분 좌표
+    private bool IsBlockedArea(Vector3Int pos)
+    {
+        return pos.x >= -20 && pos.x <= 26 && pos.y >= 9 && pos.y <= 14;
     }
 }
