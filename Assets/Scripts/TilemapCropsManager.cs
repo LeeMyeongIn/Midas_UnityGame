@@ -111,12 +111,15 @@ public class TilemapCropsManager : TimeAgent
         if (lastUpdatedDay == dayTimeController.days) return;
         lastUpdatedDay = dayTimeController.days;
 
+        bool isRaining = dayTimeController.weatherManager != null && dayTimeController.weatherManager.IsRaining;
+
         // 비 오는 날은 자동 물주기
         if (dayTimeController.weatherManager != null && dayTimeController.weatherManager.IsRaining)
         {
             foreach (CropTile tile in container.crops)
             {
                 tile.isWatered = true;
+                VisualizeTile(tile);
             }
         }
 
@@ -152,7 +155,7 @@ public class TilemapCropsManager : TimeAgent
             }
 
             //물타일 다시 밭타일로 복구
-            if (cropTile.isWatered)
+            if (cropTile.isWatered && !isRaining) //비 오는 날은 복구x
             {
                 TileBase currentTile = targetTilemap.GetTile(cropTile.position);
                 if (currentTile == watered)
@@ -207,7 +210,6 @@ public class TilemapCropsManager : TimeAgent
         return baseTile == plowedTile;
     }
 
-
     public void Plow(Vector3Int position)
     {
         CropTile tile = container.Get(position);
@@ -258,13 +260,12 @@ public class TilemapCropsManager : TimeAgent
         tile.growTimer = 0;
 
         VisualizeTile(tile);
-
     }
 
     public void VisualizeTile(CropTile cropTile)
     {
         // 타일 시각화 로직
-        if (cropTile.crop != null && cropTile.isWatered)
+        if (cropTile.isWatered)
         {
             targetTilemap.SetTile(cropTile.position, watered);
         }
@@ -288,9 +289,11 @@ public class TilemapCropsManager : TimeAgent
         if (cropTile.crop != null && cropTile.crop.sprites.Count > 0)
         {
             int stage = cropTile.growStage;
-            cropTile.renderer.sprite = (stage > 0 && stage < cropTile.crop.sprites.Count)
-                ? cropTile.crop.sprites[stage]
-                : cropTile.crop.sprites[0];
+            int lastIndex = cropTile.crop.sprites.Count - 1;
+
+            cropTile.renderer.sprite = (stage >= cropTile.crop.sprites.Count)
+                ? cropTile.crop.sprites[lastIndex]
+                : cropTile.crop.sprites[stage];
 
             cropTile.renderer.gameObject.SetActive(true);
         }
