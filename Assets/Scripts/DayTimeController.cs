@@ -41,11 +41,13 @@ public class DayTimeController : MonoBehaviour
     [SerializeField] ScreenTint screenTint;
     [SerializeField] SeasonTilemapController seasonTilemapController;
     public WeatherManager weatherManager;
+    [SerializeField] WeatherImageController weatherImageController;
+    [SerializeField] SeasonImageController seasonImageController;
 
     DayOfWeek dayOfWeek;
 
-    [SerializeField] TMPro.TextMeshProUGUI text;
-    //[SerializeField] TMPro.TextMeshProUGUI dayOfTheWeekText;
+    [SerializeField] TMPro.TextMeshProUGUI timeText;
+    [SerializeField] TMPro.TextMeshProUGUI yearText;
     [SerializeField] TMPro.TextMeshProUGUI seasonText;
     [SerializeField] TMPro.TextMeshProUGUI dateText;
     [SerializeField] TMPro.TextMeshProUGUI weatherText;
@@ -76,20 +78,23 @@ public class DayTimeController : MonoBehaviour
             seasonTilemapController = FindObjectOfType<SeasonTilemapController>();
         }
 
-        /*if (weatherManager == null)
+        /*if (weatherImageController == null)
         {
-            weatherManager = FindObjectOfType<WeatherManager>();
+            weatherImageController = FindObjectOfType<WeatherImageController>();
         }*/
 
         time = startAtTime;
         UpdateSeasonText();
         UpdateDateText();
+        UpdateYearText();
         seasonTilemapController?.UpdateSeason(currentSeason);
+        seasonImageController.UpdateSeasonImage(currentSeason);
 
         if (weatherManager != null)
         {
             weatherManager.GenerateDailyWeather(currentSeason);
             UpdateWeatherText();
+            weatherImageController.UpdateWeatherImages();
         }
     }
 
@@ -181,7 +186,7 @@ public class DayTimeController : MonoBehaviour
         int hh12 = totalHours % 12;
         if (hh12 == 0) hh12 = 12;
 
-        text.text = $"{hh12:00}:{mm:00} {period}";
+        timeText.text = $"{hh12:00}:{mm:00} {period}";
     }
 
     private void DayLight()
@@ -217,27 +222,6 @@ public class DayTimeController : MonoBehaviour
         return (int)(time / phaseLenght) + (int)(days * phasesInDay);
     }
 
-    /*private void NextDay()
-    {
-        time -= secondsInDay;
-        days += 1;
-
-        int dayNum = (int)dayOfWeek;
-        dayNum += 1;
-        if(dayNum >= 7)
-        {
-            dayNum = 0;
-        }
-        dayOfWeek = (DayOfWeek)dayNum;
-        //UpdateDayText();
-        UpdateDateText();
-
-        if (days >= seasonLength)
-        {
-            NextSeason();
-        }
-    }*/
-
     private void NextSeason()
     {
         days = 0;
@@ -248,45 +232,35 @@ public class DayTimeController : MonoBehaviour
         {
             seasonNum = 0;
             years += 1;
+            UpdateYearText();
         }
 
         currentSeason = (Season)seasonNum;
         UpdateSeasonText();
         UpdateDateText();
         seasonTilemapController.UpdateSeason(currentSeason);
+        seasonImageController.UpdateSeasonImage(currentSeason);
     }
 
     private void UpdateSeasonText()
     {
         string seasonName = currentSeason.ToString().ToUpper();
         seasonText.text = $"{seasonName}";
-        //seasonText.text = currentSeason.ToString();
     }
-
-    /*private string GetOrdinal(int number)
-    {
-        if (number % 100 >= 11 && number % 100 <= 13)
-            return number + "th";
-
-        switch (number % 10)
-        {
-            case 1: return number + "st";
-            case 2: return number + "nd";
-            case 3: return number + "rd";
-            default: return number + "th";
-        }
-    }*/
-
-    /*private void UpdateDayText()
-    {
-        dayOfTheWeekText.text = dayOfWeek.ToString();
-    }*/
 
     private void UpdateDateText()
     {
         int displayDay = days + 1;
-        dateText.text = $"Day: {displayDay}, {dayOfWeek}";
+        dateText.text = $"{displayDay}, {dayOfWeek}";
     }
+    private void UpdateYearText()
+    {
+        if (yearText != null)
+        {
+            yearText.text = $"Year: {years + 1}";
+        }
+    }
+
 
     public void SkipTime(float seconds = 0, float minute = 0, float hours = 0)
     {
