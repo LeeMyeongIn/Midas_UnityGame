@@ -59,7 +59,7 @@ public class WeatherManager : MonoBehaviour
 
     private void Start()      //test
     {
-        ApplyWeather(WeatherStates.Snow);
+        //ApplyWeather(WeatherStates.Snow);
     }
 
     public void GenerateDailyWeather(Season currentSeason)
