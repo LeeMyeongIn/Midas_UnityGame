@@ -83631,6 +83631,14 @@ PrefabInstance:
       propertyPath: confiner
       value: 
       objectReference: {fileID: 554586779}
+    - target: {fileID: 6044415322055424155, guid: 764aa9710af18b34f8f061fe39a7e8d8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 6044415322055424155, guid: 764aa9710af18b34f8f061fe39a7e8d8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 764aa9710af18b34f8f061fe39a7e8d8, type: 3}
 --- !u!1 &1395932488
@@ -90959,7 +90967,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6044415320447270919, guid: 764aa9710af18b34f8f061fe39a7e8d8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -55.06
+      value: -61.28
       objectReference: {fileID: 0}
     - target: {fileID: 6044415320447270919, guid: 764aa9710af18b34f8f061fe39a7e8d8, type: 3}
       propertyPath: m_LocalPosition.y
