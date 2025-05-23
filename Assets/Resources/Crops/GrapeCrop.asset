@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a472705407ee63f4ca2821047f0cce1c, type: 3}
   m_Name: GrapeCrop
   m_EditorClassIdentifier: 
-  timeToGrow: 5
+  timeToGrow: 7
   yield: {fileID: 11400000, guid: ceb8dc4a12333ea41953e5c7650340bb, type: 2}
   count: 1
   sprites:
@@ -21,5 +21,5 @@ MonoBehaviour:
   - {fileID: 5904034187468130462, guid: 67576e8a6b5ad0b4daa2f78cf6cceed8, type: 3}
   - {fileID: -1518147896830640271, guid: 67576e8a6b5ad0b4daa2f78cf6cceed8, type: 3}
   - {fileID: -3833273553534953501, guid: 67576e8a6b5ad0b4daa2f78cf6cceed8, type: 3}
-  growthStageTime: 0100000001000000010000000100000000000000
+  growthStageTime: 0100000001000000020000000200000000000000
   seasons: 02000000

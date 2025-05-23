@@ -33,7 +33,7 @@ public class RemovePlowing : ToolAction
 
         //현재 타일이 쟁기질된 상태가 아닐 경우 무시
         TileBase currentTile = cropsManager.GetTilemap().GetTile(gridPosition);
-        if (currentTile != cropsManager.plowedTile && currentTile != cropsManager.seeded)
+        if (currentTile != cropsManager.plowedTile && currentTile != cropsManager.seeded && currentTile != cropsManager.watered)
         {
             Debug.LogWarning($"[RemovePlowing] {gridPosition} 위치는 밭이 아닙니다.");
             return false;

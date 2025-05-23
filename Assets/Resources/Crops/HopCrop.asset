@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a472705407ee63f4ca2821047f0cce1c, type: 3}
   m_Name: HopCrop
   m_EditorClassIdentifier: 
-  timeToGrow: 6
+  timeToGrow: 7
   yield: {fileID: 11400000, guid: 202b91d5156798e42a9f65faac9bc004, type: 2}
   count: 1
   sprites:
@@ -22,5 +22,5 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e8fff5951093c414f967b2e405cfe1bf, type: 3}
   - {fileID: 21300000, guid: 89c994baa625e174391f54957f1c0462, type: 3}
   - {fileID: 21300000, guid: 56bcc63b750f25c4497ebc14e56c1aaa, type: 3}
-  growthStageTime: 010000000100000001000000010000000100000000000000
+  growthStageTime: 010000000100000001000000010000000200000000000000
   seasons: 03000000
