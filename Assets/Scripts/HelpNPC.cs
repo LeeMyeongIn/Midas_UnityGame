@@ -91,6 +91,7 @@ public class HelpNPC : Interactable
     void OnNoClicked()
     {
         helpDialoguePanel.SetActive(false);
+        isTalking = false;
     }
 
     void OnBookClicked()
