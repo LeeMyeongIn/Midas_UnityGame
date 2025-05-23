@@ -66,9 +66,12 @@ public class DayTimeController : MonoBehaviour
 
     List<TimeAgent> agents;
 
+    PlayerRespawn playerRespawn;
+
     private void Awake()
     {
         agents = new List<TimeAgent>();
+        playerRespawn = FindObjectOfType<PlayerRespawn>();
     }
 
     private void Start()
@@ -161,6 +164,8 @@ public class DayTimeController : MonoBehaviour
         {
             NextSeason();
         }
+
+        playerRespawn.StartRespawn();
 
         screenTint.UnTint();
         yield return new WaitForSeconds(1f);

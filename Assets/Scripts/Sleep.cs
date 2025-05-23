@@ -26,7 +26,7 @@ public class Sleep : MonoBehaviour
 
         disableControls.DisableControl();
 
-        scrrenTint.Tint();
+        //scrrenTint.Tint();
         yield return new WaitForSeconds(2f);
 
         character.FullHeal();
@@ -34,8 +34,7 @@ public class Sleep : MonoBehaviour
         SaveGame();  // 게임 저장 기능 추가
         dayTime.SkipToMorning();
 
-
-        scrrenTint.UnTint();
+        //scrrenTint.UnTint();
         yield return new WaitForSeconds(2f);
 
         disableControls.EnableControl();
