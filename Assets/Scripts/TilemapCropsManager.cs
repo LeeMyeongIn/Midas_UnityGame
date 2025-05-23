@@ -114,7 +114,7 @@ public class TilemapCropsManager : TimeAgent
         bool isRaining = dayTimeController.weatherManager != null && dayTimeController.weatherManager.IsRaining;
 
         // 비 오는 날은 자동 물주기
-        if (dayTimeController.weatherManager != null && dayTimeController.weatherManager.IsRaining)
+        if (isRaining)
         {
             foreach (CropTile tile in container.crops)
             {
@@ -278,7 +278,7 @@ public class TilemapCropsManager : TimeAgent
 
     public void VisualizeTile(CropTile cropTile)
     {
-        // 타일 시각화 로직
+        //물을 줬으면 무조건 watered tile
         if (cropTile.isWatered)
         {
             targetTilemap.SetTile(cropTile.position, watered);
@@ -317,6 +317,7 @@ public class TilemapCropsManager : TimeAgent
             cropTile.renderer.gameObject.SetActive(false);
         }
     }
+
 
     private void CreatePlowedTile(Vector3Int position)
     {
