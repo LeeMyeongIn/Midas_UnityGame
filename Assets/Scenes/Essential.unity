@@ -13042,7 +13042,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06636f457d23775439437f43ab217cba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawnPointPosition: {x: -44.36, y: 11.65, z: -15.49737}
+  respawnPointPosition: {x: -61.28, y: -1.55, z: 0}
   respawnPointScene: FarmingScene
 --- !u!114 &631060376
 MonoBehaviour:
