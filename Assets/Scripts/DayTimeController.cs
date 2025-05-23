@@ -66,12 +66,10 @@ public class DayTimeController : MonoBehaviour
 
     List<TimeAgent> agents;
 
-    PlayerRespawn playerRespawn;
-
     private void Awake()
     {
         agents = new List<TimeAgent>();
-        playerRespawn = FindObjectOfType<PlayerRespawn>();
+        Sleep sleep = GetComponent<Sleep>();
     }
 
     private void Start()
@@ -143,7 +141,13 @@ public class DayTimeController : MonoBehaviour
 
     private IEnumerator NextDayRoutine()
     {
-        screenTint.Tint();
+        //screenTint.Tint();
+        Sleep sleep = FindObjectOfType<Sleep>();
+        if (sleep != null)
+        {
+            sleep.DoSleep();
+        }
+
         yield return new WaitForSeconds(1.5f);
 
         time = morningTime;
@@ -165,9 +169,7 @@ public class DayTimeController : MonoBehaviour
             NextSeason();
         }
 
-        playerRespawn.StartRespawn();
-
-        screenTint.UnTint();
+        //screenTint.UnTint();
         yield return new WaitForSeconds(1f);
         isDayChanging = false;
     }

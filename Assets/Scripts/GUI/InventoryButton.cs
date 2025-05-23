@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class InventoryButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] Image icon;
-    [SerializeField] Text text;
+    [SerializeField] TMPro.TextMeshProUGUI text;
     [SerializeField] Image highlight;
 
     int myIndex;
