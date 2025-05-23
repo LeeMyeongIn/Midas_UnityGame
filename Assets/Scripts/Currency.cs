@@ -34,7 +34,7 @@ public class Currency : MonoBehaviour
 
     private void UpdateText()
     {
-        text.text = amount.ToString();
+        text.text = "<sprite name=Coin2>"+amount.ToString();
     }
 
 }
