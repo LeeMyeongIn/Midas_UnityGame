@@ -45,14 +45,14 @@ public class MainMenu : MonoBehaviour
     {
         selectedGender = Gender.Male;
         playerData.playerCharacterGender = selectedGender;
-        genderText.text = "Male";
+        genderText.text = "남자";
     }
 
     public void SetGenderFemale()
     {
         selectedGender = Gender.Female;
         playerData.playerCharacterGender = selectedGender;
-        genderText.text = "Female";
+        genderText.text = "여자";
     }
 
     public void UpdateName()
