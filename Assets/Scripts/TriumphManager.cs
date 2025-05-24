@@ -26,21 +26,31 @@ public class TriumphManager : MonoBehaviour
     public void UpdateCropTypeAchievements()
     {
         int uniqueCropCount = CropSeenManager.Instance.GetSeenCropCount();
+        Debug.Log($"[업적 갱신] 현재 고유 작물 수: {uniqueCropCount}");
 
         foreach (var triumph in triumphList)
         {
-            if (triumph.data.type == TriumphType.CropHarvest &&
-                !triumph.data.isCompleted &&
-                triumph.data.targetCount <= uniqueCropCount)
+            if (triumph.data.type == TriumphType.CropHarvest)
             {
-                triumph.data.currentCount = triumph.data.targetCount;
-                triumph.data.isCompleted = true;
+                Debug.Log($"[업적 검사] {triumph.data.name} - 목표: {triumph.data.targetCount}, 현재: {triumph.data.currentCount}, 완료됨: {triumph.data.isCompleted}");
 
-                Debug.Log($"[업적] 작물 종류 누적 업적 달성: {triumph.data.name}");
-                onTriumphUpdated?.Invoke();
+                if (!triumph.data.isCompleted)
+                {
+                    triumph.data.currentCount = Mathf.Min(uniqueCropCount, triumph.data.targetCount);
+
+                    if (triumph.data.currentCount >= triumph.data.targetCount)
+                    {
+                        triumph.data.isCompleted = true;
+                        Debug.Log($"[업적 달성] 작물 종류 누적 업적 달성: {triumph.data.name}");
+                    }
+
+                    onTriumphUpdated?.Invoke();
+                }
             }
         }
     }
+
+
 
     public void UpdateProgressByType(TriumphType type, int amount = 1)
     {

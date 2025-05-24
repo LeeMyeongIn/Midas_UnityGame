@@ -70,8 +70,8 @@ public class InventoryController : MonoBehaviour
             if (isNew)
             {
                 Debug.Log($"[도감] 새 작물 발견: {item.Name}, ID: {item.id}");
-                TriumphManager.Instance?.UpdateCropTypeAchievements();
             }
+            TriumphManager.Instance?.UpdateCropTypeAchievements();
         }
     }
 
@@ -88,6 +88,7 @@ public class InventoryController : MonoBehaviour
 
         return false;
     }
+
 
     public bool HasSpace(List<Item> items)
     {
