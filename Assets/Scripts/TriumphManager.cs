@@ -18,7 +18,10 @@ public class TriumphManager : MonoBehaviour
     private void Awake()
     {
         if (Instance == null)
+        {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
         else
             Destroy(gameObject);
     }
@@ -119,6 +122,43 @@ public class TriumphManager : MonoBehaviour
         onTriumphUpdated?.Invoke();
     }
 
+    // 저장용
+    public List<TriumphProgress> GetUnlockedTriumphIds()
+    {
+        List<TriumphProgress> list = new List<TriumphProgress>();
+        
+        foreach (var triumph in triumphList)
+        {
+            list.Add(new TriumphProgress
+            {
+                triumphId = triumph.data.name,
+                currentCount = triumph.data.currentCount,
+                isCompleted = triumph.data.isCompleted,
+                isRewardClaimed = triumph.data.isRewardClaimed
+            });
+        }
+
+        return list;
+    }
+
+    // 불러오기용
+    public void SetUnlockedTriumphs(List<TriumphProgress> savedList)
+    {
+        foreach (var progress in savedList)
+        {
+            var triumph = triumphList.Find(triumph => triumph.data.name == progress.triumphId);
+            if (triumph != null)
+            {
+                triumph.data.currentCount = progress.currentCount;
+                triumph.data.isCompleted = progress.isCompleted;
+                triumph.data.isRewardClaimed = progress.isRewardClaimed;
+            }
+        }
+
+        onTriumphUpdated?.Invoke();
+    }
+    
+
 #if UNITY_EDITOR
     [ContextMenu("Reset All Triumphs (테스트용)")]
     private void ResetFromEditor()
@@ -126,4 +166,19 @@ public class TriumphManager : MonoBehaviour
         ResetAllTriumphs();
     }
 #endif
+}
+
+[System.Serializable]
+public class TriumphSaveData
+{
+    public List<TriumphProgress> progressList = new List<TriumphProgress>();
+}
+
+[System.Serializable]
+public class TriumphProgress
+{
+    public string triumphId;
+    public int currentCount;
+    public bool isCompleted;
+    public bool isRewardClaimed;
 }

@@ -35,7 +35,12 @@ public class SlotButton : MonoBehaviour
                 aboutTheFarm = so.aboutTheFarm,
                 playerCharacterGender = so.playerCharacterGender,
                 saveSlotId = slotNumber,
-                selectedCharacterIndex = so.selectedCharacterIndex
+                selectedCharacterIndex = so.selectedCharacterIndex,
+
+                seenCrops = CropSeenManager.Instance.GetSeenCropItemIds(),
+                unlockedRecipes = RecipeUnlockManager.Instance.GetUnlockedRecipeIds(),
+                unlockedTriumphs = TriumphManager.Instance.GetUnlockedTriumphIds(),
+                cookedRecipes = CookingPanelManager.Instance.GetCookedRecipeIds()
             };
 
             SaveManager.SavePlayerData(saveData, slotNumber);

@@ -45,4 +45,17 @@ public class CropSeenManager : MonoBehaviour
         seenCropItemIds.Clear();
         Debug.Log("[도감] 전체 작물 도감 초기화됨");
     }
+
+    // 저장용
+    public List<int> GetSeenCropItemIds()
+    {
+        return new List<int>(seenCropItemIds);
+    }
+
+    // 불러오기용
+    public void SetSeenCropItemIds(List<int> itemIds)
+    {
+        seenCropItemIds = new HashSet<int>(itemIds ?? new List<int>());
+        Debug.Log($"[도감] 저장된 도감 불러오기 완료 ({seenCropItemIds.Count}개)");
+    }
 }

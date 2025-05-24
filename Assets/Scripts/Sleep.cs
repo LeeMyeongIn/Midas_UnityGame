@@ -63,7 +63,12 @@ public class Sleep : MonoBehaviour
             aboutTheFarm = data.aboutTheFarm,
             playerCharacterGender = data.playerCharacterGender,
             saveSlotId = data.saveSlotId,
-            selectedCharacterIndex = data.selectedCharacterIndex
+            selectedCharacterIndex = data.selectedCharacterIndex,
+
+            seenCrops = CropSeenManager.Instance.GetSeenCropItemIds(),
+            unlockedRecipes = RecipeUnlockManager.Instance.GetUnlockedRecipeIds(),
+            unlockedTriumphs = TriumphManager.Instance.GetUnlockedTriumphIds(),
+            cookedRecipes = CookingPanelManager.Instance.GetCookedRecipeIds()
         };
 
         SaveManager.SavePlayerData(saveData, data.saveSlotId);
