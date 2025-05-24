@@ -18,14 +18,8 @@ public class RecipeUnlockManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-            Load();
-        }
-        else
-            Destroy(gameObject);
+        Instance = this;
+        Load();
     }
 
     public bool IsUnlocked(int recipeId)
@@ -64,18 +58,5 @@ public class RecipeUnlockManager : MonoBehaviour
             string json = File.ReadAllText(path);
             saveData = JsonUtility.FromJson<RecipeSaveData>(json);
         }
-    }
-
-    // 저장용
-    public List<int> GetUnlockedRecipeIds()
-    {
-        return new List<int>(saveData.unlockedRecipeIds);
-    }
-
-    // 불러오기용
-    public void SetUnlockedRecipes(List<int> ids)
-    {
-        saveData.unlockedRecipeIds = ids ?? new List<int>();
-        Save();
     }
 }

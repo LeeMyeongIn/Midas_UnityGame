@@ -50,16 +50,4 @@ public class CookingPanelManager : MonoBehaviour
         else
             Debug.LogWarning("CookingPanel이 연결되지 않았습니다.");
     }
-
-    // 저장용
-    public List<int> GetCookedRecipeIds()
-    {
-        return new List<int>(cookedRecipeIds);
-    }
-
-    // 불러오기용
-    public void SetCookedRecipes(List<int> ids)
-    {
-        cookedRecipeIds = new HashSet<int>(ids ?? new List<int>());
-    }
 }
