@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WateredTile_test4
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: -3269584709607156087, guid: c6b1fa0bf0671bf44bb879cf2465ee32, type: 3}
-  m_Color: {r: 0.32811198, g: 0.34651652, b: 0.745283, a: 0.57254905}
+  m_Color: {r: 0.5944583, g: 0.60113096, b: 0.8113208, a: 0.49411765}
   m_Transform:
     e00: 1
     e01: 0
