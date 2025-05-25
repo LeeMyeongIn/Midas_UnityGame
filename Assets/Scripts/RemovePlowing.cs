@@ -57,6 +57,9 @@ public class RemovePlowing : ToolAction
                 tile.renderer.sprite = null;
                 tile.renderer.gameObject.SetActive(false);
             }
+
+            //croptile도 container에서 제거
+            cropsManager.container.crops.Remove(tile);
         }
 
         //타일맵에서 타일 제거 (밭 -> 맨땅)
