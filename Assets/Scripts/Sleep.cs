@@ -55,18 +55,33 @@ public class Sleep : MonoBehaviour
     private void SaveGame()
     {
         var data = CharacterGameManager.Instance.playerData;
+        var time = GameManager.instance.timeController;
 
         PlayerDataForSave saveData = new PlayerDataForSave
         {
+            // 플레이어 정보
             characterName = data.characterName,
             farmName = data.farmName,
             aboutTheFarm = data.aboutTheFarm,
             playerCharacterGender = data.playerCharacterGender,
             saveSlotId = data.saveSlotId,
-            selectedCharacterIndex = data.selectedCharacterIndex
+            selectedCharacterIndex = data.selectedCharacterIndex,
+
+            // 날짜/시간/계절 정보
+            year = time.years,
+            day = time.days,
+            season = (int)time.CurrentSeason,
+            time = GetCurrentTime(time)
         };
 
         SaveManager.SavePlayerData(saveData, data.saveSlotId);
         Debug.Log("저장 완료");
+    }
+
+    private float GetCurrentTime(DayTimeController timeController)
+    {
+        var type = typeof(DayTimeController);
+        var field = type.GetField("time", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+        return (float)field.GetValue(timeController);
     }
 }

@@ -293,4 +293,28 @@ public class DayTimeController : MonoBehaviour
 
         SkipTime(secondsToSkip);
     }
+
+    public void SetSeason(int seasonIndex)
+    {
+        currentSeason = (Season)seasonIndex;
+        seasonTilemapController?.UpdateSeason(currentSeason);
+        seasonImageController?.UpdateSeasonImage(currentSeason);
+        UpdateSeasonText();
+        UpdateDateText();
+    }
+
+    public void SetTime(float timeValue)
+    {
+        time = timeValue;
+        TimeValueCalculation();
+        DayLight();
+    }
+
+    public void SetDate(int savedYear, int savedDay)
+    {
+        years = savedYear;
+        days = savedDay;
+        UpdateDateText();
+        UpdateYearText();
+    }
 }

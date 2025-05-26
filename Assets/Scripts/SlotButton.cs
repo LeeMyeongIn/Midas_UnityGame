@@ -51,12 +51,17 @@ public class SlotButton : MonoBehaviour
                 PlayerDataForSave loaded = SaveManager.LoadPlayerData(slotNumber);
                 var so = CharacterGameManager.Instance.playerData;
 
+                // 플레이어 정보
                 so.characterName = loaded.characterName;
                 so.farmName = loaded.farmName;
                 so.aboutTheFarm = loaded.aboutTheFarm;
                 so.playerCharacterGender = loaded.playerCharacterGender;
                 so.saveSlotId = loaded.saveSlotId;
                 so.selectedCharacterIndex = loaded.selectedCharacterIndex;
+
+
+                // 날짜/계절/시간 정보
+                CharacterGameManager.Instance.loadedSaveData = loaded;
 
                 SceneManager.LoadScene("FarmingScene", LoadSceneMode.Single);
                 SceneManager.LoadScene("Essential", LoadSceneMode.Additive);

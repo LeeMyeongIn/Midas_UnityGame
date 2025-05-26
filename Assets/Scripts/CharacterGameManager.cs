@@ -8,6 +8,8 @@ public class CharacterGameManager : MonoBehaviour
 
     public PlayerData playerData;
 
+    public PlayerDataForSave loadedSaveData;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
