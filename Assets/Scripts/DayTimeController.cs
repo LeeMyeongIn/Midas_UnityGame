@@ -74,6 +74,11 @@ public class DayTimeController : MonoBehaviour
 
     private void Start()
     {
+        if (time == 0f)
+        {
+            time = startAtTime;
+        }
+
         if (seasonTilemapController == null)
         {
             seasonTilemapController = FindObjectOfType<SeasonTilemapController>();
@@ -84,7 +89,6 @@ public class DayTimeController : MonoBehaviour
             weatherImageController = FindObjectOfType<WeatherImageController>();
         }*/
 
-        time = startAtTime;
         UpdateSeasonText();
         UpdateDateText();
         UpdateYearText();

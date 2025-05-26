@@ -84,4 +84,18 @@ public class Sleep : MonoBehaviour
         var field = type.GetField("time", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
         return (float)field.GetValue(timeController);
     }
+
+    public void SaveOnly()
+    {
+        SaveGame();
+        Debug.Log("저장만 완료");
+    }
+
+    public void CloseSleepPanel()
+    {
+        Time.timeScale = 1f;
+        GameObject panel = GameObject.Find("SleepChoicePanel");
+        if (panel != null)
+            panel.SetActive(false);
+    }
 }
