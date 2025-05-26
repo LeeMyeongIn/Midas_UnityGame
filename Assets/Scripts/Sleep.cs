@@ -40,7 +40,7 @@ public class Sleep : MonoBehaviour
         character.FullRest(0);
         SaveGame();  // 게임 저장 기능 추가
         dayTime.SkipToMorning();
-        //playerRespawn.StartRespawn();
+        playerRespawn.StartRespawn();
 
         scrrenTint.UnTint();
         yield return new WaitForSeconds(2f);
