@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a472705407ee63f4ca2821047f0cce1c, type: 3}
   m_Name: EggplantCrop
   m_EditorClassIdentifier: 
-  timeToGrow: 4
+  timeToGrow: 5
   yield: {fileID: 11400000, guid: 5fe2a4c968524da4ca63471a094b0ea8, type: 2}
   count: 1
   sprites:
@@ -21,5 +21,5 @@ MonoBehaviour:
   - {fileID: 7634219204430423007, guid: 21af73931d31a8a4dadf8a1f4350eb1a, type: 3}
   - {fileID: 1125821531911334198, guid: 21af73931d31a8a4dadf8a1f4350eb1a, type: 3}
   - {fileID: -6525030839743888995, guid: 21af73931d31a8a4dadf8a1f4350eb1a, type: 3}
-  growthStageTime: 0100000001000000010000000100000000000000
+  growthStageTime: 0100000001000000010000000100000001000000
   seasons: 02000000

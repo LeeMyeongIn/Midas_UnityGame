@@ -80,6 +80,7 @@ public class TilemapCropsManager : TimeAgent
 
     private void Start()
     {
+        Debug.Log("[TilemapCropsManager] Start() 실행됨");
         GameManager.instance.GetComponent<CropsManager>().cropsManager = this;
         targetTilemap = GetComponent<Tilemap>();
         onTimeTick += Tick;
@@ -105,6 +106,8 @@ public class TilemapCropsManager : TimeAgent
 
     public void Tick(DayTimeController dayTimeController)
     {
+        Debug.Log($"[Tick] 호출됨: day = {dayTimeController.days}, season = {dayTimeController.CurrentSeason}");
+
         if (targetTilemap == null) return;
         if (lastUpdatedDay == dayTimeController.days) return;
         lastUpdatedDay = dayTimeController.days;
@@ -176,11 +179,19 @@ public class TilemapCropsManager : TimeAgent
             //정상 성장 진행
             cropTile.growTimer++;
 
+            if (cropTile.crop.growthStageTime == null || cropTile.crop.growthStageTime.Count == 0)
+            {
+                Debug.LogWarning($"[Tick] {cropTile.crop.name}의 growthStageTime이 비어있거나 null입니다!");
+                continue;
+            }
+
             int totalTime = 0;
             for (int stage = 0; stage <= cropTile.growStage; stage++)
             {
                 totalTime += cropTile.crop.growthStageTime[stage];
             }
+
+            Debug.Log($"[Tick] ▶ 위치 {cropTile.position}, growStage: {cropTile.growStage}, growTimer: {cropTile.growTimer}, 필요 시간: {totalTime}, 스프라이트 수: {cropTile.crop.sprites.Count}");
 
             if (cropTile.growStage < cropTile.crop.growthStageTime.Count &&
                 cropTile.growTimer >= totalTime)
@@ -201,8 +212,6 @@ public class TilemapCropsManager : TimeAgent
         }
     }
 
-
-
     public bool Check(Vector3Int position)
     {
         CropTile tile = container.Get(position);
@@ -210,7 +219,7 @@ public class TilemapCropsManager : TimeAgent
 
         //plowed 상태에서만 심을 수 있음
         TileBase baseTile = targetTilemap.GetTile(position);
-        return baseTile == plowedTile;
+        return baseTile == plowedTile || baseTile == watered;
     }
 
     public void Plow(Vector3Int position)
@@ -251,6 +260,8 @@ public class TilemapCropsManager : TimeAgent
 
     public void Seed(Vector3Int position, Crop toSeed)
     {
+        Debug.Log($"[Seed] 호출됨! {toSeed.name} 심으려고 함, 계절 = {GameManager.instance.timeController.CurrentSeason}");
+
         //잔디용
         if (IsBlockedArea(position))
         {
@@ -268,6 +279,7 @@ public class TilemapCropsManager : TimeAgent
         if (!toSeed.seasons.Contains(currentSeason))
         {
             Debug.Log($"[Seed] {toSeed.name}은 {currentSeason}에 심을 수 없습니다.");
+
             return;
         }
 
@@ -325,7 +337,6 @@ public class TilemapCropsManager : TimeAgent
             cropTile.renderer.gameObject.SetActive(false);
         }
     }
-
 
     private void CreatePlowedTile(Vector3Int position)
     {

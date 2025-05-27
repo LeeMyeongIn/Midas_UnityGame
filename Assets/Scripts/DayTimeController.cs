@@ -54,6 +54,7 @@ public class DayTimeController : MonoBehaviour
     [SerializeField] Light2D globalLight;
     public int days;
     public int years;
+    public int totalDays;   //작물관련 문제로 추가함
     bool isDayChanging = false;
 
     Season currentSeason;
@@ -157,6 +158,12 @@ public class DayTimeController : MonoBehaviour
         time = morningTime;
 
         days += 1;
+
+        //한 달이 지나면 CalculatePhase가 과거보다 작아져서 Tick 호출 안돼서 tick함수(작물) 호출이 안돼서 코드 2줄 추가했습니다
+        totalDays += 1;
+        oldPhase = -1;
+        //totaldays를 누적/oldphase를 매일 초기화합니다
+
         int dayNum = ((int)dayOfWeek + 1) % 7;
         dayOfWeek = (DayOfWeek)dayNum;
 

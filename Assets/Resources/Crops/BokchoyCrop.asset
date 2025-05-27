@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a472705407ee63f4ca2821047f0cce1c, type: 3}
   m_Name: BokchoyCrop
   m_EditorClassIdentifier: 
-  timeToGrow: 4
+  timeToGrow: 5
   yield: {fileID: 11400000, guid: cfd221009ab97584ebbb670c46a38b82, type: 2}
   count: 1
   sprites:
@@ -21,5 +21,5 @@ MonoBehaviour:
   - {fileID: 21300000, guid: b5b25f8edfce67b4cab9b7c53943fa42, type: 3}
   - {fileID: 21300000, guid: f066f1d8935247040ab4a52d1ae9beaf, type: 3}
   - {fileID: 21300000, guid: ed04980a2fd4b2f4c911425bf94366c0, type: 3}
-  growthStageTime: 0100000001000000010000000100000000000000
+  growthStageTime: 0100000001000000010000000100000001000000
   seasons: 02000000
