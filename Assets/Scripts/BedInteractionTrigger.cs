@@ -11,6 +11,17 @@ public class BedInteractionTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             sleepChoicePanel.SetActive(true);
+
+            GameObject toolBar = GameObject.Find("ToolBarPanel");
+            if (toolBar != null)
+            {
+                toolBar.SetActive(false);
+
+                Sleep sleep = FindObjectOfType<Sleep>();
+                if (sleep != null)
+                    sleep.toolBarPanel = toolBar;
+            }
+
             Time.timeScale = 0f;
         }
     }

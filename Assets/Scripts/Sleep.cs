@@ -12,6 +12,8 @@ public class Sleep : MonoBehaviour
 
     bool isSleeping = false;
 
+    public GameObject toolBarPanel;
+
     private void Awake()
     {
         disableControls = GetComponent<DisableControls>();
@@ -97,5 +99,7 @@ public class Sleep : MonoBehaviour
         GameObject panel = GameObject.Find("SleepChoicePanel");
         if (panel != null)
             panel.SetActive(false);
+        if (toolBarPanel != null)
+            toolBarPanel.SetActive(true);
     }
 }

@@ -4348,7 +4348,7 @@ MonoBehaviour:
     m_PostInfinity: 0
     m_RotationOrder: 4
   dayLightColor: {r: 1, g: 1, b: 1, a: 1}
-  timeScale: 3000
+  timeScale: 144
   startAtTime: 21600
   morningTime: 21600
   screenTint: {fileID: 1734395991}
@@ -13004,7 +13004,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cc193baf52fbc74796a33fd067d6fa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toolbarUI: {fileID: 1842683651}
 --- !u!114 &631060377
 MonoBehaviour:
   m_ObjectHideFlags: 0
