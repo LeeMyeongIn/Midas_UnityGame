@@ -137,6 +137,11 @@ public class DayTimeController : MonoBehaviour
         if (!isDayChanging && Hours >= 2f && time >= (morningTime + 72000f)) // 6시부터 8시간 = 2시
         {
             isDayChanging = true;
+
+            Sleep sleep = FindObjectOfType<Sleep>();
+            if (sleep != null)
+                sleep.DoSleep();
+
             StartCoroutine(NextDayRoutine());
             return;
         }
