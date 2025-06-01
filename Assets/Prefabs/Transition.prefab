@@ -80,6 +80,7 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   confiner: {fileID: 0}
   destination: {fileID: 6044415320447270919}
+  requireConfirmation: 0
 --- !u!1 &6044415322055424154
 GameObject:
   m_ObjectHideFlags: 0
@@ -136,7 +137,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 2}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &6044415322055424100
 MonoBehaviour:
