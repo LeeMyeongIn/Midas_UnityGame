@@ -807,7 +807,7 @@ RectTransform:
   m_Children:
   - {fileID: 563579398}
   m_Father: {fileID: 1382610652}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -14712,7 +14712,7 @@ RectTransform:
   m_LocalScale: {x: 1.9937695, y: 1.9937695, z: 1.9937695}
   m_Children: []
   m_Father: {fileID: 1382610652}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -38378,7 +38378,7 @@ RectTransform:
   m_Children:
   - {fileID: 189190242}
   m_Father: {fileID: 1382610652}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -39481,7 +39481,7 @@ RectTransform:
   m_Children:
   - {fileID: 1171726085}
   m_Father: {fileID: 1382610652}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -43173,7 +43173,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1382610652
 RectTransform:
   m_ObjectHideFlags: 0
@@ -43185,10 +43185,10 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 743576437}
   - {fileID: 1092254286}
   - {fileID: 1160193904}
   - {fileID: 40710238}
-  - {fileID: 743576437}
   m_Father: {fileID: 52327709}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -43247,7 +43247,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 210569fa9d20bad4c8a39cb86fc4440f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panelObject: {fileID: 1382610651}
   questionText: {fileID: 0}
   yesButton: {fileID: 1092254287}
   noButton: {fileID: 1160193905}
