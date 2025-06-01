@@ -4348,7 +4348,7 @@ MonoBehaviour:
     m_PostInfinity: 0
     m_RotationOrder: 4
   dayLightColor: {r: 1, g: 1, b: 1, a: 1}
-  timeScale: 8000
+  timeScale: 10
   startAtTime: 21600
   morningTime: 21600
   screenTint: {fileID: 1734395991}
@@ -4364,6 +4364,7 @@ MonoBehaviour:
   globalLight: {fileID: 1631282790}
   days: 0
   years: 0
+  totalDays: 0
 --- !u!114 &416943246
 MonoBehaviour:
   m_ObjectHideFlags: 0
