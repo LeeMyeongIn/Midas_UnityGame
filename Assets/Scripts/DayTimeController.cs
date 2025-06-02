@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public enum DayOfWeek
@@ -26,8 +27,8 @@ public enum Season
 public class DayTimeController : MonoBehaviour
 {
     const float secondsInDay = 86400f;
-    const float phaseLenght = 900f;  // 15분 단위
-    const float phasesInDay = 96f;  // secondsInDay divided by phaseLength
+    const float phaseLenght = 900f;
+    const float phasesInDay = 96f;
 
     [SerializeField] Color nightLightColor;
     [SerializeField] AnimationCurve nightTimeCurve;
@@ -52,20 +53,19 @@ public class DayTimeController : MonoBehaviour
     [SerializeField] TMPro.TextMeshProUGUI dateText;
     [SerializeField] TMPro.TextMeshProUGUI weatherText;
     [SerializeField] Light2D globalLight;
+
     public int days;
     public int years;
-    public int totalDays;   //작물관련 문제로 추가함
+    public int totalDays;
     bool isDayChanging = false;
 
     Season currentSeason;
-    public Season CurrentSeason
-    {
-        get { return currentSeason; }
-    }
+    public Season CurrentSeason => currentSeason;
 
-    const int seasonLength = 28;    //one month = 28 days
+    const int seasonLength = 28;
 
     List<TimeAgent> agents;
+    int oldPhase = -1;
 
     private void Awake()
     {
@@ -76,25 +76,16 @@ public class DayTimeController : MonoBehaviour
     private void Start()
     {
         if (time == 0f)
-        {
             time = startAtTime;
-        }
 
         if (seasonTilemapController == null)
-        {
             seasonTilemapController = FindObjectOfType<SeasonTilemapController>();
-        }
-
-        /*if (weatherImageController == null)
-        {
-            weatherImageController = FindObjectOfType<WeatherImageController>();
-        }*/
 
         UpdateSeasonText();
         UpdateDateText();
         UpdateYearText();
         seasonTilemapController?.UpdateSeason(currentSeason);
-        seasonImageController.UpdateSeasonImage(currentSeason);
+        seasonImageController?.UpdateSeasonImage(currentSeason);
 
         if (weatherManager != null)
         {
@@ -104,37 +95,22 @@ public class DayTimeController : MonoBehaviour
         }
     }
 
-    public void Subscribe(TimeAgent timeAgent)
-    {
-        agents.Add(timeAgent);
-    }
+    public void Subscribe(TimeAgent timeAgent) => agents.Add(timeAgent);
+    public void Unsubscribe(TimeAgent timeAgent) => agents.Remove(timeAgent);
 
-    public void Unsubscribe(TimeAgent timeAgent)
-    {
-        agents.Remove(timeAgent);
-    }
-
-    float Hours
-    {
-        get { return time / 3600f; }
-    }
-
-    float Minutes
-    {
-        get { return time % 3600f / 60f; }
-    }
+    float Hours => time / 3600f;
+    float Minutes => time % 3600f / 60f;
 
     private void Update()
     {
-        if (isDayChanging)
-            return;
+        if (isDayChanging) return;
 
         time += Time.deltaTime * timeScale;
 
         TimeValueCalculation();
         DayLight();
 
-        if (!isDayChanging && Hours >= 2f && time >= (morningTime + 72000f)) // 6시부터 8시간 = 2시
+        if (!isDayChanging && Hours >= 2f && time >= (morningTime + 72000f))
         {
             isDayChanging = true;
 
@@ -151,23 +127,16 @@ public class DayTimeController : MonoBehaviour
 
     private IEnumerator NextDayRoutine()
     {
-        //screenTint.Tint();
         Sleep sleep = FindObjectOfType<Sleep>();
         if (sleep != null)
-        {
             sleep.DoSleep();
-        }
 
         yield return new WaitForSeconds(1.5f);
 
         time = morningTime;
-
         days += 1;
-
-        //한 달이 지나면 CalculatePhase가 과거보다 작아져서 Tick 호출 안돼서 tick함수(작물) 호출이 안돼서 코드 2줄 추가했습니다
         totalDays += 1;
         oldPhase = -1;
-        //totaldays를 누적/oldphase를 매일 초기화합니다
 
         int dayNum = ((int)dayOfWeek + 1) % 7;
         dayOfWeek = (DayOfWeek)dayNum;
@@ -185,9 +154,34 @@ public class DayTimeController : MonoBehaviour
             NextSeason();
         }
 
-        //screenTint.UnTint();
         yield return new WaitForSeconds(1f);
+
+        CheckEndingCondition();
+
         isDayChanging = false;
+    }
+
+    private void CheckEndingCondition()
+    {
+        // 4년차 봄 1일
+        if (years == 3 && currentSeason == Season.Spring && days == 0)
+        {
+            bool conditionMet = CheckMyGameClearCondition();
+
+            if (conditionMet)
+            {
+                SceneManager.LoadScene("HappyEndingScene");
+            }
+            else
+            {
+                SceneManager.LoadScene("BadEndingScene");
+            }
+        }
+    }
+
+    private bool CheckMyGameClearCondition()
+    {
+        return EndingConditionChecker.Instance != null && EndingConditionChecker.Instance.IsEndingAvailable();
     }
 
     private void UpdateWeatherText()
@@ -197,7 +191,6 @@ public class DayTimeController : MonoBehaviour
             weatherText.text = $"{weatherManager.CurrentWeatherText}";
         }
     }
-
 
     private void TimeValueCalculation()
     {
@@ -219,23 +212,19 @@ public class DayTimeController : MonoBehaviour
         globalLight.color = c;
     }
 
-    int oldPhase = -1;
-
     private void TimeAgents()
     {
         if (oldPhase == -1)
-        {
             oldPhase = CalculatePhase();
-        }
 
         int currentPhase = CalculatePhase();
 
         while (oldPhase < currentPhase)
         {
             oldPhase += 1;
-            for (int i = 0; i < agents.Count; i++)
+            foreach (var agent in agents)
             {
-                agents[i].Invoke(this);
+                agent.Invoke(this);
             }
         }
     }
@@ -248,8 +237,7 @@ public class DayTimeController : MonoBehaviour
     private void NextSeason()
     {
         days = 0;
-        int seasonNum = (int)currentSeason;
-        seasonNum += 1;
+        int seasonNum = (int)currentSeason + 1;
 
         if (seasonNum >= 4)
         {
@@ -261,8 +249,8 @@ public class DayTimeController : MonoBehaviour
         currentSeason = (Season)seasonNum;
         UpdateSeasonText();
         UpdateDateText();
-        seasonTilemapController.UpdateSeason(currentSeason);
-        seasonImageController.UpdateSeasonImage(currentSeason);
+        seasonTilemapController?.UpdateSeason(currentSeason);
+        seasonImageController?.UpdateSeasonImage(currentSeason);
     }
 
     private void UpdateSeasonText()
@@ -276,6 +264,7 @@ public class DayTimeController : MonoBehaviour
         int displayDay = days + 1;
         dateText.text = $"{displayDay}, {dayOfWeek}";
     }
+
     private void UpdateYearText()
     {
         if (yearText != null)
@@ -284,20 +273,15 @@ public class DayTimeController : MonoBehaviour
         }
     }
 
-
     public void SkipTime(float seconds = 0, float minute = 0, float hours = 0)
     {
-        float timeToSkip = seconds;
-        timeToSkip += minute * 60f;
-        timeToSkip += hours * 3600f;
-
+        float timeToSkip = seconds + minute * 60f + hours * 3600f;
         time += timeToSkip;
     }
 
     public void SkipToMorning()
     {
         float secondsToSkip = 0f;
-
         if (time > morningTime)
         {
             secondsToSkip += secondsInDay - time + morningTime;
