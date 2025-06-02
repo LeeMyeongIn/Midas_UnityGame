@@ -128,19 +128,29 @@ public class HelpNPC : Interactable
     void OnStoreClicked()
     {
         topicButtonContainer.SetActive(false);
-        TypeTexts("상인");
+        TypeTexts("마을에 있는 상인에게 다가가 우클릭하면 상점 패널이 열릴거야.\n",
+            "상점에 있는 물품에 마우스 커서를 이동시키면 해당 물품의 이름, 설명, 상점 구매가, 판매가가 적힌 툴팁이 나타날거야.\n",
+            "사고싶은 물품을 클릭하면 해당 물품을 살 수 있어.\n",
+            "너의 인벤토리에 있는 아이템을 클릭해서 상점 패널에 두면, 해당 아이템을 판매할 수 있어.");
     }
 
     void OnWandererClicked()
     {
         topicButtonContainer.SetActive(false);
-        TypeTexts("떠돌이 상인");
+        TypeTexts("상인에게서 [떠돌이 상인 주문서]를 구매하면 떠돌이 상인이 나타날거야.\n",
+            "이 주문서를 사용하면, 떠돌이 상인은 일정 시간동안 마을에 나타났다가 사라지고,\n",
+            "한 번 사용하면 사라지는 일회용 아이템이니깐 주의해!\n",
+            "떠돌이 상인의 상점 패널에서는 일반 상인이 판매하지 않는 고유한 아이템들과 게임의 업적 시스템을 달성하기 위해 반드시 구매해야 하는 레시피를 판매해.\n",
+            "일반 상인보다 싸게 살 수 있고, 비싸게 판매할 수 있으니깐 좋은 아이템이지?",
+            "그렇지만, 한 번 사용 후, 일정 시간이 지나야 다시 사용할 수 있으니깐 주의해!");
     }
 
     void OnSaveClicked()
     {
         topicButtonContainer.SetActive(false);
-        TypeTexts("저장 및 불러오기");
+        TypeTexts("침대에 가까이 가면 저장을 할 수 있어.\n",
+            "잠자면 다음 날로 넘어가면서 저장이 되고, 저장만 할 수도 있어.\n",
+            "참고로, 새벽 2시가 되면 자동으로 침대로 가서 잠자니깐 주의해!");
     }
 
     private Coroutine typingCoroutine;
