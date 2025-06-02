@@ -10,21 +10,23 @@ public class RecipeGetAction : ToolAction
         if (usedItem is RecipePaperItem paper)
         {
             int recipeId = paper.recipeIdToUnlock;
+
             RecipeUnlockManager.Instance.Unlock(recipeId);
-            Debug.Log($"레시피 {recipeId} 해금됨");
+            Debug.Log($"[RecipeGetAction] 레시피 {recipeId} 해금됨");
 
-            ItemSlot slot = inventory.slots.Find(s => s.item == usedItem);
-            if (slot != null)
+            if (inventory != null)
             {
-                slot.count--;
-                if (slot.count <= 0) slot.Clear();
+                inventory.Remove(usedItem);
+                inventory.isDirty = true;
             }
-
-            inventory.isDirty = true;
+            else
+            {
+                Debug.LogWarning("[RecipeGetAction] 인벤토리가 null입니다.");
+            }
         }
         else
         {
-            Debug.LogWarning("이 아이템은 RecipePaperItem이 아닙니다.");
+            Debug.LogWarning("[RecipeGetAction] 이 아이템은 RecipePaperItem이 아닙니다.");
         }
     }
 }

@@ -79,12 +79,15 @@ public class RecipeSlotUI : MonoBehaviour
         {
             inventory.Remove(ing.item, ing.amount);
         }
+
         Debug.Log($"[RecipeSlotUI] Add item: {currentRecipe.resultItem.name}, id: {currentRecipe.resultItem.id}, stackable: {currentRecipe.resultItem.stackable}");
         inventory.Add(currentRecipe.resultItem, 1);
         inventory.isDirty = true;
 
         CookingPanelManager.Instance.RegisterCookedRecipe(currentRecipe.recipeId);
+        RecipeUnlockManager.Instance.RegisterCooked(currentRecipe.recipeId);
 
         Debug.Log($"[RecipeSlotUI] 요리 완료: {currentRecipe.recipeName}");
     }
+
 }

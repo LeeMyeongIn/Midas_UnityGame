@@ -26,22 +26,19 @@ public class TriumphManager : MonoBehaviour
     public void UpdateCropTypeAchievements()
     {
         int uniqueCropCount = CropSeenManager.Instance.GetSeenCropCount();
-        Debug.Log($"[업적 갱신] 현재 고유 작물 수: {uniqueCropCount}");
 
         foreach (var triumph in triumphList)
         {
             if (triumph.data.type == TriumphType.CropHarvest)
             {
-                Debug.Log($"[업적 검사] {triumph.data.name} - 목표: {triumph.data.targetCount}, 현재: {triumph.data.currentCount}, 완료됨: {triumph.data.isCompleted}");
-
                 if (!triumph.data.isCompleted)
                 {
                     triumph.data.currentCount = Mathf.Min(uniqueCropCount, triumph.data.targetCount);
 
                     if (triumph.data.currentCount >= triumph.data.targetCount)
                     {
+                        triumph.data.currentCount = triumph.data.targetCount;
                         triumph.data.isCompleted = true;
-                        Debug.Log($"[업적 달성] 작물 종류 누적 업적 달성: {triumph.data.name}");
                     }
 
                     onTriumphUpdated?.Invoke();
@@ -49,8 +46,6 @@ public class TriumphManager : MonoBehaviour
             }
         }
     }
-
-
 
     public void UpdateProgressByType(TriumphType type, int amount = 1)
     {
@@ -66,7 +61,6 @@ public class TriumphManager : MonoBehaviour
                     triumph.data.isCompleted = true;
                 }
 
-                Debug.Log($"[업적] 진행됨: {triumph.data.name} → {triumph.data.currentCount}/{triumph.data.targetCount}");
                 onTriumphUpdated?.Invoke();
             }
         }
@@ -92,7 +86,6 @@ public class TriumphManager : MonoBehaviour
         }
 
         triumph.isRewardClaimed = true;
-        Debug.Log($"업적 보상 수령: {triumph.name}");
         onTriumphUpdated?.Invoke();
     }
 
@@ -104,6 +97,45 @@ public class TriumphManager : MonoBehaviour
                 return true;
         }
         return false;
+    }
+
+    public bool AreAllRewardsClaimed()
+    {
+        foreach (var triumph in triumphList)
+        {
+            if (!triumph.data.isCompleted || !triumph.data.isRewardClaimed)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public int GetClaimedRewardCount()
+    {
+        int count = 0;
+        foreach (var triumph in triumphList)
+        {
+            if (triumph.data.isRewardClaimed)
+                count++;
+        }
+        return count;
+    }
+
+    public int GetTotalRewardCount()
+    {
+        return triumphList.Count;
+    }
+
+    public int GetTotalRewardableTriumphCount()
+    {
+        int count = 0;
+        foreach (var triumph in triumphList)
+        {
+            if (triumph.data.rewardItems != null && triumph.data.rewardItems.Count > 0)
+                count++;
+        }
+        return count;
     }
 
     public void ResetAllTriumphs()
@@ -120,7 +152,7 @@ public class TriumphManager : MonoBehaviour
     }
 
 #if UNITY_EDITOR
-    [ContextMenu("Reset All Triumphs (테스트용)")]
+    [ContextMenu("Reset All Triumphs")]
     private void ResetFromEditor()
     {
         ResetAllTriumphs();

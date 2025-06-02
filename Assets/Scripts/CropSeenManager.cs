@@ -7,6 +7,8 @@ public class CropSeenManager : MonoBehaviour
 
     private HashSet<int> seenCropItemIds = new HashSet<int>();
 
+    private int totalCropCount = 16;
+
     private void Awake()
     {
         if (Instance == null)
@@ -38,6 +40,16 @@ public class CropSeenManager : MonoBehaviour
     public int GetSeenCropCount()
     {
         return seenCropItemIds.Count;
+    }
+
+    public int GetTotalCropCount()
+    {
+        return totalCropCount;
+    }
+
+    public bool IsAllSeen()
+    {
+        return seenCropItemIds.Count >= totalCropCount;
     }
 
     public void ClearAll()
