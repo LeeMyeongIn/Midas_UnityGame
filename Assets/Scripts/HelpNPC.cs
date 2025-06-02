@@ -20,6 +20,7 @@ public class HelpNPC : Interactable
     public GameObject storeButtonObj;
     public GameObject wandererButtonObj;
     public GameObject saveButtonObj;
+    public GameObject endingButtonObj;
 
     private TMP_Text yesButtonText;
     private TMP_Text noButtonText;
@@ -30,6 +31,7 @@ public class HelpNPC : Interactable
     private TMP_Text storeButtonText;
     private TMP_Text wandererButtonText;
     private TMP_Text saveButtonText;
+    private TMP_Text endingButtonText;
 
     private Queue<string> textQueue = new Queue<string>();
     private bool isTalking = false;
@@ -52,6 +54,7 @@ public class HelpNPC : Interactable
         storeButtonText = storeButtonObj.GetComponentInChildren<TMP_Text>();
         wandererButtonText = wandererButtonObj.GetComponentInChildren<TMP_Text>();
         saveButtonText = saveButtonObj.GetComponentInChildren<TMP_Text>();
+        endingButtonText = endingButtonObj.GetComponentInChildren<TMP_Text>();
 
         yesButtonObj.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(OnYesClicked);
         noButtonObj.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(OnNoClicked);
@@ -62,6 +65,7 @@ public class HelpNPC : Interactable
         storeButtonObj.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(OnStoreClicked);
         wandererButtonObj.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(OnWandererClicked);
         saveButtonObj.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(OnSaveClicked);
+        endingButtonObj.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(OnEndingClicked);
 
         nextButton.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(OnNextClicked);
         nextButton.SetActive(false);
@@ -151,6 +155,14 @@ public class HelpNPC : Interactable
         TypeTexts("침대에 가까이 가면 저장을 할 수 있어.\n",
             "잠자면 다음 날로 넘어가면서 저장이 되고, 저장만 할 수도 있어.\n",
             "참고로, 새벽 2시가 되면 자동으로 침대로 가서 잠자니깐 주의해!");
+    }
+
+    void OnEndingClicked()
+    {
+        topicButtonContainer.SetActive(false);
+        TypeTexts("3년 안에 대출을 다 갚고, 요리도감, 작물도감, 집 3단계 업그레이드를 다 하게되면 이 게임의 이야기가 끝나게 돼. 하지만, 너가 더 플레이 하고싶다면 이어서 할 수 있어!\n",
+            "만약, 이 4가지의 조건을 충족하지 못하면, 엔딩이 달라질테니 열심히 하길 바래!\n",
+            "빠르게 엔딩을 맞고싶다면 맵 우측에 울타리를 우클릭 하도록 해.");
     }
 
     private Coroutine typingCoroutine;
