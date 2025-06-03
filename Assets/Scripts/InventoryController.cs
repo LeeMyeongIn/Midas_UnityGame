@@ -14,9 +14,15 @@ public class InventoryController : MonoBehaviour
 
     [SerializeField] private ItemContainer inventoryContainer;
 
+    public delegate void OnInventoryChanged();
+    public event OnInventoryChanged onInventoryChanged;
+
     private void Awake()
     {
-        if (Instance == null) Instance = this;
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
     }
 
     private void Update()
@@ -64,6 +70,8 @@ public class InventoryController : MonoBehaviour
         inventoryContainer.Add(item);
         Debug.Log($"아이템 추가됨: {item.Name}, ID: {item.id}");
 
+        onInventoryChanged?.Invoke();
+
         if (IsCrop(item))
         {
             bool isNew = CropSeenManager.Instance.RegisterSeenItem(item.id);
@@ -73,6 +81,15 @@ public class InventoryController : MonoBehaviour
             }
             TriumphManager.Instance?.UpdateCropTypeAchievements();
         }
+    }
+
+    public void RemoveItem(Item item, int count = 1)
+    {
+        if (item == null || inventoryContainer == null) return;
+
+        inventoryContainer.Remove(item, count);
+
+        onInventoryChanged?.Invoke();
     }
 
     private bool IsCrop(Item item)
@@ -89,10 +106,15 @@ public class InventoryController : MonoBehaviour
         return false;
     }
 
-
     public bool HasSpace(List<Item> items)
     {
         if (inventoryContainer == null) return false;
         return inventoryContainer.HasSpaceFor(items);
+    }
+
+    public int GetItemCount(int itemId)
+    {
+        if (inventoryContainer == null) return 0;
+        return inventoryContainer.GetItemCount(itemId);
     }
 }

@@ -16,6 +16,18 @@ public class RecipeSlotUI : MonoBehaviour
     private CookRecipe currentRecipe;
     private bool recipeUnlocked;
 
+    private void OnEnable()
+    {
+        if (InventoryController.Instance != null)
+            InventoryController.Instance.onInventoryChanged += UpdateIngredientAmounts;
+    }
+
+    private void OnDisable()
+    {
+        if (InventoryController.Instance != null)
+            InventoryController.Instance.onInventoryChanged -= UpdateIngredientAmounts;
+    }
+
     public void Initialize(CookRecipe recipe, bool isUnlocked)
     {
         currentRecipe = recipe;
@@ -62,6 +74,29 @@ public class RecipeSlotUI : MonoBehaviour
         }
     }
 
+    private void UpdateIngredientAmounts()
+    {
+        if (currentRecipe == null) return;
+
+        int index = 0;
+        foreach (var ing in currentRecipe.ingredients)
+        {
+            if (index >= ingredientParentTransform.childCount) break;
+
+            Transform slotTransform = ingredientParentTransform.GetChild(index);
+            var amountText = slotTransform.Find("AmountText")?.GetComponent<TextMeshProUGUI>();
+
+            if (amountText != null)
+            {
+                int owned = GameManager.instance.inventoryContainer.GetItemCount(ing.item);
+                amountText.text = $"{owned}/{ing.amount}";
+                amountText.color = (owned < ing.amount) ? Color.red : Color.white;
+            }
+
+            index++;
+        }
+    }
+
     private void OnCookClicked()
     {
         if (!recipeUnlocked) return;
@@ -77,7 +112,7 @@ public class RecipeSlotUI : MonoBehaviour
 
         foreach (var ing in currentRecipe.ingredients)
         {
-            inventory.Remove(ing.item, ing.amount);
+            InventoryController.Instance.RemoveItem(ing.item, ing.amount);
         }
 
         Debug.Log($"[RecipeSlotUI] Add item: {currentRecipe.resultItem.name}, id: {currentRecipe.resultItem.id}, stackable: {currentRecipe.resultItem.stackable}");
@@ -89,5 +124,4 @@ public class RecipeSlotUI : MonoBehaviour
 
         Debug.Log($"[RecipeSlotUI] 요리 완료: {currentRecipe.recipeName}");
     }
-
 }

@@ -44,9 +44,7 @@ public class ItemContainer : ScriptableObject
 
     public void Add(Item item, int count = 1)
     {
-        if (item == null || count <= 0)
-            return;
-
+        if (item == null || count <= 0) return;
         isDirty = true;
 
         if (item.stackable)
@@ -73,9 +71,7 @@ public class ItemContainer : ScriptableObject
 
     public void Remove(Item itemToRemove, int count = 1)
     {
-        if (itemToRemove == null || count <= 0)
-            return;
-
+        if (itemToRemove == null || count <= 0) return;
         isDirty = true;
 
         if (itemToRemove.stackable)
@@ -85,9 +81,7 @@ public class ItemContainer : ScriptableObject
 
             slot.count -= count;
             if (slot.count <= 0)
-            {
                 slot.Clear();
-            }
         }
         else
         {
@@ -104,6 +98,28 @@ public class ItemContainer : ScriptableObject
         }
     }
 
+    public int GetItemCount(Item target)
+    {
+        if (target == null) return 0;
+        int total = 0;
+        foreach (var slot in slots)
+        {
+            if (slot.item != null && slot.item.id == target.id)
+                total += slot.count;
+        }
+        return total;
+    }
+    public int GetItemCount(int itemId)
+    {
+        int total = 0;
+        foreach (var slot in slots)
+        {
+            if (slot.item != null && slot.item.id == itemId)
+                total += slot.count;
+        }
+        return total;
+    }
+
     public bool CheckFreeSpace()
     {
         return slots.Exists(slot => slot.item == null);
@@ -111,8 +127,7 @@ public class ItemContainer : ScriptableObject
 
     public bool CheckItem(ItemSlot checkingItem)
     {
-        if (checkingItem == null || checkingItem.item == null)
-            return false;
+        if (checkingItem == null || checkingItem.item == null) return false;
 
         ItemSlot slot = slots.Find(x => x.item != null && x.item.id == checkingItem.item.id);
         if (slot == null) return false;
@@ -124,20 +139,6 @@ public class ItemContainer : ScriptableObject
         return owned >= checkingItem.count;
     }
 
-    public int GetItemCount(Item target)
-    {
-        if (target == null) return 0;
-
-        int total = 0;
-        foreach (var slot in slots)
-        {
-            if (slot.item != null && slot.item.id == target.id)
-            {
-                total += slot.count;
-            }
-        }
-        return total;
-    }
     public bool HasSpaceFor(Item item)
     {
         if (item == null) return false;
@@ -159,13 +160,10 @@ public class ItemContainer : ScriptableObject
         foreach (var slot in slots)
         {
             if (slot.item != null && slot.item.stackable)
-            {
                 existingStackables.Add(slot.item.id);
-            }
         }
 
         int neededSlots = 0;
-
         foreach (var item in items)
         {
             if (item.stackable && existingStackables.Contains(item.id))
@@ -176,5 +174,4 @@ public class ItemContainer : ScriptableObject
 
         return neededSlots <= availableSlots;
     }
-
 }
