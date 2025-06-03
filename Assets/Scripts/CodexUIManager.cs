@@ -107,9 +107,12 @@ public class CodexUIManager : MonoBehaviour
             CodexRecipeEntry entry = go.GetComponent<CodexRecipeEntry>();
 
             bool isUnlocked = RecipeUnlockManager.Instance.IsUnlocked(recipe.recipeId);
-            entry.Initialize(recipe, isUnlocked);
+            bool isCooked = RecipeUnlockManager.Instance.IsCooked(recipe.recipeId);
+
+            entry.Initialize(recipe, isUnlocked, isCooked);
         }
     }
+
 
     private void RefreshCropCodex()
     {

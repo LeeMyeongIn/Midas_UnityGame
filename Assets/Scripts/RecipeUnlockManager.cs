@@ -18,6 +18,10 @@ public class RecipeUnlockManager : MonoBehaviour
     private RecipeSaveData saveData = new RecipeSaveData();
 
     private HashSet<int> cookedRecipeSet = new HashSet<int>();
+    public bool IsCooked(int recipeId)
+    {
+        return cookedRecipeSet.Contains(recipeId);
+    }
 
     private void Awake()
     {

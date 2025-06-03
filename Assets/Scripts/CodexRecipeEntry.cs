@@ -8,7 +8,7 @@ public class CodexRecipeEntry : MonoBehaviour
 {
     public Image recipeIcon;
 
-    public void Initialize(CookRecipe recipe, bool isUnlocked)
+    public void Initialize(CookRecipe recipe, bool isUnlocked, bool isCooked)
     {
         recipeIcon.sprite = recipe.recipeIcon;
 
@@ -18,7 +18,7 @@ public class CodexRecipeEntry : MonoBehaviour
         }
         else
         {
-            bool hasCooked = CookingPanelManager.Instance.HasCooked(recipe.recipeId);
+            bool hasCooked = RecipeUnlockManager.Instance.IsCooked(recipe.recipeId);
 
             if (hasCooked)
             {
