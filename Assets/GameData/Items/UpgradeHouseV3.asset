@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: upgrade
   Name: Upgrade House 3
-  id: 0
+  id: 3003
   stackable: 0
   icon: {fileID: 21300000, guid: 7e05a722249608941b2974219ef1993b, type: 3}
   onAction: {fileID: 11400000, guid: 5ab4969f72fd2fe4daeccf81be7be1db, type: 2}

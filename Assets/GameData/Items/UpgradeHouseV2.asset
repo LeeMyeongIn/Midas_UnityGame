@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: add fridge
   Name: Upgrade House 2
-  id: 0
+  id: 3002
   stackable: 0
   icon: {fileID: 21300000, guid: 7e05a722249608941b2974219ef1993b, type: 3}
   onAction: {fileID: 11400000, guid: 3dd317c5ddab9154687fa6689b3b101a, type: 2}
