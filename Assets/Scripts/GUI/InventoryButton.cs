@@ -51,26 +51,27 @@ public class InventoryButton : MonoBehaviour, IPointerClickHandler, IPointerEnte
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (itemPanel == null || currentSlot == null || currentSlot.item == null)
-            return;
-
         if (eventData.button == PointerEventData.InputButton.Right)
         {
-            if (currentSlot.item is RecipePaperItem recipeItem)
+            if (currentSlot != null && currentSlot.item != null)
             {
-                recipeItem.UseRecipe();
+                if (currentSlot.item is RecipePaperItem recipeItem)
+                {
+                    recipeItem.UseRecipe();
 
-                currentSlot.count--;
-                if (currentSlot.count <= 0)
-                    currentSlot.Clear();
+                    currentSlot.count--;
+                    if (currentSlot.count <= 0)
+                        currentSlot.Clear();
 
-                itemPanel.inventory.isDirty = true;
-                return;
-            }
-            if (currentSlot.item.onItemUsed != null)
-            {
-                Vector2 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                currentSlot.item.onItemUsed.OnApply(worldPos);
+                    itemPanel.inventory.isDirty = true;
+                    return;
+                }
+
+                if (currentSlot.item.onItemUsed != null)
+                {
+                    Vector2 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    currentSlot.item.onItemUsed.OnApply(worldPos);
+                }
             }
         }
         else
