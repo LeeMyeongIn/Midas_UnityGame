@@ -604,8 +604,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.16125488, y: 39.582}
-  m_SizeDelta: {x: -0.3225, y: -79.163}
+  m_AnchoredPosition: {x: -0.16125488, y: 55.937}
+  m_SizeDelta: {x: -0.3225, y: -111.87}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &813818535
 CanvasRenderer:
@@ -1111,7 +1111,7 @@ GameObject:
   - component: {fileID: 1439878305}
   - component: {fileID: 1439878306}
   m_Layer: 5
-  m_Name: CutSceneText (TMP)
+  m_Name: DialogueText (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1133,8 +1133,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -90.5011, y: 12}
-  m_SizeDelta: {x: 591.4908, y: 56.3985}
+  m_AnchoredPosition: {x: -53.049183, y: 12}
+  m_SizeDelta: {x: 666.3945, y: 56.3985}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1439878305
 CanvasRenderer:
@@ -1320,7 +1320,7 @@ GameObject:
   - component: {fileID: 2074718720}
   - component: {fileID: 2074718719}
   m_Layer: 0
-  m_Name: HappyCutSceneManager
+  m_Name: HappyEndingManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

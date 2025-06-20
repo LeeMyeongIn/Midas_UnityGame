@@ -20,7 +20,7 @@ public class HappyEndingManager : MonoBehaviour
         endGameButton.SetActive(false);
         creditText.gameObject.SetActive(false);
 
-        StartCoroutine(TypeDialogue("3년 안에 빚을 다 갚다니 정말 대단해요! 이제 완전한 집이예요. 농촌 생활을 더 즐길 수 있는데 어떡하시겠어요?", true));
+        StartCoroutine(TypeDialogue("3년 안에 빚을 다 갚다니 정말 대단해요! 이제 완전히 고객님 집이예요. 농촌 생활을 더 즐길 수 있는데 어떡하시겠어요?", true));
     }
 
     public void OnContinueFarming()
