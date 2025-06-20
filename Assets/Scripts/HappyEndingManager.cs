@@ -30,7 +30,7 @@ public class HappyEndingManager : MonoBehaviour
 
         StartCoroutine(TypeDialogue("여유로운 농촌 생활을 즐기시길 바래요!", false));
 
-        Invoke("GoToFarmScene", 1f);
+        Invoke("GoToFarmScene", 2f);
     }
 
     public void OnEndGame()
