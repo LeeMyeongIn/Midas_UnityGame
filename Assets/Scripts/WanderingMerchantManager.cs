@@ -8,7 +8,7 @@ public class WanderingMerchantManager : MonoBehaviour
     [Header("상인 오브젝트와 시간 설정")]
     public GameObject wanderingMerchantObject;
     public float defaultDelay = 5f;
-    public float defaultDuration = 300f;
+    public float defaultDuration = 20f;
 
     private void Awake()
     {
