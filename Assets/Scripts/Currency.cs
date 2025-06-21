@@ -28,7 +28,7 @@ public class Currency : MonoBehaviour
 
     private void Start()
     {
-        amount = 1000;
+        amount = 10000;
         UpdateText();
     }
 
