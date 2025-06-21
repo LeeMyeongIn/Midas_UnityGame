@@ -62,7 +62,7 @@ public class DayTimeController : MonoBehaviour
     Season currentSeason;
     public Season CurrentSeason => currentSeason;
 
-    const int seasonLength = 28;
+    const int seasonLength = 2;
 
     List<TimeAgent> agents;
     int oldPhase = -1;

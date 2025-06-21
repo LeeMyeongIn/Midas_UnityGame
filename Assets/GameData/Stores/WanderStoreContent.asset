@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: WanderStoreContent
   m_EditorClassIdentifier: 
   slots:
+  - item: {fileID: 11400000, guid: 0a24a18d61bb41d4d95b268668043a11, type: 2}
+    count: 0
+  - item: {fileID: 11400000, guid: ae04987af3bae7244a71a15d14ddc111, type: 2}
+    count: 0
   - item: {fileID: 11400000, guid: ea8293706655304479e1c3a2fe905522, type: 2}
     count: 1
   - item: {fileID: 11400000, guid: 740e84d14257941478a2f492bd201227, type: 2}
@@ -25,10 +29,6 @@ MonoBehaviour:
     count: 1
   - item: {fileID: 11400000, guid: 51d3d32bea25f5b46bf0312619a7c9ce, type: 2}
     count: 1
-  - item: {fileID: 0}
-    count: 0
-  - item: {fileID: 0}
-    count: 0
   - item: {fileID: 0}
     count: 0
   - item: {fileID: 0}

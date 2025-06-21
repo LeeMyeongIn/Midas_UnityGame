@@ -62,6 +62,7 @@ public class WeatherManager : MonoBehaviour
     private void Start()      //test
     {
         //ApplyWeather(WeatherStates.Snow);
+        GenerateDailyWeather(Season.Spring);
     }
 
     public void GenerateDailyWeather(Season currentSeason)
@@ -108,9 +109,11 @@ public class WeatherManager : MonoBehaviour
         return WeatherStates.Leaves;
     }
 
+    public event Action<WeatherStates> OnWeatherChanged;
     private void ApplyWeather(WeatherStates state)
     {
         currentWeatherState = state;
+        OnWeatherChanged?.Invoke(state); // 이벤트 호출
 
         rainObject?.gameObject.SetActive(state == WeatherStates.Rain);
         heavyRainObject?.gameObject.SetActive(state == WeatherStates.HeavyRain);

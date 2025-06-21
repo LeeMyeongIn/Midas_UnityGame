@@ -14,6 +14,10 @@ public class WeatherImageController : MonoBehaviour
     [SerializeField] GameObject leavesImage;
     [SerializeField] GameObject snowImage;
 
+    /*private void Start()
+    {
+        UpdateWeatherImages();
+    }*/
     private void Awake()
     {
         if (weatherManager == null)
@@ -43,4 +47,24 @@ public class WeatherImageController : MonoBehaviour
             case WeatherStates.Snow: snowImage.SetActive(true); break;
         }
     }
+
+    private void OnEnable()
+    {
+        if (weatherManager == null)
+            weatherManager = FindObjectOfType<WeatherManager>();
+
+        weatherManager.OnWeatherChanged += OnWeatherChanged;
+    }
+
+    private void OnDisable()
+    {
+        if (weatherManager != null)
+            weatherManager.OnWeatherChanged -= OnWeatherChanged;
+    }
+
+    private void OnWeatherChanged(WeatherStates state)
+    {
+        UpdateWeatherImages();
+    }
+
 }
