@@ -16,19 +16,40 @@ MonoBehaviour:
   skillType: 0
   skillExperienceReward: 100
   possibleItems:
-  - {fileID: 11400000, guid: 1f793481ecf5de84092eb1338f3111e9, type: 2}
-  - {fileID: 11400000, guid: 51d3d32bea25f5b46bf0312619a7c9ce, type: 2}
-  - {fileID: 11400000, guid: bc3b2b7f41fc26e4e9fea7ba723c61c1, type: 2}
+  - {fileID: 11400000, guid: 04b8de161f99ade4da68ef4abf23b6ed, type: 2}
+  - {fileID: 11400000, guid: ca100755e90e5b848a3675ec9b7bb098, type: 2}
+  - {fileID: 11400000, guid: 13485f26a23e87b4cbe6a18225ec1e33, type: 2}
   - {fileID: 11400000, guid: 218d6584d141bba4688b76d98cb0ecf8, type: 2}
-  - {fileID: 11400000, guid: ea8293706655304479e1c3a2fe905522, type: 2}
-  - {fileID: 11400000, guid: 740e84d14257941478a2f492bd201227, type: 2}
+  - {fileID: 11400000, guid: 30d2f5f10f7bd95458215a204c1b6ff8, type: 2}
+  - {fileID: 11400000, guid: cf877d9c150def841a11ca5b50f15329, type: 2}
+  - {fileID: 11400000, guid: 6f03ef3a79464d54b964588dec44e8c4, type: 2}
+  - {fileID: 11400000, guid: f5e2ea754bbbf0440ad19d71248b4fc4, type: 2}
+  - {fileID: 11400000, guid: 2aee89cd50f0f484f891cfa29c1b169c, type: 2}
+  - {fileID: 11400000, guid: 2774c3e5aa9cca64fa8727452520edc9, type: 2}
+  - {fileID: 11400000, guid: b02cde4c7d5731d4497c078648380b1a, type: 2}
+  - {fileID: 11400000, guid: c574a9a4210080142ad05bba590a3ed3, type: 2}
+  - {fileID: 11400000, guid: 39f27fab0ec133944a556dc8d01baedd, type: 2}
+  - {fileID: 11400000, guid: 0dd7273a051e9a142b8479730dd2745d, type: 2}
+  - {fileID: 11400000, guid: 3ce3cc9e4618fc741879c20a75d2ef8a, type: 2}
+  - {fileID: 11400000, guid: 9e21ef574f8854046ba66449f1b7dca1, type: 2}
   recipeItems:
-  - {fileID: 11400000, guid: 30c0fd11e552da44990a24d374f2a4ad, type: 2}
-  - {fileID: 11400000, guid: 4b231d0b098374d43b0d4069c19d53d6, type: 2}
-  - {fileID: 11400000, guid: 77ca02ec2cdc47a4494b72b8b4e27e61, type: 2}
-  - {fileID: 11400000, guid: 412bf70802be84241ac9497ca994078f, type: 2}
   - {fileID: 11400000, guid: 4f5ee20e97b0e5a468a251a99e872f55, type: 2}
+  - {fileID: 11400000, guid: 4b231d0b098374d43b0d4069c19d53d6, type: 2}
+  - {fileID: 11400000, guid: a316e7013c63b4a45917812ddaf2633b, type: 2}
+  - {fileID: 11400000, guid: 30c0fd11e552da44990a24d374f2a4ad, type: 2}
+  - {fileID: 11400000, guid: e7a5e94c01aba3442b40d03242fc7782, type: 2}
   - {fileID: 11400000, guid: 130542c7c5ae5034cbbdacc924e0f772, type: 2}
+  - {fileID: 11400000, guid: 1cc949e36dcc7a6439371f4bcf50faee, type: 2}
+  - {fileID: 11400000, guid: 412bf70802be84241ac9497ca994078f, type: 2}
+  - {fileID: 11400000, guid: d20501c9e7b5e7440b6e840b281059dc, type: 2}
+  - {fileID: 11400000, guid: d39a2c940624ba244aca9c0f018be5ba, type: 2}
+  - {fileID: 11400000, guid: ab874cb05bba5c74e913ca39cd2ccd53, type: 2}
+  - {fileID: 11400000, guid: 29e72e5ccf90b9548b249fd2dfc13c65, type: 2}
+  - {fileID: 11400000, guid: 1bc11d2c3c1830048b1100f813dcc4df, type: 2}
   - {fileID: 11400000, guid: 8d71265696fb5454a887b3ac6f312c94, type: 2}
+  - {fileID: 11400000, guid: 77ca02ec2cdc47a4494b72b8b4e27e61, type: 2}
+  - {fileID: 11400000, guid: 781d9a6dfc513e84281e33ff35c188a4, type: 2}
+  - {fileID: 11400000, guid: 5d91de636cbd3d040a0b7fbbc0ed8d16, type: 2}
+  - {fileID: 11400000, guid: 4c7daf1884821cb47ab337d8754a23ec, type: 2}
   minItemsToSell: 6
-  maxItemsToSell: 10
+  maxItemsToSell: 12

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcf269aafe05fa4ea64ac464b62134c, type: 3}
   m_Name: WandererSpawner
   m_EditorClassIdentifier: 
-  description: It can sommon WandererShop
+  description: You can summon a Wandering Shop
   Name: Wanderer Spawner
   id: 0
   stackable: 0
