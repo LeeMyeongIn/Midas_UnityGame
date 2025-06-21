@@ -317,4 +317,22 @@ public class DayTimeController : MonoBehaviour
         UpdateDateText();
         UpdateYearText();
     }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "HappyEndingScene" || scene.name == "BadEndingScene")
+        {
+            Destroy(gameObject);
+        }
+    }
 }

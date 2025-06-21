@@ -23,7 +23,7 @@ public class ItemDragAndDropController : MonoBehaviour
 
     private void Update()
     {
-        if (itemIcon.activeInHierarchy == true)
+        if (itemIcon != null && itemIcon.activeInHierarchy)
         {
             iconTransform.position = Input.mousePosition;
 
