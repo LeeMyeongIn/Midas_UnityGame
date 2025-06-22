@@ -69,7 +69,6 @@ public class TilemapCropsManager : TimeAgent
     public TileBase plowedTile;
     public TileBase watered;
 
-
     //새로운 날 일때만 증가하는 조건
     private int lastUpdatedDay = -1;
 
@@ -110,10 +109,11 @@ public class TilemapCropsManager : TimeAgent
 
         if (targetTilemap == null) return;
         if (lastUpdatedDay == dayTimeController.days) return;
-        lastUpdatedDay = dayTimeController.days;
 
         bool isRaining = dayTimeController.weatherManager != null &&
                          dayTimeController.weatherManager.IsRaining;
+
+        Season currentSeason = dayTimeController.CurrentSeason;
 
         // 비 오는 날 자동 물주기
         if (isRaining)
@@ -130,6 +130,24 @@ public class TilemapCropsManager : TimeAgent
         {
             CropTile cropTile = container.crops[i];
 
+            // 계절에 안 맞는 작물 제거
+            if (cropTile.crop != null && !cropTile.crop.seasons.Contains(currentSeason))
+            {
+                Debug.Log($"[Tick] {cropTile.crop.name} → {currentSeason}에 맞지 않아 제거됨");
+
+                if (cropTile.renderer != null)
+                    Destroy(cropTile.renderer.gameObject);
+
+                cropTile.crop = null;
+                cropTile.growStage = 0;
+                cropTile.growTimer = 0;
+                cropTile.damage = 0f;
+                cropTile.isWatered = false;
+
+                VisualizeTile(cropTile);
+                continue;
+            }
+
             // crop이 없는 타일 → 물 상태만 복구
             if (cropTile.crop == null)
             {
@@ -141,7 +159,7 @@ public class TilemapCropsManager : TimeAgent
                 continue;
             }
 
-            //완전히 성장한 작물은 매일 tick 증가 (물 안 줘도 됨)
+            //완전히 성장한 작물은 매일 tick 증가 (물 안 줘도 된)
             if (cropTile.Complete)
             {
                 cropTile.growTimer++;
@@ -152,7 +170,7 @@ public class TilemapCropsManager : TimeAgent
 
                 if (cropTile.growTimer >= totalGrowTime + 3)
                 {
-                    Debug.Log($"[Tick] {cropTile.position} → 수확 안 해서 3일 후 썩음");
+                    Debug.Log($"[Tick] {cropTile.position} → 수환 안 해서 3일 후 쌍음");
 
                     if (cropTile.renderer != null)
                         Destroy(cropTile.renderer.gameObject);
@@ -163,45 +181,40 @@ public class TilemapCropsManager : TimeAgent
                     cropTile.damage = 0f;
                     cropTile.isWatered = false;
 
-                    VisualizeTile(cropTile); // 밭은 유지
+                    VisualizeTile(cropTile); // 밥은 유지
                 }
 
                 continue;
             }
 
-            //자라는 중인데 물 안 줬으면 성장 멈춤
+            //자라는 중인데 물 안 줘있으면 성장 머지물
+            if (!cropTile.isWatered)
+            {
+                Debug.Log($"[Tick] {cropTile.position} → 물 안 줘서 성장 머지물");
+                continue;
+            }
+
+            // 날짜 기반 성장 방식으로 전환
             if (!cropTile.isWatered)
             {
                 Debug.Log($"[Tick] {cropTile.position} → 물 안 줘서 성장 멈춤");
                 continue;
             }
 
-            //정상 성장 진행
             cropTile.growTimer++;
 
-            if (cropTile.crop.growthStageTime == null || cropTile.crop.growthStageTime.Count == 0)
-            {
-                Debug.LogWarning($"[Tick] {cropTile.crop.name}의 growthStageTime이 비어있거나 null입니다!");
-                continue;
-            }
+            int requiredDays = cropTile.crop.growthStageTime[cropTile.growStage];
 
-            int totalTime = 0;
-            for (int stage = 0; stage <= cropTile.growStage; stage++)
-            {
-                totalTime += cropTile.crop.growthStageTime[stage];
-            }
-
-            Debug.Log($"[Tick] ▶ 위치 {cropTile.position}, growStage: {cropTile.growStage}, growTimer: {cropTile.growTimer}, 필요 시간: {totalTime}, 스프라이트 수: {cropTile.crop.sprites.Count}");
-
-            if (cropTile.growStage < cropTile.crop.growthStageTime.Count &&
-                cropTile.growTimer >= totalTime)
+            if (cropTile.growTimer >= requiredDays &&
+                cropTile.growStage < cropTile.crop.growthStageTime.Count)
             {
                 cropTile.growStage++;
+                cropTile.growTimer = 0;
                 VisualizeTile(cropTile);
             }
         }
 
-        // 비 안 오는 날엔 물 상태 초기화
+        // 비 안 오는 날에는 물 상태 초기화
         if (!isRaining)
         {
             foreach (CropTile tile in container.crops)
@@ -210,6 +223,7 @@ public class TilemapCropsManager : TimeAgent
                 VisualizeTile(tile);
             }
         }
+        lastUpdatedDay = dayTimeController.days;
     }
 
     public bool Check(Vector3Int position)
@@ -224,7 +238,6 @@ public class TilemapCropsManager : TimeAgent
 
     public void Plow(Vector3Int position)
     {
-        //잔디부분
         if (IsBlockedArea(position))
         {
             Debug.Log($"[Plow] 차단된 영역입니다: {position}");
@@ -247,13 +260,11 @@ public class TilemapCropsManager : TimeAgent
                 tile.renderer.gameObject.SetActive(false);
             }
 
-            // 타일을 시각적으로 plowed로 갱신
             targetTilemap.SetTile(position, plowedTile);
             targetTilemap.RefreshTile(position);
         }
         else
         {
-            // cropTile이 존재하지 않으면 새로 생성
             CreatePlowedTile(position);
         }
     }
@@ -262,7 +273,6 @@ public class TilemapCropsManager : TimeAgent
     {
         Debug.Log($"[Seed] 호출됨! {toSeed.name} 심으려고 함, 계절 = {GameManager.instance.timeController.CurrentSeason}");
 
-        //잔디용
         if (IsBlockedArea(position))
         {
             Debug.Log($"[Water] 차단된 영역입니다: {position}");
@@ -272,18 +282,14 @@ public class TilemapCropsManager : TimeAgent
         CropTile tile = container.Get(position);
         if (tile == null) { return; }
 
-        // 현재 계절 가져오기
         Season currentSeason = GameManager.instance.timeController.CurrentSeason;
 
-        // 심으려는 작물이 현재 계절에 심을 수 있는지 확인
         if (!toSeed.seasons.Contains(currentSeason))
         {
             Debug.Log($"[Seed] {toSeed.name}은 {currentSeason}에 심을 수 없습니다.");
-
             return;
         }
 
-        //작물 중복 방지
         tile.crop = toSeed;
         tile.growStage = 0;
         tile.growTimer = 0;
@@ -293,7 +299,6 @@ public class TilemapCropsManager : TimeAgent
 
     public void VisualizeTile(CropTile cropTile)
     {
-        //물을 줬으면 무조건 watered tile
         if (cropTile.isWatered)
         {
             if (watered == null)
@@ -310,7 +315,6 @@ public class TilemapCropsManager : TimeAgent
 
         targetTilemap.RefreshTile(cropTile.position);
 
-        // SpriteRenderer 생성
         if (cropTile.renderer == null)
         {
             GameObject go = Instantiate(cropsSpritePrefab, transform);
@@ -319,7 +323,6 @@ public class TilemapCropsManager : TimeAgent
             cropTile.renderer = go.GetComponent<SpriteRenderer>();
         }
 
-        // 작물 스프라이트 설정
         if (cropTile.crop != null && cropTile.crop.sprites.Count > 0)
         {
             int stage = cropTile.growStage;
@@ -350,7 +353,6 @@ public class TilemapCropsManager : TimeAgent
 
     internal void PickUp(Vector3Int gridPosition)
     {
-        //잔디용
         if (IsBlockedArea(gridPosition))
         {
             Debug.Log($"[PickUp] 차단된 영역입니다: {gridPosition}");
@@ -367,7 +369,7 @@ public class TilemapCropsManager : TimeAgent
                 targetTilemap.CellToWorld(gridPosition),
                 tile.crop.yield,
                 tile.crop.count
-                );
+            );
 
             if (tile.renderer != null)
             {
@@ -375,38 +377,29 @@ public class TilemapCropsManager : TimeAgent
             }
 
             container.crops.Remove(tile);
-
-
-            //밭을 농장 기본 땅으로 바꿈
-            //targetTilemap.SetTile(gridPosition, null);
             targetTilemap.SetTile(gridPosition, baseSoilTile);
         }
     }
 
     public void Water(Vector3Int position)
     {
-        //잔디용
         if (IsBlockedArea(position))
         {
             Debug.Log($"[Water] 차단된 영역입니다: {position}");
             return;
         }
 
-        // 1.타일맵에서 해당 위치의 타일을 가져옴
         TileBase tile = targetTilemap.GetTile(position);
 
-        // 2.타일 이름 확인
         Debug.Log($"[DEBUG] 현재 타일: {tile?.name}");
         Debug.Log($"[DEBUG] plowed 타일 이름: {plowedTile?.name}, seeded 타일 이름: {seeded?.name}");
 
-        // 3.Seeded / Plowed가 아니면 물을 줄 수 없음
         if (tile.name != seeded.name && tile.name != plowedTile.name)
         {
             Debug.LogWarning($"[Water] {position} 타일은 물 줄 수 없는 타일입니다.");
             return;
         }
 
-        // 4.CropTile이 있는지 확인
         CropTile cropTile = container.Get(position);
         if (cropTile == null)
         {
@@ -420,22 +413,24 @@ public class TilemapCropsManager : TimeAgent
             return;
         }
 
-        // 5.물주기 중복 방지
         if (cropTile.isWatered)
         {
             Debug.LogWarning($"[Water] {position} 위치는 이미 물을 준 상태입니다.");
             return;
         }
 
-        // 6.물 주기
         cropTile.isWatered = true;
         targetTilemap.SetTile(position, watered);
         Debug.Log($"[Water] {position} 위치에 물을 주었습니다!");
     }
 
-    //잔디부분 좌표
     private bool IsBlockedArea(Vector3Int pos)
     {
         return pos.x >= -20 && pos.x <= 26 && pos.y >= 9 && pos.y <= 14;
+    }
+
+    public void ForceResetLastUpdatedDay()
+    {
+        lastUpdatedDay = -1;
     }
 }

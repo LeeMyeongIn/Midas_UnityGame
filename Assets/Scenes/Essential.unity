@@ -4605,7 +4605,7 @@ MonoBehaviour:
     m_PostInfinity: 0
     m_RotationOrder: 4
   dayLightColor: {r: 1, g: 1, b: 1, a: 1}
-  timeScale: 10
+  timeScale: 144
   startAtTime: 21600
   morningTime: 21600
   screenTint: {fileID: 1734395991}

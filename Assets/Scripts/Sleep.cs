@@ -27,6 +27,7 @@ public class Sleep : MonoBehaviour
         if (isSleeping) return;
         StartCoroutine(SleepRoutine());
     }
+
     IEnumerator SleepRoutine()
     {
         isSleeping = true;
@@ -40,8 +41,27 @@ public class Sleep : MonoBehaviour
 
         character.FullHeal();
         character.FullRest(0);
-        SaveGame();  // 게임 저장 기능 추가
-        dayTime.SkipToMorning();
+        SaveGame();  // 게임 저장 기능
+
+        dayTime.isSleepSkipping = true;
+        dayTime.days++;
+        dayTime.totalDays++;
+        dayTime.SetTime(21600f); // 6시로 고정
+        dayTime.UpdateDateText();  // UI 업데이트
+        if (dayTime.weatherManager != null)
+        {
+            dayTime.weatherManager.GenerateDailyWeather(dayTime.CurrentSeason);
+        }
+
+        //작물 성장 처리
+        TilemapCropsManager cropsManager = GameManager.instance.GetComponent<CropsManager>().cropsManager;
+        if (cropsManager != null)
+        {
+            cropsManager.ForceResetLastUpdatedDay(); // Tick 차단 방지
+            cropsManager.Tick(dayTime);  // 작물 성장 반영
+            Debug.Log("[Sleep] 작물 Tick() 호출 완료");
+        }
+
         playerRespawn.StartRespawn();
 
         scrrenTint.UnTint();
@@ -53,6 +73,7 @@ public class Sleep : MonoBehaviour
 
         yield return null;
     }
+
 
     private void SaveGame()
     {
