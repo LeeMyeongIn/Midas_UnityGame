@@ -5,6 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MainMenuScene.unity
+    guid: 306cb1c713a9fdd4cbab287c8dc3cced
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
@@ -23,18 +26,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/IntroScene.unity
     guid: 9d7cc87f8158fdb4f885055e2ed011bf
-  - enabled: 1
-    path: Assets/Scenes/BeachScene.unity
-    guid: b18f151e6bb43f84494d6189afb315d6
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Essential.unity
     guid: fff388f2dd1a7be43a14c556faeaa12e
-  - enabled: 1
-    path: Assets/Scenes/MainMenuScene.unity
-    guid: 306cb1c713a9fdd4cbab287c8dc3cced
   - enabled: 1
     path: Assets/Scenes/FarmingScene.unity
     guid: 9c41d4c1016b8f649b0ad702503b50c9
