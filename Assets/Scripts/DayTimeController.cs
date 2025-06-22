@@ -29,7 +29,6 @@ public class DayTimeController : MonoBehaviour
     const float secondsInDay = 86400f;
     const float phaseLenght = 900f;
     const float phasesInDay = 96f;
-    public bool isSleepSkipping = false;
 
     [SerializeField] Color nightLightColor;
     [SerializeField] AnimationCurve nightTimeCurve;
@@ -38,7 +37,7 @@ public class DayTimeController : MonoBehaviour
     float time;
     [SerializeField] float timeScale = 60f;
     [SerializeField] float startAtTime = 21601f;
-    [SerializeField] float morningTime = 21600f;
+    [SerializeField] float morningTime = 2160f;
 
     [SerializeField] ScreenTint screenTint;
     [SerializeField] SeasonTilemapController seasonTilemapController;
@@ -111,7 +110,7 @@ public class DayTimeController : MonoBehaviour
         TimeValueCalculation();
         DayLight();
 
-        if (!isDayChanging && !isSleepSkipping && Hours >= 2f && time >= (morningTime + 72000f))
+        if (!isDayChanging && Hours >= 2f && time >= (morningTime + 72000f))
         {
             isDayChanging = true;
 
@@ -260,7 +259,7 @@ public class DayTimeController : MonoBehaviour
         seasonText.text = $"{seasonName}";
     }
 
-    public void UpdateDateText()
+    private void UpdateDateText()
     {
         int displayDay = days + 1;
         dateText.text = $"{displayDay}, {dayOfWeek}";
