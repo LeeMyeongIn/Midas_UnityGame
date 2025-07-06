@@ -7,6 +7,7 @@ public class SleepChoicePanelManager : MonoBehaviour
 {
     public Button sleepButton;
     public Button saveOnlyButton;
+    public Button saveExitButton;
     public Button cancelButton;
 
     private Sleep sleep;
@@ -36,6 +37,19 @@ public class SleepChoicePanelManager : MonoBehaviour
         cancelButton.onClick.AddListener(() =>
         {
             sleep.CloseSleepPanel();
+        });
+
+        saveExitButton.onClick.AddListener(() =>
+        {
+            sleep.SaveOnly();  // 저장
+            sleep.CloseSleepPanel();  // 패널 닫기
+
+
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();  // 종료
+#endif
         });
     }
 }
