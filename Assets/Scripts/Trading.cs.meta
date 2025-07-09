@@ -3,7 +3,22 @@ guid: 5c5741fe997c9da4ea5d6ec0f1377241
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - storePanel: {instanceID: 0}
+  - inventoryPanel: {instanceID: 0}
+  - wanderingMerchantAction: {instanceID: 0}
+  - quantitySelectionPanel: {instanceID: 0}
+  - itemNameText: {instanceID: 0}
+  - quantityText: {instanceID: 0}
+  - unitPriceText: {instanceID: 0}
+  - totalPriceText: {instanceID: 0}
+  - increaseButton: {instanceID: 0}
+  - decreaseButton: {instanceID: 0}
+  - confirmPurchaseButton: {instanceID: 0}
+  - cancelPurchaseButton: {instanceID: 0}
+  - maxQuantityText: {instanceID: 0}
+  - playerInventory: {instanceID: 0}
+  - inventoryItemPanel: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

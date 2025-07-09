@@ -53,3 +53,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4c7daf1884821cb47ab337d8754a23ec, type: 2}
   minItemsToSell: 6
   maxItemsToSell: 12
+  cooldownTime: 10
+  cooltimePanelPrefab: {fileID: 0}
