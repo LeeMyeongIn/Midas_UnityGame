@@ -76,7 +76,7 @@ public class Character : MonoBehaviour, IDamageable
     private void Dead()
     {
         isDead = true;
-        disableControls.DisableControl();
+        //disableControls.DisableControl();
         playerRespawn.StartRespawn();
     }
 
@@ -110,7 +110,7 @@ public class Character : MonoBehaviour, IDamageable
     private void Exhausted()
     {
         isExhausted = true;
-        disableControls.DisableControl();
+        //disableControls.DisableControl();
         playerRespawn.StartRespawn();
     }
 
