@@ -64,6 +64,9 @@ public class TilemapCropsManager : TimeAgent
 
     [SerializeField] public TileBase baseSoilTile; //농장 바닥 땅 타일
 
+    //스프링클러
+    public List<Sprinkler> activeSprinklers = new List<Sprinkler>();
+
     //농장, 밭, 물줬을 때 타일
     public TileBase baseSoil;
     public TileBase plowedTile;
@@ -106,11 +109,12 @@ public class TilemapCropsManager : TimeAgent
 
     public void Tick(DayTimeController dayTimeController)
     {
-        Debug.Log($"[Tick] 호출됨: day = {dayTimeController.days}, season = {dayTimeController.CurrentSeason}");
-
         if (targetTilemap == null) return;
         if (lastUpdatedDay == dayTimeController.days) return;
+
         lastUpdatedDay = dayTimeController.days;
+
+        Debug.Log($"[Tick] 호출됨: day = {dayTimeController.days}, season = {dayTimeController.CurrentSeason}");
 
         bool isRaining = dayTimeController.weatherManager != null &&
                          dayTimeController.weatherManager.IsRaining;
@@ -122,6 +126,27 @@ public class TilemapCropsManager : TimeAgent
             {
                 tile.isWatered = true;
                 VisualizeTile(tile);
+            }
+        }
+
+        foreach (Sprinkler sprinkler in activeSprinklers)
+        {
+            foreach (Vector3Int pos in sprinkler.GetTilesInRange())
+            {
+                TileBase tile = targetTilemap.GetTile(pos);
+                if (tile == plowedTile || tile == watered)
+                {
+                    CropTile cropTile = container.Get(pos);
+                    if (cropTile == null)
+                    {
+                        cropTile = new CropTile();
+                        cropTile.position = pos;
+                        container.Add(cropTile);
+                    }
+
+                    cropTile.isWatered = true;
+                    VisualizeTile(cropTile);
+                }
             }
         }
 
@@ -201,12 +226,34 @@ public class TilemapCropsManager : TimeAgent
             }
         }
 
-        // 비 안 오는 날엔 물 상태 초기화
+        // 비 안오는 날엔 sprinkler 영역 제외하고 물 상태 초기화
         if (!isRaining)
         {
             foreach (CropTile tile in container.crops)
             {
-                tile.isWatered = false;
+                bool inSprinklerRange = false;
+                foreach (Sprinkler sprinkler in activeSprinklers)
+                {
+                    foreach (Vector3Int pos in sprinkler.GetTilesInRange())
+                    {
+                        if (pos == tile.position)
+                        {
+                            inSprinklerRange = true;
+                            break;
+                        }
+                    }
+                    if (inSprinklerRange) break;
+                }
+
+                if (inSprinklerRange)
+                {
+                    tile.isWatered = true;  // sprinkler 범위는 항상 물 주기
+                }
+                else
+                {
+                    tile.isWatered = false; // sprinkler 범위 아니면 물 초기화
+                }
+
                 VisualizeTile(tile);
             }
         }
@@ -445,5 +492,32 @@ public class TilemapCropsManager : TimeAgent
 
             //집2, 3
             || (pos.x >= -53 && pos.x <= -39 && pos.y >= 7 && pos.y <= 14);
+    }
+
+    //스프링클러 범위
+    private bool IsTileInAnySprinklerRange(Vector3Int pos)
+    {
+        foreach (Sprinkler sprinkler in activeSprinklers)
+        {
+            foreach (Vector3Int sprinklerPos in sprinkler.GetTilesInRange())
+            {
+                if (sprinklerPos == pos)
+                    return true;
+            }
+        }
+        return false;
+    }
+    
+    //스프링클러 등록
+    public void RegisterSprinkler(Sprinkler sprinkler)
+    {
+        if (!activeSprinklers.Contains(sprinkler))
+            activeSprinklers.Add(sprinkler);
+    }
+    //등록 해제
+    public void UnregisterSprinkler(Sprinkler sprinkler)
+    {
+        if (activeSprinklers.Contains(sprinkler))
+            activeSprinklers.Remove(sprinkler);
     }
 }

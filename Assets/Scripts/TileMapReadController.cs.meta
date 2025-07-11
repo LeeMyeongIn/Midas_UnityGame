@@ -3,7 +3,13 @@ guid: c409716bcc78d214686a865fa7306b42
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - tilemap: {instanceID: 0}
+  - cropsManager: {instanceID: 0}
+  - objectsManager: {instanceID: 0}
+  - sprinklerPrefab: {instanceID: 0}
+  - sprinklerItem: {instanceID: 0}
+  - toolbarController: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

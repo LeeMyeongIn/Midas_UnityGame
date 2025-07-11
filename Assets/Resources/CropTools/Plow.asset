@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcf269aafe05fa4ea64ac464b62134c, type: 3}
   m_Name: Plow
   m_EditorClassIdentifier: 
+  description: 
   Name: Plow
-  id: 5
+  id: 301
   stackable: 0
   icon: {fileID: 21300000, guid: 686432e2bc2ab0f4285e5add77f646b9, type: 3}
   onAction: {fileID: 0}
@@ -22,3 +23,7 @@ MonoBehaviour:
   crop: {fileID: 0}
   iconHighlight: 0
   itemPrefab: {fileID: 0}
+  isWeapon: 0
+  damage: 10
+  price: 100
+  canBeSold: 1
