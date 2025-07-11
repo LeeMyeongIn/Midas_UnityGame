@@ -481,7 +481,7 @@ public class TilemapCropsManager : TimeAgent
     }
 
     //아이템 사용 금지 좌표
-    private bool IsBlockedArea(Vector3Int pos)
+    public bool IsBlockedArea(Vector3Int pos)
     {
         return
             //잔디
@@ -491,7 +491,10 @@ public class TilemapCropsManager : TimeAgent
             || (pos.x >= -51 && pos.x <= -44 && pos.y >= 7 && pos.y <= 13)
 
             //집2, 3
-            || (pos.x >= -53 && pos.x <= -39 && pos.y >= 7 && pos.y <= 14);
+            || (pos.x >= -53 && pos.x <= -39 && pos.y >= 7 && pos.y <= 14)
+
+            //연못
+            || (pos.x >= 19 && pos.x <= 25 && pos.y >= 1 && pos.y <= 5);
     }
 
     //스프링클러 범위

@@ -108,23 +108,32 @@ public class TileMapReadController : MonoBehaviour
             else if (currentItem == sprinklerL2Item) level = 2;
             else if (currentItem == sprinklerL3Item) level = 3;
 
-            if (level > 0 && currentItem != hammerItem)
+            if (level > 0)
             {
-                InstallSprinkler(gridPosition, level);
-                InventoryController.Instance.RemoveItem(currentItem, 1);
+                bool installed = InstallSprinkler(gridPosition, level);
+                if (installed)
+                {
+                    InventoryController.Instance.RemoveItem(currentItem, 1);
+                }
             }
         }
     }
 
-    private void InstallSprinkler(Vector3Int gridPosition, int level)
+    private bool InstallSprinkler(Vector3Int gridPosition, int level)
     {
+        TilemapCropsManager cropsManager = GameObject.FindObjectOfType<TilemapCropsManager>();
+        if (cropsManager != null && cropsManager.IsBlockedArea(gridPosition))
+        {
+            Debug.Log($"[InstallSprinkler] 금지된 영역입니다: {gridPosition}");
+            return false;  // 설치 실패
+        }
+
         Vector3 worldPosition = tilemap.CellToWorld(gridPosition) + new Vector3(0.5f, 0.5f, 0f);
         GameObject obj = Instantiate(sprinklerPrefab, worldPosition, Quaternion.identity);
         Sprinkler sprinkler = obj.GetComponent<Sprinkler>();
         sprinkler.centerPosition = gridPosition;
         sprinkler.upgradeLevel = level;
 
-        // 단계별로 스프라이트 다르게 지정
         SpriteRenderer sr = obj.GetComponent<SpriteRenderer>();
         if (sr != null)
         {
@@ -134,10 +143,11 @@ public class TileMapReadController : MonoBehaviour
         }
 
         Debug.Log($"[TileMapReadController] 스프링클러 설치됨 at {gridPosition} / Level {level}");
+        return true;  // 설치 성공
     }
+
     public Tilemap GetTilemap()
     {
         return tilemap;
     }
-
 }
