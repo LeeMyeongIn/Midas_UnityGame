@@ -433,9 +433,17 @@ public class TilemapCropsManager : TimeAgent
         Debug.Log($"[Water] {position} 위치에 물을 주었습니다!");
     }
 
-    //잔디부분 좌표
+    //아이템 사용 금지 좌표
     private bool IsBlockedArea(Vector3Int pos)
     {
-        return pos.x >= -20 && pos.x <= 26 && pos.y >= 9 && pos.y <= 14;
+        return
+            //잔디
+            (pos.x >= -20 && pos.x <= 26 && pos.y >= 9 && pos.y <= 14)
+
+            //집1
+            || (pos.x >= -51 && pos.x <= -44 && pos.y >= 7 && pos.y <= 13)
+
+            //집2, 3
+            || (pos.x >= -53 && pos.x <= -39 && pos.y >= 7 && pos.y <= 14);
     }
 }
