@@ -17,5 +17,11 @@ public class ItemSpawnManager : MonoBehaviour
     {
         GameObject o = Instantiate(pickUpItemPrefab, position, Quaternion.identity);
         o.GetComponent<PickUpItem>().Set(item, count);
+
+        //스프링클러만 크기 고정
+        if (item != null && item.name.Contains("Sprinkler"))
+        {
+            o.transform.localScale = Vector3.one;
+        }
     }
 }
