@@ -7,7 +7,7 @@ using UnityEngine.Tilemaps;
 public class ToolsCharacterController : MonoBehaviour
 {
     CharacterLevel characterLevel;
-    CharacterController2D characterController2d;
+    public CharacterController2D characterController2d;
     Character character;
     Rigidbody2D rgbd2d;
     ToolbarController toolbarController;

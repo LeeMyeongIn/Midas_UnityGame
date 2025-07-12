@@ -5071,7 +5071,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fcbf95e34bc3964fa9a568e96b6785d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 631060357}
+  toolsCharacterController: {fileID: 631060364}
+  player: {fileID: 0}
   inventoryContainer: {fileID: 11400000, guid: 311834cc7e6b900428d39f1f64254429, type: 2}
   dragAndDropController: {fileID: 416943246}
   timeController: {fileID: 416943245}

@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6fcf269aafe05fa4ea64ac464b62134c, type: 3}
-  m_Name: Watering Can
+  m_Name: WateringCanL2
   m_EditorClassIdentifier: 
   description: 
   Name: 
   id: 303
   stackable: 0
-  icon: {fileID: 21300000, guid: df26fbd10d892e7459c3680f34ca8fd4, type: 3}
+  icon: {fileID: 21300000, guid: b3598f34c350a9d4288f7a1fd47f6b7d, type: 3}
   onAction: {fileID: 0}
-  onTileMapAction: {fileID: 11400000, guid: 7147c91efaf98f4479bdda99c01600a2, type: 2}
+  onTileMapAction: {fileID: 11400000, guid: b1980c6ec9944b9409ac315d3e792ce3, type: 2}
   onItemUsed: {fileID: 0}
   crop: {fileID: 0}
   iconHighlight: 0

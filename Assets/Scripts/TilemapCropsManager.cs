@@ -432,53 +432,49 @@ public class TilemapCropsManager : TimeAgent
 
     public void Water(Vector3Int position)
     {
-        //잔디용
         if (IsBlockedArea(position))
         {
             Debug.Log($"[Water] 차단된 영역입니다: {position}");
             return;
         }
 
-        // 1.타일맵에서 해당 위치의 타일을 가져옴
         TileBase tile = targetTilemap.GetTile(position);
 
-        // 2.타일 이름 확인
         Debug.Log($"[DEBUG] 현재 타일: {tile?.name}");
         Debug.Log($"[DEBUG] plowed 타일 이름: {plowedTile?.name}, seeded 타일 이름: {seeded?.name}");
 
-        // 3.Seeded / Plowed가 아니면 물을 줄 수 없음
+        if (tile == null)
+        {
+            Debug.LogWarning($"[Water] {position} 타일은 존재하지 않는 타일입니다.");
+            return;
+        }
+
         if (tile.name != seeded.name && tile.name != plowedTile.name)
         {
             Debug.LogWarning($"[Water] {position} 타일은 물 줄 수 없는 타일입니다.");
             return;
         }
 
-        // 4.CropTile이 있는지 확인
         CropTile cropTile = container.Get(position);
         if (cropTile == null)
         {
-            Debug.LogWarning($"[Water] {position} 위치에 CropTile이 없습니다.");
-            return;
+            // CropTile이 없으면 새로 생성 (plowedTile일 때도 필요!)
+            cropTile = new CropTile();
+            cropTile.position = position;
+            container.Add(cropTile);
         }
 
-        if (cropTile.crop == null)
-        {
-            Debug.LogWarning($"[Water] {position} 위치에 작물이 없습니다.");
-            return;
-        }
-
-        // 5.물주기 중복 방지
         if (cropTile.isWatered)
         {
             Debug.LogWarning($"[Water] {position} 위치는 이미 물을 준 상태입니다.");
             return;
         }
 
-        // 6.물 주기
         cropTile.isWatered = true;
         targetTilemap.SetTile(position, watered);
         Debug.Log($"[Water] {position} 위치에 물을 주었습니다!");
     }
+
 
     //아이템 사용 금지 좌표
     public bool IsBlockedArea(Vector3Int pos)
