@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6fcf269aafe05fa4ea64ac464b62134c, type: 3}
-  m_Name: Rake3
+  m_Name: SwordL2
   m_EditorClassIdentifier: 
-  description: Undo plowing
-  Name: 
-  id: 302
+  description: 
+  Name: Sword
+  id: 11
   stackable: 0
-  icon: {fileID: 21300000, guid: b3532553269e50b438a8d3cf9b46b3b0, type: 3}
-  onAction: {fileID: 11400000, guid: 8952732d2700b7841af5fb433c939bed, type: 2}
-  onTileMapAction: {fileID: 11400000, guid: 8952732d2700b7841af5fb433c939bed, type: 2}
+  icon: {fileID: 21300000, guid: ea366d2a12775ec4c8bba07aa7a1e978, type: 3}
+  onAction: {fileID: 0}
+  onTileMapAction: {fileID: 0}
   onItemUsed: {fileID: 0}
   crop: {fileID: 0}
   iconHighlight: 0
   itemPrefab: {fileID: 0}
-  isWeapon: 0
+  isWeapon: 1
   damage: 10
   price: 100
   canBeSold: 1

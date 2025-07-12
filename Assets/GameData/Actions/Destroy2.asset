@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13138a00295474c41b8a5c8e44e89324, type: 3}
-  m_Name: Destroy 1
+  m_Name: Destroy2
   m_EditorClassIdentifier: 
-  energyCost: 3
+  energyCost: 5
   skillType: 0
   skillExperienceReward: 100
-  toolLevel: 1
-  lastMotionVector: {x: 0, y: 0}
+  toolLevel: 2
+  lastMotionVector: {x: 0, y: -1}

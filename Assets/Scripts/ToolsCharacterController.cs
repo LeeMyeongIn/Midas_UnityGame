@@ -72,12 +72,18 @@ public class ToolsCharacterController : MonoBehaviour
 
         EnergyCost(weaponEnergyCost);
 
+        if (item.id == 10) offsetDistance = 1.3f;       // SwordL1
+        else if (item.id == 11) offsetDistance = 1.5f;  // SwordL2
+        else if (item.id == 12) offsetDistance = 1.7f;  // SwordL3
+        else offsetDistance = 1.3f;                     // fallback (±âº»°ª)
+
         Vector2 position = rgbd2d.position + characterController2d.lastMotionVector * offsetDistance;
 
         attackController.Attack(item.damage, characterController2d.lastMotionVector);
 
         timer = toolTimeOut;
     }
+
 
     private void EnergyCost(int energyCost)
     {

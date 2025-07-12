@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aa2c71694644c14aa6b33b7255826ce, type: 3}
   m_Name: PlowDirtActionL2
   m_EditorClassIdentifier: 
-  energyCost: 1
+  energyCost: 5
   skillType: 0
   skillExperienceReward: 100
   canPlow:

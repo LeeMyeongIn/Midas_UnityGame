@@ -5072,12 +5072,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toolsCharacterController: {fileID: 631060364}
-  player: {fileID: 0}
+  player: {fileID: 631060357}
   inventoryContainer: {fileID: 11400000, guid: 311834cc7e6b900428d39f1f64254429, type: 2}
   dragAndDropController: {fileID: 416943246}
   timeController: {fileID: 416943245}
   dialogueSystem: {fileID: 933739894}
-  placebleObjects: {fileID: 0}
+  placebleObjects: {fileID: 416943251}
   itemDB: {fileID: 11400000, guid: fad2621d7831d3c468e1d7d413c086f4, type: 2}
   messageSystem: {fileID: 1011801371}
   screenTint: {fileID: 1734395991}
@@ -14222,6 +14222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca131981f0a2ce44fb4f8a359dcd2236, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterController2d: {fileID: 0}
   offsetDistance: 1
   markerManager: {fileID: 2140937849}
   tileMapReadcontroller: {fileID: 416943248}

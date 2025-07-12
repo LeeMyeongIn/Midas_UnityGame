@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523368b5a49dd93488162bef66774fce, type: 3}
   m_Name: Watering2
   m_EditorClassIdentifier: 
-  energyCost: 0
+  energyCost: 5
   skillType: 0
   skillExperienceReward: 100
   canWater:
