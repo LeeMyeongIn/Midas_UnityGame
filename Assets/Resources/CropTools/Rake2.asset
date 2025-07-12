@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6fcf269aafe05fa4ea64ac464b62134c, type: 3}
-  m_Name: Rake
+  m_Name: Rake2
   m_EditorClassIdentifier: 
   description: Undo plowing
   Name: 
   id: 302
   stackable: 0
-  icon: {fileID: 21300000, guid: 3ae6cb31eeaa5b6449f152bc682d332e, type: 3}
+  icon: {fileID: 21300000, guid: 5654da8a2de23bd4b947527116ec4990, type: 3}
   onAction: {fileID: 11400000, guid: 5b5e2228e8e25644499d381d32dd89d3, type: 2}
   onTileMapAction: {fileID: 11400000, guid: 5b5e2228e8e25644499d381d32dd89d3, type: 2}
   onItemUsed: {fileID: 0}

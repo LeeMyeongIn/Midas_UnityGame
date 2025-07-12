@@ -6,6 +6,9 @@ using UnityEngine.Tilemaps;
 [CreateAssetMenu(menuName = "Data/ToolAction/Remove Plowing")]
 public class RemovePlowing : ToolAction
 {
+    [SerializeField] int toolLevel = 1;
+    public Vector2 lastMotionVector;
+
     public override bool OnApply(Vector2 worldPoint)
     {
         Vector3Int gridPos = GameManager.instance.tileMapReadController.GetGridPosition(Input.mousePosition, true);
@@ -16,13 +19,13 @@ public class RemovePlowing : ToolAction
 
     public override bool OnApplyToTileMap(Vector3Int gridPosition, TileMapReadController tileMapReadController, Item item)
     {
-        if (item == null || item.id != 4444)
+        if (item == null || item.id != 302)
         {
             Debug.LogWarning($"[RemovePlowing] item.id = {item?.id} → 이 작업을 수행할 수 없습니다.");
             return false;
         }
 
-        Debug.Log($"[RemovePlowing] 밭 타일 제거 시도 at {gridPosition}");
+        Debug.Log($"[RemovePlowing] RemovePlowing 시작 at {gridPosition}, toolLevel={toolLevel}");
 
         TilemapCropsManager cropsManager = tileMapReadController.cropsManager.cropsManager;
         if (cropsManager == null || cropsManager.container == null)
@@ -31,42 +34,94 @@ public class RemovePlowing : ToolAction
             return false;
         }
 
-        //현재 타일이 쟁기질된 상태가 아닐 경우 무시
-        TileBase currentTile = cropsManager.GetTilemap().GetTile(gridPosition);
-        if (currentTile != cropsManager.plowedTile && currentTile != cropsManager.seeded && currentTile != cropsManager.watered)
+        bool anyRemoved = false;
+
+        foreach (Vector3Int pos in GetTargetPositions(gridPosition, toolLevel))
         {
-            Debug.LogWarning($"[RemovePlowing] {gridPosition} 위치는 밭이 아닙니다.");
-            return false;
-        }
-
-        // CropTile 가져오기
-        CropTile tile = cropsManager.container.Get(gridPosition);
-
-        //작물 정보 초기화
-        if (tile != null)
-        {
-            tile.crop = null;
-            tile.growStage = 0;
-            tile.growTimer = 0;
-            tile.damage = 0;
-            tile.isWatered = false;
-
-            //스프라이트 제거
-            if (tile.renderer != null)
+            TileBase currentTile = cropsManager.GetTilemap().GetTile(pos);
+            if (currentTile != cropsManager.plowedTile && currentTile != cropsManager.seeded && currentTile != cropsManager.watered)
             {
-                tile.renderer.sprite = null;
-                tile.renderer.gameObject.SetActive(false);
+                Debug.Log($"[RemovePlowing] {pos} → 밭 아님, 무시");
+                continue;
             }
 
-            //croptile도 container에서 제거
-            cropsManager.container.crops.Remove(tile);
+            CropTile tile = cropsManager.container.Get(pos);
+
+            if (tile != null)
+            {
+                tile.crop = null;
+                tile.growStage = 0;
+                tile.growTimer = 0;
+                tile.damage = 0;
+                tile.isWatered = false;
+
+                if (tile.renderer != null)
+                {
+                    tile.renderer.sprite = null;
+                    tile.renderer.gameObject.SetActive(false);
+                }
+
+                cropsManager.container.crops.Remove(tile);
+            }
+
+            cropsManager.GetTilemap().SetTile(pos, cropsManager.baseSoilTile);
+            cropsManager.GetTilemap().RefreshTile(pos);
+            anyRemoved = true;
         }
 
-        //타일맵에서 타일 제거 (밭 -> 맨땅)
-        Tilemap tilemap = cropsManager.GetTilemap();
-        tilemap.SetTile(gridPosition, cropsManager.baseSoilTile);
-        tilemap.RefreshTile(gridPosition);
+        return anyRemoved;
+    }
 
-        return true;
+    private List<Vector3Int> GetTargetPositions(Vector3Int clicked, int level)
+    {
+        List<Vector3Int> positions = new List<Vector3Int>();
+
+        Vector3Int dir = Vector3Int.down;
+
+        if (lastMotionVector.x > 0.5f)
+            dir = Vector3Int.right;
+        else if (lastMotionVector.x < -0.5f)
+            dir = Vector3Int.left;
+        else if (lastMotionVector.y > 0.5f)
+            dir = Vector3Int.up;
+        else if (lastMotionVector.y < -0.5f)
+            dir = Vector3Int.down;
+
+        if (level == 1)
+        {
+            positions.Add(clicked);
+        }
+        else if (level == 2)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                positions.Add(clicked + dir * i);
+            }
+        }
+        else if (level == 3)
+        {
+            if (dir == Vector3Int.up || dir == Vector3Int.down)
+            {
+                for (int dx = -1; dx <= 1; dx++)
+                {
+                    for (int dy = 0; dy <= 2; dy++)
+                    {
+                        positions.Add(clicked + new Vector3Int(dx, dir.y * dy, 0));
+                    }
+                }
+            }
+            else if (dir == Vector3Int.left || dir == Vector3Int.right)
+            {
+                for (int dy = -1; dy <= 1; dy++)
+                {
+                    for (int dx = 0; dx <= 2; dx++)
+                    {
+                        positions.Add(clicked + new Vector3Int(dir.x * dx, dy, 0));
+                    }
+                }
+            }
+        }
+
+        return positions;
     }
 }

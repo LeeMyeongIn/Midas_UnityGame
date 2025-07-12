@@ -45,6 +45,7 @@ public class ToolsCharacterController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+
             WeaponAction();
         }
 
@@ -115,6 +116,11 @@ public class ToolsCharacterController : MonoBehaviour
 
         EnergyCost(GetEnergyCost(item.onAction));
 
+        if (item.onAction is RemovePlowing rakeTile)
+        {
+            rakeTile.lastMotionVector = characterController2d.lastMotionVector;
+        }
+
         animator.SetTrigger("act");
         bool complete = item.onAction.OnApply(position);
 
@@ -152,6 +158,11 @@ public class ToolsCharacterController : MonoBehaviour
             if (item.onTileMapAction is PlowTile plowTile)
             {
                 plowTile.lastMotionVector = characterController2d.lastMotionVector;
+            }
+
+            if (item.onTileMapAction is RemovePlowing rakeTile)
+            {
+                rakeTile.lastMotionVector = characterController2d.lastMotionVector;
             }
 
             animator.SetTrigger("act");
