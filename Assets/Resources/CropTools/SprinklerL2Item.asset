@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: 5x5
   Name: 
-  id: 306
+  id: 308
   stackable: 1
   icon: {fileID: 21300000, guid: 21f8eb568c8dfe64bb18fcfd14310323, type: 3}
   onAction: {fileID: 0}

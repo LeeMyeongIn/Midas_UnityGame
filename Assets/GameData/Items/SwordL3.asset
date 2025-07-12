@@ -24,6 +24,6 @@ MonoBehaviour:
   iconHighlight: 0
   itemPrefab: {fileID: 0}
   isWeapon: 1
-  damage: 10
+  damage: 17
   price: 100
   canBeSold: 1

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: destroy installed Object (ex sprinkler)
   Name: 
-  id: 304
+  id: 313
   stackable: 0
   icon: {fileID: 21300000, guid: 3232e4ec949028f41aa67b39600a57ed, type: 3}
   onAction: {fileID: 11400000, guid: 7f62d11fbdd3e1f48a0056ca30b088cb, type: 2}

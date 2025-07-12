@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: 
   Name: Plow
-  id: 301
+  id: 303
   stackable: 0
   icon: {fileID: 21300000, guid: d493582f4ca0bf54da5cba0b44944668, type: 3}
   onAction: {fileID: 0}
