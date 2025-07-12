@@ -7,6 +7,13 @@ using UnityEngine.Tilemaps;
 public class TileMapReadController : MonoBehaviour
 {
     [SerializeField] Tilemap tilemap;
+    //tile강제로 지정해 땅 여러개 파지도록 수정
+    private void Start()
+    {
+        tilemap = GameObject.Find("BaseTilemap").GetComponent<Tilemap>();
+        Debug.Log("[DEBUG] TileMapReadController에서 tilemap 강제 지정: BaseTilemap");
+    }
+
     public CropsManager cropsManager;
     public PlaceableObjectsReferenceManager objectsManager;
 
@@ -118,7 +125,6 @@ public class TileMapReadController : MonoBehaviour
             }
         }
     }
-
     private bool InstallSprinkler(Vector3Int gridPosition, int level)
     {
         TilemapCropsManager cropsManager = GameObject.FindObjectOfType<TilemapCropsManager>();

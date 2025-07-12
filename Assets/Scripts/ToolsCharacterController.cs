@@ -149,6 +149,11 @@ public class ToolsCharacterController : MonoBehaviour
 
             EnergyCost(GetEnergyCost(item.onTileMapAction));
 
+            if (item.onTileMapAction is PlowTile plowTile)
+            {
+                plowTile.lastMotionVector = characterController2d.lastMotionVector;
+            }
+
             animator.SetTrigger("act");
             bool complete = item.onTileMapAction.OnApplyToTileMap(selectedTilePosition, tileMapReadcontroller, item);
 
