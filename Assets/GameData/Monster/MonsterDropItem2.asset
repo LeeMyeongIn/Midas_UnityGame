@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6fcf269aafe05fa4ea64ac464b62134c, type: 3}
-  m_Name: MonsterDropItem1
+  m_Name: MonsterDropItem2
   m_EditorClassIdentifier: 
   description: "\uD310\uB9E4 \uC804\uC6A9 \uBAAC\uC2A4\uD130 \uC804\uB9AC\uD488"
-  Name: "\uBC18\uC9C0"
+  Name: "\uBAA9\uAC78\uC774"
   id: 0
   stackable: 0
-  icon: {fileID: 8402823483680757999, guid: fc3839296902bc044b6e2f636e42a3bd, type: 3}
+  icon: {fileID: 5850499271728939931, guid: fc3839296902bc044b6e2f636e42a3bd, type: 3}
   onAction: {fileID: 0}
   onTileMapAction: {fileID: 0}
   onItemUsed: {fileID: 0}
