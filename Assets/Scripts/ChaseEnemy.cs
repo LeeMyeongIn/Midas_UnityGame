@@ -27,7 +27,7 @@ public class ChaseEnemy : MonoBehaviour
             speed * Time.deltaTime
             );
 
-        Attack();
+        //Attack();
     }
 
     private void Attack()

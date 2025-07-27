@@ -14056,6 +14056,7 @@ GameObject:
   - component: {fileID: 631060378}
   - component: {fileID: 631060379}
   - component: {fileID: 631060380}
+  - component: {fileID: 631060381}
   m_Layer: 0
   m_Name: MainCharacter
   m_TagString: Player
@@ -14499,6 +14500,19 @@ MonoBehaviour:
   goldIconImage: {fileID: 0}
   playerInventory: {fileID: 11400000, guid: 311834cc7e6b900428d39f1f64254429, type: 2}
   inventoryItemPanel: {fileID: 887309796}
+--- !u!114 &631060381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 631060357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 063a495ff147092439c9e6cc1fec0387, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackController: {fileID: 631060372}
 --- !u!1001 &650120805
 PrefabInstance:
   m_ObjectHideFlags: 0

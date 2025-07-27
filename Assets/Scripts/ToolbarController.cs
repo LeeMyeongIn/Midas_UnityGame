@@ -11,6 +11,15 @@ public class ToolbarController : MonoBehaviour
     public Action<int> onChange;
     [SerializeField] IconHighlight iconHighlight;
 
+    public static ToolbarController Instance;
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+    }
+
     public ItemSlot GetItemSlot
     {
         get
