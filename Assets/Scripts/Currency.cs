@@ -8,6 +8,14 @@ public class Currency : MonoBehaviour
     [SerializeField] int amount;
     [SerializeField] TMPro.TextMeshProUGUI text;
 
+    public int CurrentGold => amount;
+
+    public void SetGold(int amount)
+    {
+        this.amount = amount;
+        UpdateText();
+    }
+
     public void Add(int moneyGain)
     {
         amount += moneyGain;

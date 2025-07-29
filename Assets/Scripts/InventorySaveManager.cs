@@ -12,10 +12,6 @@ public static class InventorySaveManager
 
     public static void SaveInventory(ItemContainer container, int slot)
     {
-        Debug.Log("SaveInventory 호출됨 - 슬롯: " + slot);
-        Debug.Log("슬롯 수: " + container.slots.Count);
-        string path = GetSavePath(slot);
-
         InventorySaveData saveData = new InventorySaveData();
 
         foreach (var slotData in container.slots)
@@ -38,18 +34,32 @@ public static class InventorySaveManager
             }
         }
 
+        Currency currency = GameObject.FindObjectOfType<Currency>();
+        if (currency != null)
+        {
+            saveData.gold = currency.CurrentGold;
+        }
+        else
+        {
+            Debug.LogWarning("Currency 컴포넌트를 찾을 수 없습니다.");
+            saveData.gold = 0;
+        }
+
+        string path = Path.Combine(Application.persistentDataPath, $"inventory_slot{slot}.json");
         string json = JsonUtility.ToJson(saveData, true);
         File.WriteAllText(path, json);
-        Debug.Log($"[슬롯 {slot} 인벤토리 저장 완료] {path}");
+
+        Debug.Log($"[저장 완료] 슬롯 {slot}, 돈: {saveData.gold}");
     }
 
-    public static void LoadInventory(ItemContainer container, ItemList itemList, int slot)
+
+    public static void LoadInventory(ItemContainer container, ItemList database, int slot)
     {
-        string path = GetSavePath(slot);
+        string path = Path.Combine(Application.persistentDataPath, $"inventory_slot{slot}.json");
 
         if (!File.Exists(path))
         {
-            Debug.LogWarning($"슬롯 {slot} 저장 파일이 없습니다.");
+            Debug.LogWarning($"[불러오기 실패] 파일 없음: {path}");
             return;
         }
 
@@ -58,18 +68,28 @@ public static class InventorySaveManager
 
         for (int i = 0; i < container.slots.Count && i < data.slots.Count; i++)
         {
-            var s = data.slots[i];
-
-            if (s.itemId >= 0)
-                container.slots[i].Set(itemList.GetItemById(s.itemId), s.count);
+            var slotData = data.slots[i];
+            if (slotData.itemId >= 0)
+            {
+                Item item = database.items.Find(i => i.id == slotData.itemId);
+                container.slots[i].Set(item, slotData.count);
+            }
             else
+            {
                 container.slots[i].Clear();
+            }
         }
 
+        Currency currency = GameObject.FindObjectOfType<Currency>();
+        if (currency != null)
+        {
+            currency.SetGold(data.gold);
+            Debug.Log($"[돈 불러오기 완료] {data.gold}G");
+        }
+        else
+        {
+            Debug.LogWarning("Currency 컴포넌트를 찾을 수 없습니다. 돈 불러오기 실패");
+        }
         container.isDirty = true;
-        Debug.Log($"[슬롯 {slot} 인벤토리 불러오기 완료]");
-
-        Debug.Log($"[슬롯 {slot}] 불러오기 완료: 인벤토리 첫 칸 = " +
-    (container.slots[0].item != null ? container.slots[0].item.name : "빈칸"));
     }
 }
