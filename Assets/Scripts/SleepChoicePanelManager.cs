@@ -12,6 +12,21 @@ public class SleepChoicePanelManager : MonoBehaviour
 
     private Sleep sleep;
 
+    public ItemContainer inventoryContainer;
+    public ItemList itemDB;
+
+    public void OnSaveBeforeSleep()
+    {
+        int slot = PlayerPrefs.GetInt("SelectedSlot", 0);
+        InventorySaveManager.SaveInventory(inventoryContainer, slot);
+    }
+
+    public void OnLoadGame()
+    {
+        int slot = SelectedSlotHolder.slotNumber;
+        InventorySaveManager.SaveInventory(inventoryContainer, slot);
+    }
+
     void Start()
     {
         sleep = FindObjectOfType<Sleep>();
@@ -30,6 +45,9 @@ public class SleepChoicePanelManager : MonoBehaviour
 
         saveOnlyButton.onClick.AddListener(() =>
         {
+            int slot = SelectedSlotHolder.slotNumber;
+            InventorySaveManager.SaveInventory(inventoryContainer, slot);
+
             sleep.SaveOnly();
             sleep.CloseSleepPanel();
         });
@@ -41,6 +59,9 @@ public class SleepChoicePanelManager : MonoBehaviour
 
         saveExitButton.onClick.AddListener(() =>
         {
+            int slot = SelectedSlotHolder.slotNumber;
+            InventorySaveManager.SaveInventory(inventoryContainer, slot);
+
             sleep.SaveOnly();  // 저장
             sleep.CloseSleepPanel();  // 패널 닫기
 

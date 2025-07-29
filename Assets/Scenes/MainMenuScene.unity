@@ -1584,6 +1584,8 @@ MonoBehaviour:
   slotNumber: 2
   mode: 1
   slotLabel: {fileID: 0}
+  inventoryContainer: {fileID: 0}
+  itemList: {fileID: 0}
 --- !u!114 &571692323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2597,7 +2599,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 2.5603027, y: -3.2689972}
+  m_AnchoredPosition: {x: 2.5603027, y: -3.2690125}
   m_SizeDelta: {x: -624.1526, y: -279.1205}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &754811288
@@ -4150,6 +4152,8 @@ MonoBehaviour:
   slotNumber: 2
   mode: 0
   slotLabel: {fileID: 0}
+  inventoryContainer: {fileID: 0}
+  itemList: {fileID: 0}
 --- !u!1 &1342573323
 GameObject:
   m_ObjectHideFlags: 0
@@ -4971,6 +4975,8 @@ MonoBehaviour:
   slotNumber: 0
   mode: 1
   slotLabel: {fileID: 0}
+  inventoryContainer: {fileID: 0}
+  itemList: {fileID: 0}
 --- !u!114 &1602094279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5360,6 +5366,8 @@ MonoBehaviour:
   slotNumber: 1
   mode: 0
   slotLabel: {fileID: 0}
+  inventoryContainer: {fileID: 0}
+  itemList: {fileID: 0}
 --- !u!1 &1666288073
 GameObject:
   m_ObjectHideFlags: 0
@@ -5415,6 +5423,8 @@ MonoBehaviour:
   slotNumber: 1
   mode: 1
   slotLabel: {fileID: 0}
+  inventoryContainer: {fileID: 0}
+  itemList: {fileID: 0}
 --- !u!114 &1666288076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7132,6 +7142,8 @@ MonoBehaviour:
   slotNumber: 0
   mode: 0
   slotLabel: {fileID: 0}
+  inventoryContainer: {fileID: 0}
+  itemList: {fileID: 0}
 --- !u!1 &2076446831
 GameObject:
   m_ObjectHideFlags: 0

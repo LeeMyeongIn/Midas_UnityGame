@@ -48741,6 +48741,8 @@ MonoBehaviour:
   saveOnlyButton: {fileID: 1532677094}
   saveExitButton: {fileID: 1899562098}
   cancelButton: {fileID: 694376856}
+  inventoryContainer: {fileID: 11400000, guid: 311834cc7e6b900428d39f1f64254429, type: 2}
+  itemDB: {fileID: 11400000, guid: fad2621d7831d3c468e1d7d413c086f4, type: 2}
 --- !u!1 &619893101
 GameObject:
   m_ObjectHideFlags: 0

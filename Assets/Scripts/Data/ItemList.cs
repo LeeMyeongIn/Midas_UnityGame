@@ -6,4 +6,9 @@ using UnityEngine;
 public class ItemList : ScriptableObject
 {
     public List<Item> items;
+
+    public Item GetItemById(int id)
+    {
+        return items.Find(item => item.id == id);
+    }
 }

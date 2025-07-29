@@ -1,16 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SlotButton : MonoBehaviour
 {
-    public int slotNumber;  // slot 1, 2, 3
+    public int slotNumber;
     public enum Mode { Save, Load }
     public Mode mode;
-
     public Text slotLabel;
+
+    public ItemContainer inventoryContainer;
+    public ItemList itemList;
 
     private void Start()
     {
@@ -25,6 +25,9 @@ public class SlotButton : MonoBehaviour
 
     public void OnClickSlot()
     {
+        SelectedSlotHolder.slotNumber = slotNumber;
+        Debug.Log("선택한 슬롯: " + slotNumber);
+
         if (mode == Mode.Save)
         {
             var so = CharacterGameManager.Instance.playerData;
@@ -39,19 +42,20 @@ public class SlotButton : MonoBehaviour
             };
 
             SaveManager.SavePlayerData(saveData, slotNumber);
+
+            InventorySaveManager.SaveInventory(inventoryContainer, slotNumber);
+
             SceneManager.LoadScene("FarmingScene", LoadSceneMode.Single);
             SceneManager.LoadScene("Essential", LoadSceneMode.Additive);
             SceneManager.LoadScene("HelpScene", LoadSceneMode.Additive);
         }
-
         else if (mode == Mode.Load)
         {
             if (SaveManager.HasSaveData(slotNumber))
             {
-                PlayerDataForSave loaded = SaveManager.LoadPlayerData(slotNumber);
+                var loaded = SaveManager.LoadPlayerData(slotNumber);
                 var so = CharacterGameManager.Instance.playerData;
 
-                // 플레이어 정보
                 so.characterName = loaded.characterName;
                 so.farmName = loaded.farmName;
                 so.aboutTheFarm = loaded.aboutTheFarm;
@@ -59,8 +63,6 @@ public class SlotButton : MonoBehaviour
                 so.saveSlotId = loaded.saveSlotId;
                 so.selectedCharacterIndex = loaded.selectedCharacterIndex;
 
-
-                // 날짜/계절/시간 정보
                 CharacterGameManager.Instance.loadedSaveData = loaded;
 
                 SceneManager.LoadScene("FarmingScene", LoadSceneMode.Single);
