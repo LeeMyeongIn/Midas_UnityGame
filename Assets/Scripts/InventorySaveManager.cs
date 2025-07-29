@@ -14,6 +14,7 @@ public static class InventorySaveManager
     {
         InventorySaveData saveData = new InventorySaveData();
 
+        // 슬롯
         foreach (var slotData in container.slots)
         {
             if (slotData.item != null)
@@ -34,6 +35,7 @@ public static class InventorySaveManager
             }
         }
 
+        // 돈
         Currency currency = GameObject.FindObjectOfType<Currency>();
         if (currency != null)
         {
@@ -44,6 +46,10 @@ public static class InventorySaveManager
             Debug.LogWarning("Currency 컴포넌트를 찾을 수 없습니다.");
             saveData.gold = 0;
         }
+
+        // 집 업그레이드 상태
+        var house = GameObject.FindObjectOfType<HouseUpgradeController>();
+        saveData.houseLevel = house != null ? house.GetCurrentLevel() : 1;
 
         string path = Path.Combine(Application.persistentDataPath, $"inventory_slot{slot}.json");
         string json = JsonUtility.ToJson(saveData, true);
@@ -91,5 +97,9 @@ public static class InventorySaveManager
             Debug.LogWarning("Currency 컴포넌트를 찾을 수 없습니다. 돈 불러오기 실패");
         }
         container.isDirty = true;
+
+        var house = GameObject.FindObjectOfType<HouseUpgradeController>();
+        if (house != null)
+            house.UpgradeToLevel(data.houseLevel);
     }
 }

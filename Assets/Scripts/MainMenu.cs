@@ -38,6 +38,7 @@ public class MainMenu : MonoBehaviour
 
     public void StartNewGame()
     {
+        HouseSaveManager.SaveHouseLevel(1, playerData.saveSlotId);
         SceneManager.LoadScene(nameNewGameStartScene, LoadSceneMode.Single);
     }
 

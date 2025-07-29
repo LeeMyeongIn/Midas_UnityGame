@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Data/ToolAction/HouseUpgradeAction")]
 public class HouseUpgradeAction : ToolAction
 {
-    public int targetLevel = 2;
+    public int targetLevel = 1;
 
     public override void OnItemUsed(Item usedItem, ItemContainer inventory)
     {

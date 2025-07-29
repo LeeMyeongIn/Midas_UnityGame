@@ -23,12 +23,20 @@ public class HouseUpgradeController : MonoBehaviour
     }
     public void UpgradeToLevel(int level)
     {
+        if (level <= 0)
+        {
+            Debug.LogWarning($"[경고] 잘못된 집 레벨 {level}, 무시됨");
+            return;
+        }
+
         currentLevel = level;
         ApplyLevel();
     }
 
     private void ApplyLevel()
     {
+        Debug.Log($"[집 레벨 적용] 현재 레벨: {currentLevel}");
+
         step1House?.SetActive(currentLevel == 1);
         step2House?.SetActive(currentLevel == 2);
         step3House?.SetActive(currentLevel == 3);
@@ -38,9 +46,9 @@ public class HouseUpgradeController : MonoBehaviour
     {
         ApplyLevel();
     }
+
     public int GetCurrentLevel()
     {
         return currentLevel;
     }
-
 }

@@ -142870,7 +142870,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileSpriteIndex: 19
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -145347,8 +145347,8 @@ Tilemap:
   - m_RefCount: 11
     m_Data: {fileID: 11400000, guid: d5fb28a783c60ac4e8703bed43ba81c8, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 1
-    m_Data: {fileID: 6092592359491385890, guid: 4401a3f300d632e458bc47378d39eb67, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 2
     m_Data: {fileID: -3893981637842336773, guid: 4401a3f300d632e458bc47378d39eb67, type: 3}
   - m_RefCount: 13
@@ -145385,8 +145385,8 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 9
     m_Data: {fileID: -3517243591738238641, guid: 4401a3f300d632e458bc47378d39eb67, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 6092592359491385890, guid: 4401a3f300d632e458bc47378d39eb67, type: 3}
   - m_RefCount: 13
     m_Data: {fileID: 4437839082663815673, guid: 4401a3f300d632e458bc47378d39eb67, type: 3}
   - m_RefCount: 1
@@ -148161,6 +148161,49 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1841054886
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1841054888}
+  - component: {fileID: 1841054887}
+  m_Layer: 0
+  m_Name: HouseManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1841054887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841054886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 021ae9f68f3a86f4a9d1f79f039c0178, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1841054888
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841054886}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 361.91217, y: 216.97078, z: -368.94827}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 18
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1845684590
 GameObject:
   m_ObjectHideFlags: 0

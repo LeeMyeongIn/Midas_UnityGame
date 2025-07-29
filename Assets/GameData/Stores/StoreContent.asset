@@ -43,6 +43,8 @@ MonoBehaviour:
     count: 0
   - item: {fileID: 11400000, guid: 0a24a18d61bb41d4d95b268668043a11, type: 2}
     count: 0
+  - item: {fileID: 11400000, guid: ae04987af3bae7244a71a15d14ddc111, type: 2}
+    count: 0
   - item: {fileID: 11400000, guid: 1f793481ecf5de84092eb1338f3111e9, type: 2}
     count: 0
   isDirty: 0

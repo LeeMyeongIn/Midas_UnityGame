@@ -47,6 +47,8 @@ public class SleepChoicePanelManager : MonoBehaviour
         {
             int slot = SelectedSlotHolder.slotNumber;
             InventorySaveManager.SaveInventory(inventoryContainer, slot);
+            int houseLevel = HouseUpgradeController.Instance.GetCurrentLevel();
+            HouseSaveManager.SaveHouseLevel(houseLevel, slot);
 
             sleep.SaveOnly();
             sleep.CloseSleepPanel();
@@ -61,6 +63,8 @@ public class SleepChoicePanelManager : MonoBehaviour
         {
             int slot = SelectedSlotHolder.slotNumber;
             InventorySaveManager.SaveInventory(inventoryContainer, slot);
+            int houseLevel = HouseUpgradeController.Instance.GetCurrentLevel();
+            HouseSaveManager.SaveHouseLevel(houseLevel, slot);
 
             sleep.SaveOnly();  // 저장
             sleep.CloseSleepPanel();  // 패널 닫기
