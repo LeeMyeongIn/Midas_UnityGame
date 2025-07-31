@@ -1,109 +1,103 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System.IO;
-
-[System.Serializable]
-public class RecipeSaveData
-{
-    public List<int> unlockedRecipeIds = new List<int>();
-    public List<int> cookedRecipeIds = new List<int>();
-}
+using UnityEngine;
 
 public class RecipeUnlockManager : MonoBehaviour
 {
     public static RecipeUnlockManager Instance;
 
-    private const string SaveFileName = "codex.json";
-    private RecipeSaveData saveData = new RecipeSaveData();
+    private HashSet<string> unlockedRecipeSet = new HashSet<string>();
+    private HashSet<string> cookedRecipeSet = new HashSet<string>();
+    private string savePath;
 
-    private HashSet<int> cookedRecipeSet = new HashSet<int>();
-    public bool IsCooked(int recipeId)
+    [System.Serializable]
+    private class RecipeSaveData
     {
-        return cookedRecipeSet.Contains(recipeId);
+        public List<string> unlocked = new List<string>();
+        public List<string> cooked = new List<string>();
     }
 
     private void Awake()
     {
-        Instance = this;
-        Load();
-        RebuildCookedSet();
-    }
-
-
-    public bool IsUnlocked(int recipeId)
-    {
-        return saveData.unlockedRecipeIds.Contains(recipeId);
-    }
-
-    public void Unlock(int recipeId)
-    {
-        if (!saveData.unlockedRecipeIds.Contains(recipeId))
+        if (Instance == null)
         {
-            saveData.unlockedRecipeIds.Add(recipeId);
-            Save();
-            Debug.Log($"[업적] 레시피 해금 업적 카운트 추가");
-            TriumphManager.Instance?.UpdateProgressByType(TriumphType.RecipeUnlock, 1);
+            Instance = this;
+            savePath = Path.Combine(Application.persistentDataPath, "recipe.json");
+            Load();
         }
-    }
-
-    public List<int> GetUnlockedList()
-    {
-        return saveData.unlockedRecipeIds;
-    }
-
-    int totalRecipeCount = 18;
-
-    public int GetTotalRecipeCount()
-    {
-        return totalRecipeCount;
-    }
-
-    public bool IsAllUnlocked()
-    {
-        return saveData.unlockedRecipeIds.Count >= totalRecipeCount;
-    }
-
-    public void RegisterCooked(int recipeId)
-    {
-        if (!cookedRecipeSet.Contains(recipeId))
+        else
         {
-            cookedRecipeSet.Add(recipeId);
-            saveData.cookedRecipeIds.Add(recipeId);
-            Save();
-            Debug.Log($"[요리 등록] 제작 완료: {recipeId}");
+            Destroy(gameObject);
         }
-    }
-
-    public bool IsAllCooked()
-    {
-        int totalRecipeCount = 18;
-        return cookedRecipeSet.Count >= totalRecipeCount;
-    }
-
-    public int GetCookedCount()
-    {
-        return cookedRecipeSet.Count;
-    }
-
-    private void Save()
-    {
-        string json = JsonUtility.ToJson(saveData);
-        File.WriteAllText(Application.persistentDataPath + "/" + SaveFileName, json);
     }
 
     private void Load()
     {
-        string path = Application.persistentDataPath + "/" + SaveFileName;
-        if (File.Exists(path))
+        if (File.Exists(savePath))
         {
-            string json = File.ReadAllText(path);
-            saveData = JsonUtility.FromJson<RecipeSaveData>(json);
+            string json = File.ReadAllText(savePath);
+            RecipeSaveData data = JsonUtility.FromJson<RecipeSaveData>(json);
+            unlockedRecipeSet = new HashSet<string>(data.unlocked ?? new List<string>());
+            cookedRecipeSet = new HashSet<string>(data.cooked ?? new List<string>());
+        }
+        else
+        {
+            unlockedRecipeSet.Clear();
+            cookedRecipeSet.Clear();
+        }
+
+        Debug.Log("[Recipe] recipe.json 로드 완료");
+    }
+
+    private void Save()
+    {
+        RecipeSaveData data = new RecipeSaveData
+        {
+            unlocked = new List<string>(unlockedRecipeSet),
+            cooked = new List<string>(cookedRecipeSet)
+        };
+
+        string json = JsonUtility.ToJson(data, true);
+        File.WriteAllText(savePath, json);
+        Debug.Log("[Recipe] recipe.json 저장 완료");
+    }
+
+    public void Unlock(int recipeId)
+    {
+        string id = recipeId.ToString();
+        if (!unlockedRecipeSet.Contains(id))
+        {
+            unlockedRecipeSet.Add(id);
+            Save();
         }
     }
 
-    private void RebuildCookedSet()
+    public void RegisterCooked(int recipeId)
     {
-        cookedRecipeSet = new HashSet<int>(saveData.cookedRecipeIds);
+        string id = recipeId.ToString();
+        if (!cookedRecipeSet.Contains(id))
+        {
+            cookedRecipeSet.Add(id);
+            Save();
+        }
     }
+
+    public bool IsUnlocked(int recipeId) => unlockedRecipeSet.Contains(recipeId.ToString());
+    public bool IsCooked(int recipeId) => cookedRecipeSet.Contains(recipeId.ToString());
+    public int GetCookedCount() => cookedRecipeSet.Count;
+    public bool IsAllCooked() => GetCookedCount() >= 18;
+    public bool IsAllUnlocked() => unlockedRecipeSet.Count >= 18;
+    public List<int> GetUnlockedList()
+    {
+        List<int> result = new List<int>();
+        foreach (var id in unlockedRecipeSet)
+            if (int.TryParse(id, out int parsed)) result.Add(parsed);
+        return result;
+    }
+
+    public int GetTotalRecipeCount()
+    {
+        return 18;
+    }
+
 }

@@ -13,7 +13,6 @@ public class ToolsCharacterController : MonoBehaviour
     ToolbarController toolbarController;
     Animator animator;
     [SerializeField] float offsetDistance = 1f;
-    //[SerializeField] float sizeOfInteractableArea = 1.2f;
     [SerializeField] MarkerManager markerManager;
     [SerializeField] TileMapReadController tileMapReadcontroller;
     [SerializeField] float maxDistance = 1.5f;
@@ -41,23 +40,20 @@ public class ToolsCharacterController : MonoBehaviour
 
     private void Update()
     {
-        if(timer > 0f) { timer -= Time.deltaTime; }
+        if (timer > 0f) { timer -= Time.deltaTime; }
 
         if (Input.GetMouseButtonDown(0))
         {
-
             WeaponAction();
         }
 
         SelectTile();
         CanSelectCheck();
         Marker();
+
         if (Input.GetMouseButtonDown(0))
         {
-            if (UseToolWorld() == true)
-            {
-                return;
-            }
+            if (UseToolWorld()) return;
             UseToolGrid();
         }
     }
@@ -67,23 +63,20 @@ public class ToolsCharacterController : MonoBehaviour
         if (timer > 0f) { return; }
 
         Item item = toolbarController.GetItem;
-        if (item == null) { return; }
-        if (item.isWeapon == false) { return; }
+        if (item == null || item.isWeapon == false) return;
 
         EnergyCost(weaponEnergyCost);
 
         if (item.id == 10) offsetDistance = 1.3f;       // SwordL1
         else if (item.id == 11) offsetDistance = 1.5f;  // SwordL2
         else if (item.id == 12) offsetDistance = 1.7f;  // SwordL3
-        else offsetDistance = 1.3f;                     // fallback (기본값)
+        else offsetDistance = 1.3f;
 
         Vector2 position = rgbd2d.position + characterController2d.lastMotionVector * offsetDistance;
-
         attackController.Attack(item.damage, characterController2d.lastMotionVector);
 
         timer = toolTimeOut;
     }
-
 
     private void EnergyCost(int energyCost)
     {
@@ -112,100 +105,96 @@ public class ToolsCharacterController : MonoBehaviour
 
     private bool UseToolWorld()
     {
-        if (timer > 0f) { return false; }
+        if (timer > 0f) return false;
 
         Vector2 position = rgbd2d.position + characterController2d.lastMotionVector * offsetDistance;
 
         Item item = toolbarController.GetItem;
-        if (item == null) { return false; }
-        if (item.onAction == null) { return false; }
+        if (item == null) return false;
 
-        EnergyCost(GetEnergyCost(item.onAction));
+        bool complete = false;
 
-        if (item.onAction is RemovePlowing rakeTile)
+        if (item.onAction != null)
         {
-            rakeTile.lastMotionVector = characterController2d.lastMotionVector;
+            EnergyCost(GetEnergyCost(item.onAction));
+
+            if (item.onAction is RemovePlowing rakeTile)
+                rakeTile.lastMotionVector = characterController2d.lastMotionVector;
+
+            animator.SetTrigger("act");
+            complete = item.onAction.OnApply(position);
+
+            if (complete && item.onItemUsed != null)
+                item.onItemUsed.OnItemUsed(item, GameManager.instance.inventoryContainer);
+        }
+        else if (item.onItemUsed != null)
+        {
+            // 도감 아이템 전용 처리
+            animator.SetTrigger("act");
+            item.onItemUsed.OnItemUsed(item, GameManager.instance.inventoryContainer);
+            complete = true;
         }
 
-        animator.SetTrigger("act");
-        bool complete = item.onAction.OnApply(position);
-
-        if (complete == true)
+        if (complete && item.onItemUsed != null)
         {
-            // add experience as a reward
-            characterLevel.AddExperience(item.onAction.skillType, item.onAction.skillExperienceReward);
-
-            if (item.onItemUsed != null)
-            {
-                item.onItemUsed.OnItemUsed(item, GameManager.instance.inventoryContainer);
-            }
+            characterLevel.AddExperience(item.onItemUsed.skillType, 100);
         }
 
         timer = toolTimeOut;
-
         return complete;
     }
 
     private void UseToolGrid()
     {
-        if (timer > 0f) { return; }
+        if (timer > 0f) return;
 
         if (selectable == true)
         {
             Item item = toolbarController.GetItem;
-            if(item == null) {
+            if (item == null)
+            {
                 PickUpTile();
                 return;
             }
-            if(item.onTileMapAction == null) { return; }
+
+            if (item.onTileMapAction == null) return;
 
             EnergyCost(GetEnergyCost(item.onTileMapAction));
 
             if (item.onTileMapAction is PlowTile plowTile)
-            {
                 plowTile.lastMotionVector = characterController2d.lastMotionVector;
-            }
 
             if (item.onTileMapAction is RemovePlowing rakeTile)
-            {
                 rakeTile.lastMotionVector = characterController2d.lastMotionVector;
-            }
 
             animator.SetTrigger("act");
             bool complete = item.onTileMapAction.OnApplyToTileMap(selectedTilePosition, tileMapReadcontroller, item);
 
-            if(complete == true)
+            if (complete)
             {
                 characterLevel.AddExperience(item.onTileMapAction.skillType, item.onTileMapAction.skillExperienceReward);
 
-                if(item.onItemUsed != null)
+                if (item.onItemUsed != null)
                 {
                     item.onItemUsed.OnItemUsed(item, GameManager.instance.inventoryContainer);
                     characterLevel.AddExperience(item.onItemUsed.skillType, 100);
                 }
             }
-        }
 
-        timer = toolTimeOut;
+            timer = toolTimeOut;
+        }
     }
 
     private int GetEnergyCost(ToolAction action)
     {
         int energyCost = action.energyCost;
         energyCost -= characterLevel.GetLevel(action.skillType);
-
-        if(energyCost < 1)
-        {
-            energyCost = 1;
-        }
-
-        return energyCost;
+        return Mathf.Max(1, energyCost);
     }
 
     private void PickUpTile()
     {
-        if(onTilePickUp == null) { return; }
-
+        if (onTilePickUp == null) return;
         onTilePickUp.OnApplyToTileMap(selectedTilePosition, tileMapReadcontroller, null);
     }
 
@@ -213,5 +202,4 @@ public class ToolsCharacterController : MonoBehaviour
     {
         return toolbarController.GetItem;
     }
-
 }

@@ -81,6 +81,11 @@ public class InventoryController : MonoBehaviour
             }
             TriumphManager.Instance?.UpdateCropTypeAchievements();
         }
+
+        if (item.id >= 901 && item.id <= 910)
+        {
+            MonsterDropCodexTracker.Instance.RegisterDrop(item.id.ToString());
+        }
     }
 
     public void RemoveItem(Item item, int count = 1)

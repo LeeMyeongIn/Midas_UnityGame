@@ -1,19 +1,20 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class CodexDropItemEntry : MonoBehaviour
 {
     [SerializeField] private Image itemIcon;
-    [SerializeField] private TextMeshProUGUI itemName;
-    [SerializeField] private GameObject lockOverlay;
 
     public void Initialize(Item item, bool isSeen)
     {
-        itemIcon.sprite = item.icon;
-        itemName.text = item.Name;
+        if (itemIcon != null)
+        {
+            itemIcon.sprite = item.icon;
+            itemIcon.color = isSeen
+                ? Color.white
+                : new Color(1f, 1f, 1f, 0.3f);
 
-        lockOverlay.SetActive(!isSeen);
-        itemIcon.color = isSeen ? Color.white : Color.gray;
+            itemIcon.rectTransform.sizeDelta = new Vector2(64f, 64f);
+        }
     }
 }

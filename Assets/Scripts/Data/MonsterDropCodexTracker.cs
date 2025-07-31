@@ -1,28 +1,22 @@
 using System.Collections.Generic;
-using UnityEngine;
 using System.IO;
-
-[System.Serializable]
-public class DropCodexSaveData
-{
-    public List<string> seenDropItemIds = new List<string>();
-}
+using UnityEngine;
 
 public class MonsterDropCodexTracker : MonoBehaviour
 {
     public static MonsterDropCodexTracker Instance;
 
-    private const string SaveFileName = "codex.json";
-
-    private DropCodexSaveData saveData = new DropCodexSaveData();
     private HashSet<string> seenDropItemSet = new HashSet<string>();
+
+    private string savePath;
 
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            LoadData();
+            savePath = Application.persistentDataPath + "/dropItem.json";
+            Load();
         }
         else
         {
@@ -35,8 +29,8 @@ public class MonsterDropCodexTracker : MonoBehaviour
         if (!seenDropItemSet.Contains(itemId))
         {
             seenDropItemSet.Add(itemId);
-            saveData.seenDropItemIds.Add(itemId);
-            SaveData();
+            Save();
+            Debug.Log($"드롭 아이템 등록됨: {itemId}");
         }
     }
 
@@ -49,7 +43,7 @@ public class MonsterDropCodexTracker : MonoBehaviour
     {
         List<Item> result = new List<Item>();
 
-        foreach (string id in saveData.seenDropItemIds)
+        foreach (string id in seenDropItemSet)
         {
             Item item = CodexUIManager.Instance.GetItemById(id);
             if (item != null)
@@ -59,20 +53,30 @@ public class MonsterDropCodexTracker : MonoBehaviour
         return result;
     }
 
-    private void SaveData()
+    private void Save()
     {
-        string json = JsonUtility.ToJson(saveData);
-        File.WriteAllText(Path.Combine(Application.persistentDataPath, SaveFileName), json);
+        List<string> listToSave = new List<string>(seenDropItemSet);
+        string json = JsonUtility.ToJson(new StringListWrapper { items = listToSave }, true);
+        File.WriteAllText(savePath, json);
     }
 
-    private void LoadData()
+    private void Load()
     {
-        string path = Path.Combine(Application.persistentDataPath, SaveFileName);
-        if (File.Exists(path))
+        if (File.Exists(savePath))
         {
-            string json = File.ReadAllText(path);
-            saveData = JsonUtility.FromJson<DropCodexSaveData>(json);
-            seenDropItemSet = new HashSet<string>(saveData.seenDropItemIds);
+            string json = File.ReadAllText(savePath);
+            StringListWrapper wrapper = JsonUtility.FromJson<StringListWrapper>(json);
+            seenDropItemSet = new HashSet<string>(wrapper.items);
         }
+        else
+        {
+            seenDropItemSet = new HashSet<string>();
+        }
+    }
+
+    [System.Serializable]
+    private class StringListWrapper
+    {
+        public List<string> items;
     }
 }

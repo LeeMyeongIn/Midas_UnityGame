@@ -1,31 +1,25 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
+using System;
 
 public class CodexMonsterEntry : MonoBehaviour
 {
-    [SerializeField] private Image iconImage;
-    [SerializeField] private TextMeshProUGUI nameText;
-    [SerializeField] private GameObject lockOverlay;
-    [SerializeField] private Button button;
-
+    [SerializeField] private Image monsterImage;
     private string monsterId;
+    private Action<string> onClick;
 
-    public void Initialize(MonsterInfo monsterInfo, bool isSeen, System.Action<string> onClickCallback)
+    public void Initialize(MonsterInfo info, bool isSeen, Action<string> onClickAction)
     {
-        monsterId = monsterInfo.MonsterId;
+        monsterId = info.MonsterId;
+        onClick = onClickAction;
 
-        nameText.text = isSeen ? monsterInfo.MonsterName : "???";
-        iconImage.sprite = monsterInfo.icon;
-        iconImage.color = isSeen ? Color.white : Color.gray;
 
-        if (lockOverlay != null)
-            lockOverlay.SetActive(!isSeen);
-
-        if (button != null)
+        if (monsterImage != null)
         {
-            button.onClick.RemoveAllListeners();
-            button.onClick.AddListener(() => onClickCallback(monsterId));
+            monsterImage.sprite = info.icon;
+            monsterImage.color = isSeen
+                ? Color.white
+                : new Color(1f, 1f, 1f, 0.3f);
         }
     }
 }

@@ -31,13 +31,13 @@ public class CodexUIManager : MonoBehaviour
 
     [Header("몬스터 표시용")]
     [SerializeField] private GameObject monsterEntryPrefab;
-    [SerializeField] private GameObject dropItemEntryPrefab;
     [SerializeField] private Transform monsterListParent;
     [SerializeField] private Transform dropItemListParent;
-    [SerializeField] private List<GameObject> allMonsterPrefabs; // 프리팹으로 등록
+    [SerializeField] private GameObject dropItemEntryPrefab;
+    [SerializeField] private List<GameObject> allMonsterPrefabs;
 
     [Header("몬스터 드랍 아이템 표시용")]
-    [SerializeField] public List<Item> MonsterDropItems; // 드랍 아이템 포함
+    [SerializeField] public List<Item> MonsterDropItems;
 
     private void Awake()
     {
@@ -56,9 +56,7 @@ public class CodexUIManager : MonoBehaviour
     public void OpenCodex()
     {
         if (CodexUI != null)
-        {
             CodexUI.SetActive(true);
-        }
 
         ShowFoodPanel();
     }
@@ -71,65 +69,57 @@ public class CodexUIManager : MonoBehaviour
 
     public void ShowFoodPanel()
     {
-        if (CodexFoodPanel != null) CodexFoodPanel.SetActive(true);
-        if (CodexCropPanel != null) CodexCropPanel.SetActive(false);
-        if (CodexTriumphPanel != null) CodexTriumphPanel.SetActive(false);
-        if (CodexMonsterPanel != null) CodexMonsterPanel.SetActive(false);
+        CodexFoodPanel?.SetActive(true);
+        CodexCropPanel?.SetActive(false);
+        CodexTriumphPanel?.SetActive(false);
+        CodexMonsterPanel?.SetActive(false);
 
         RefreshFoodCodex();
     }
 
     public void ShowCropPanel()
     {
-        if (CodexFoodPanel != null) CodexFoodPanel.SetActive(false);
-        if (CodexCropPanel != null) CodexCropPanel.SetActive(true);
-        if (CodexTriumphPanel != null) CodexTriumphPanel.SetActive(false);
-        if (CodexMonsterPanel != null) CodexMonsterPanel.SetActive(false);
+        CodexFoodPanel?.SetActive(false);
+        CodexCropPanel?.SetActive(true);
+        CodexTriumphPanel?.SetActive(false);
+        CodexMonsterPanel?.SetActive(false);
 
         RefreshCropCodex();
     }
 
     public void ShowTriumphPanel()
     {
-        if (CodexFoodPanel != null) CodexFoodPanel.SetActive(false);
-        if (CodexCropPanel != null) CodexCropPanel.SetActive(false);
-        if (CodexTriumphPanel != null) CodexTriumphPanel.SetActive(true);
-        if (CodexMonsterPanel != null) CodexMonsterPanel.SetActive(false);
+        CodexFoodPanel?.SetActive(false);
+        CodexCropPanel?.SetActive(false);
+        CodexTriumphPanel?.SetActive(true);
+        CodexMonsterPanel?.SetActive(false);
 
-        if (triumphPanelManager != null)
-        {
-            triumphPanelManager.RefreshUI();
-        }
-        else
-        {
-            Debug.LogWarning("TriumphPanelManager가 연결되지 않았습니다.");
-        }
+        triumphPanelManager?.RefreshUI();
     }
 
     public void ShowMonsterPanel()
     {
-        if (CodexFoodPanel != null) CodexFoodPanel.SetActive(false);
-        if (CodexCropPanel != null) CodexCropPanel.SetActive(false);
-        if (CodexTriumphPanel != null) CodexTriumphPanel.SetActive(false);
-        if (CodexMonsterPanel != null) CodexMonsterPanel.SetActive(true);
+        CodexFoodPanel?.SetActive(false);
+        CodexCropPanel?.SetActive(false);
+        CodexTriumphPanel?.SetActive(false);
+        CodexMonsterPanel?.SetActive(true);
 
         RefreshMonsterCodex();
+        RefreshDropItemCodex();
     }
 
     private void RefreshFoodCodex()
     {
         foreach (Transform child in recipeListParent)
-        {
             Destroy(child.gameObject);
-        }
 
         foreach (var recipe in allRecipes)
         {
             GameObject go = Instantiate(recipeEntryPrefab, recipeListParent);
             CodexRecipeEntry entry = go.GetComponent<CodexRecipeEntry>();
 
-            bool isUnlocked = RecipeUnlockManager.Instance.IsUnlocked(recipe.recipeId);
-            bool isCooked = RecipeUnlockManager.Instance.IsCooked(recipe.recipeId);
+            bool isUnlocked = RecipeUnlockManager.Instance?.IsUnlocked(recipe.recipeId) ?? false;
+            bool isCooked = RecipeUnlockManager.Instance?.IsCooked(recipe.recipeId) ?? false;
 
             entry.Initialize(recipe, isUnlocked, isCooked);
         }
@@ -138,9 +128,7 @@ public class CodexUIManager : MonoBehaviour
     private void RefreshCropCodex()
     {
         foreach (Transform child in cropListParent)
-        {
             Destroy(child.gameObject);
-        }
 
         foreach (var item in allCropItems)
         {
@@ -159,40 +147,36 @@ public class CodexUIManager : MonoBehaviour
 
         foreach (GameObject monsterPrefab in allMonsterPrefabs)
         {
+            if (monsterPrefab == null) continue;
+
             MonsterInfo info = monsterPrefab.GetComponent<MonsterInfo>();
-            if (info == null)
-            {
-                Debug.LogWarning($"{monsterPrefab.name}에 MonsterInfo 컴포넌트가 없습니다.");
-                continue;
-            }
+            if (info == null) continue;
 
             GameObject go = Instantiate(monsterEntryPrefab, monsterListParent);
             CodexMonsterEntry entry = go.GetComponent<CodexMonsterEntry>();
 
             bool isSeen = MonsterUnlockManager.Instance.HasSeen(info.MonsterId);
-            entry.Initialize(info, isSeen, ShowDropItems);
+            entry.Initialize(info, isSeen, null);
         }
-
-        foreach (Transform child in dropItemListParent)
-            Destroy(child.gameObject);
     }
 
-    public void ShowDropItems(string monsterId)
+    private void RefreshDropItemCodex()
     {
         foreach (Transform child in dropItemListParent)
             Destroy(child.gameObject);
 
-        List<Item> dropItems = MonsterDropCodexTracker.Instance.GetSeenDrops();
-
-        foreach (var item in dropItems)
+        foreach (var item in MonsterDropItems)
         {
+            bool hasSeen = MonsterDropCodexTracker.Instance.HasSeen(item.id.ToString());
+
+            Debug.Log($"[Codex] 드랍 아이템: {item.Name}, ID: {item.id}, 해금 여부: {hasSeen}");
+
             GameObject go = Instantiate(dropItemEntryPrefab, dropItemListParent);
             CodexDropItemEntry entry = go.GetComponent<CodexDropItemEntry>();
-
-            bool hasSeen = HasItem(item.id.ToString());
             entry.Initialize(item, hasSeen);
         }
     }
+
 
     public bool HasItem(string itemId)
     {
