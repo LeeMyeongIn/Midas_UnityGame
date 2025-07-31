@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2761483638127380657}
   - component: {fileID: 2761483638127380656}
   - component: {fileID: 2761483638127380659}
+  - component: {fileID: 1321873279095229292}
   m_Layer: 0
   m_Name: RPG_Monster_057_3
   m_TagString: Untagged
@@ -129,7 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 10
-  dropItem: {fileID: 6962786087131810152, guid: b259e9f7931720d4d8f43f4983245557, type: 3}
+  dropTable: {fileID: 0}
 --- !u!114 &2761483638127380657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,3 +190,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.39, y: 0.37}
   m_EdgeRadius: 0
+--- !u!114 &1321873279095229292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2761483638127380665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b8e29f5ea1934d439f2f6e84cbdc727, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MonsterId: 10
+  MonsterName: RPG_Monster_057_3
+  icon: {fileID: 21300000, guid: dc3113a5ab9626a4fa38579a3c9da813, type: 3}

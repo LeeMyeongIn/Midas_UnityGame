@@ -19,6 +19,13 @@ public class ItemPickup : MonoBehaviour
     public void PickUp()
     {
         InventoryController.Instance.AddItem(item);
+
+        if (item != null)
+        {
+            string itemId = item.id.ToString(); // string 형식으로 저장
+            MonsterDropCodexTracker.Instance.RegisterDrop(itemId);
+        }
+
         Destroy(gameObject);
     }
 

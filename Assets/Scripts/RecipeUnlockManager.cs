@@ -14,7 +14,7 @@ public class RecipeUnlockManager : MonoBehaviour
 {
     public static RecipeUnlockManager Instance;
 
-    private const string SaveFileName = "recipes.json";
+    private const string SaveFileName = "codex.json";
     private RecipeSaveData saveData = new RecipeSaveData();
 
     private HashSet<int> cookedRecipeSet = new HashSet<int>();
