@@ -68,7 +68,6 @@ public class InventoryController : MonoBehaviour
         }
 
         inventoryContainer.Add(item);
-        Debug.Log($"아이템 추가됨: {item.Name}, ID: {item.id}");
 
         onInventoryChanged?.Invoke();
 

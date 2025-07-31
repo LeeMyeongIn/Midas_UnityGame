@@ -4,7 +4,6 @@ public class CodexToolAction : ToolAction
 {
     public override void OnItemUsed(Item usedItem, ItemContainer inventory)
     {
-        Debug.Log("[CodexToolAction] 도감 열기 시도");
 
         if (CodexUIManager.Instance != null)
         {

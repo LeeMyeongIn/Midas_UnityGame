@@ -12,7 +12,7 @@ public class CodexDropItemEntry : MonoBehaviour
             itemIcon.sprite = item.icon;
             itemIcon.color = isSeen
                 ? Color.white
-                : new Color(1f, 1f, 1f, 0.3f);
+                : new Color(0.4f, 0.4f, 0.4f, 1f);
 
             itemIcon.rectTransform.sizeDelta = new Vector2(64f, 64f);
         }

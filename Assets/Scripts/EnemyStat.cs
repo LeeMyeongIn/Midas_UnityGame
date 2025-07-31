@@ -26,6 +26,13 @@ public class EnemyStat : MonoBehaviour, IDamageable
     {
         if (currHp <= 0)
         {
+            MonsterInfo info = GetComponent<MonsterInfo>();
+            if (info != null)
+            {
+                MonsterUnlockManager.Instance.RegisterMonster(info.MonsterId);
+                Debug.Log($"[Codex] 몬스터 도감 등록: {info.MonsterId}");
+            }
+
             DropItem();
             Destroy(gameObject);
         }

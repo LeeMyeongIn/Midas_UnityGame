@@ -169,8 +169,6 @@ public class CodexUIManager : MonoBehaviour
         {
             bool hasSeen = MonsterDropCodexTracker.Instance.HasSeen(item.id.ToString());
 
-            Debug.Log($"[Codex] 드랍 아이템: {item.Name}, ID: {item.id}, 해금 여부: {hasSeen}");
-
             GameObject go = Instantiate(dropItemEntryPrefab, dropItemListParent);
             CodexDropItemEntry entry = go.GetComponent<CodexDropItemEntry>();
             entry.Initialize(item, hasSeen);

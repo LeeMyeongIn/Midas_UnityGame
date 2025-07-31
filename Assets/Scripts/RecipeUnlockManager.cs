@@ -8,7 +8,9 @@ public class RecipeUnlockManager : MonoBehaviour
 
     private HashSet<string> unlockedRecipeSet = new HashSet<string>();
     private HashSet<string> cookedRecipeSet = new HashSet<string>();
-    private string savePath;
+    private int currentSlot = -1;
+
+    private const int totalRecipeCount = 18;
 
     [System.Serializable]
     private class RecipeSaveData
@@ -22,44 +24,42 @@ public class RecipeUnlockManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            savePath = Path.Combine(Application.persistentDataPath, "recipe.json");
-            Load();
+            DontDestroyOnLoad(gameObject);
+            CreateAllSlotFiles();
         }
         else
         {
             Destroy(gameObject);
+            return;
         }
     }
 
-    private void Load()
+    public void CreateAllSlotFiles()
     {
-        if (File.Exists(savePath))
+        for (int slot = 0; slot <= 2; slot++)
         {
-            string json = File.ReadAllText(savePath);
-            RecipeSaveData data = JsonUtility.FromJson<RecipeSaveData>(json);
-            unlockedRecipeSet = new HashSet<string>(data.unlocked ?? new List<string>());
-            cookedRecipeSet = new HashSet<string>(data.cooked ?? new List<string>());
-        }
-        else
-        {
-            unlockedRecipeSet.Clear();
-            cookedRecipeSet.Clear();
-        }
+            string path = Path.Combine(Application.persistentDataPath, $"recipe_slot{slot}.json");
 
-        Debug.Log("[Recipe] recipe.json 로드 완료");
+            if (!File.Exists(path))
+            {
+                RecipeSaveData newData = new RecipeSaveData();
+                string json = JsonUtility.ToJson(newData, true);
+                File.WriteAllText(path, json);
+                Debug.Log($"[레시피 도감] 슬롯 {slot} 초기 JSON 생성 완료: {path}");
+            }
+        }
     }
 
-    private void Save()
+    public void SetSaveSlot(int slot)
     {
-        RecipeSaveData data = new RecipeSaveData
-        {
-            unlocked = new List<string>(unlockedRecipeSet),
-            cooked = new List<string>(cookedRecipeSet)
-        };
+        currentSlot = Mathf.Clamp(slot, 0, 2);
+        Load();
+        Debug.Log($"[레시피 도감] 현재 슬롯: {currentSlot}, 경로: {GetSavePath()}");
+    }
 
-        string json = JsonUtility.ToJson(data, true);
-        File.WriteAllText(savePath, json);
-        Debug.Log("[Recipe] recipe.json 저장 완료");
+    private string GetSavePath()
+    {
+        return Path.Combine(Application.persistentDataPath, $"recipe_slot{currentSlot}.json");
     }
 
     public void Unlock(int recipeId)
@@ -85,8 +85,9 @@ public class RecipeUnlockManager : MonoBehaviour
     public bool IsUnlocked(int recipeId) => unlockedRecipeSet.Contains(recipeId.ToString());
     public bool IsCooked(int recipeId) => cookedRecipeSet.Contains(recipeId.ToString());
     public int GetCookedCount() => cookedRecipeSet.Count;
-    public bool IsAllCooked() => GetCookedCount() >= 18;
-    public bool IsAllUnlocked() => unlockedRecipeSet.Count >= 18;
+    public bool IsAllCooked() => cookedRecipeSet.Count >= totalRecipeCount;
+    public bool IsAllUnlocked() => unlockedRecipeSet.Count >= totalRecipeCount;
+
     public List<int> GetUnlockedList()
     {
         List<int> result = new List<int>();
@@ -97,7 +98,39 @@ public class RecipeUnlockManager : MonoBehaviour
 
     public int GetTotalRecipeCount()
     {
-        return 18;
+        return totalRecipeCount;
     }
 
+    private void Save()
+    {
+        RecipeSaveData data = new RecipeSaveData
+        {
+            unlocked = new List<string>(unlockedRecipeSet),
+            cooked = new List<string>(cookedRecipeSet)
+        };
+
+        string json = JsonUtility.ToJson(data, true);
+        File.WriteAllText(GetSavePath(), json);
+        Debug.Log($"[레시피 도감] 저장 완료: {GetSavePath()}");
+    }
+
+    private void Load()
+    {
+        string path = GetSavePath();
+
+        if (File.Exists(path))
+        {
+            string json = File.ReadAllText(path);
+            RecipeSaveData data = JsonUtility.FromJson<RecipeSaveData>(json);
+            unlockedRecipeSet = new HashSet<string>(data.unlocked ?? new List<string>());
+            cookedRecipeSet = new HashSet<string>(data.cooked ?? new List<string>());
+            Debug.Log($"[레시피 도감] 불러오기 완료: {path}");
+        }
+        else
+        {
+            unlockedRecipeSet.Clear();
+            cookedRecipeSet.Clear();
+            Debug.Log($"[레시피 도감] {path} 파일 없음, 새로운 데이터 생성");
+        }
+    }
 }

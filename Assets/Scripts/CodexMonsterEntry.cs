@@ -19,7 +19,7 @@ public class CodexMonsterEntry : MonoBehaviour
             monsterImage.sprite = info.icon;
             monsterImage.color = isSeen
                 ? Color.white
-                : new Color(1f, 1f, 1f, 0.3f);
+                : new Color(0.4f, 0.4f, 0.4f, 1f);
         }
     }
 }

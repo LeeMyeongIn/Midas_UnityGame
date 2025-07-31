@@ -7,30 +7,83 @@ public class MonsterDropCodexTracker : MonoBehaviour
     public static MonsterDropCodexTracker Instance;
 
     private HashSet<string> seenDropItemSet = new HashSet<string>();
+    private int currentSlot = -1;
 
-    private string savePath;
+    [System.Serializable]
+    private class StringListWrapper
+    {
+        public List<string> items;
+    }
 
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            savePath = Application.persistentDataPath + "/dropItem.json";
-            Load();
+            DontDestroyOnLoad(gameObject);
+            CreateAllSlotFiles();
         }
         else
         {
             Destroy(gameObject);
+            return;
         }
+    }
+
+    public void CreateAllSlotFiles()
+    {
+        for (int slot = 0; slot <= 2; slot++)
+        {
+            string path = Path.Combine(Application.persistentDataPath, $"dropItem_slot{slot}.json");
+
+            if (!File.Exists(path))
+            {
+                var wrapper = new StringListWrapper { items = new List<string>() };
+                string json = JsonUtility.ToJson(wrapper, true);
+                File.WriteAllText(path, json);
+                Debug.Log($"[드랍 Codex] 슬롯 {slot} 초기 JSON 생성 완료: {path}");
+            }
+        }
+    }
+
+    public void SetSaveSlot(int slot)
+    {
+        currentSlot = Mathf.Clamp(slot, 0, 2);
+        Load();
+        Debug.Log($"[드랍 Codex] 현재 슬롯: {currentSlot}, 경로: {GetSavePath()}");
+    }
+
+    private string GetSavePath()
+    {
+        return Path.Combine(Application.persistentDataPath, $"dropItem_slot{currentSlot}.json");
     }
 
     public void RegisterDrop(string itemId)
     {
+        if (string.IsNullOrEmpty(GetSavePath()))
+        {
+            Debug.LogError("[드랍 Codex] 저장 경로가 설정되지 않았습니다. SetSaveSlot을 먼저 호출해야 합니다.");
+            return;
+        }
+
         if (!seenDropItemSet.Contains(itemId))
         {
             seenDropItemSet.Add(itemId);
             Save();
-            Debug.Log($"드롭 아이템 등록됨: {itemId}");
+
+            if (TriumphManager.Instance != null)
+            {
+                Debug.Log($"[드랍 Codex] 새 드랍 등록됨: {itemId}, 총 개수: {seenDropItemSet.Count}");
+                TriumphManager.Instance.UpdateDropItemCodexAchievements();
+            }
+            else
+            {
+                Debug.LogWarning("[드랍 Codex] TriumphManager 인스턴스를 찾을 수 없습니다.");
+            }
+        }
+        else
+        {
+            Debug.Log($"[드랍 Codex] 이미 등록된 드랍: {itemId}");
         }
     }
 
@@ -48,35 +101,40 @@ public class MonsterDropCodexTracker : MonoBehaviour
             Item item = CodexUIManager.Instance.GetItemById(id);
             if (item != null)
                 result.Add(item);
+            else
+                Debug.LogWarning($"[드랍 Codex] 아이템 ID {id}에 해당하는 Item을 찾을 수 없습니다.");
         }
 
         return result;
     }
 
+    public int GetSeenDropCount()
+    {
+        return seenDropItemSet.Count;
+    }
+
     private void Save()
     {
-        List<string> listToSave = new List<string>(seenDropItemSet);
-        string json = JsonUtility.ToJson(new StringListWrapper { items = listToSave }, true);
-        File.WriteAllText(savePath, json);
+        string json = JsonUtility.ToJson(new StringListWrapper { items = new List<string>(seenDropItemSet) }, true);
+        File.WriteAllText(GetSavePath(), json);
+        Debug.Log($"[드랍 Codex] 저장 완료: {GetSavePath()}");
     }
 
     private void Load()
     {
-        if (File.Exists(savePath))
+        string path = GetSavePath();
+
+        if (File.Exists(path))
         {
-            string json = File.ReadAllText(savePath);
+            string json = File.ReadAllText(path);
             StringListWrapper wrapper = JsonUtility.FromJson<StringListWrapper>(json);
-            seenDropItemSet = new HashSet<string>(wrapper.items);
+            seenDropItemSet = new HashSet<string>(wrapper.items ?? new List<string>());
+            Debug.Log($"[드랍 Codex] 불러오기 완료: {path}");
         }
         else
         {
-            seenDropItemSet = new HashSet<string>();
+            seenDropItemSet.Clear();
+            Debug.Log($"[드랍 Codex] {path} 파일 없음, 새로운 데이터 생성");
         }
-    }
-
-    [System.Serializable]
-    private class StringListWrapper
-    {
-        public List<string> items;
     }
 }

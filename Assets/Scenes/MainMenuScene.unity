@@ -1989,6 +1989,7 @@ MonoBehaviour:
     day: 0
     season: 0
     time: 0
+    weatherState: 0
 --- !u!4 &667588614
 Transform:
   m_ObjectHideFlags: 0
@@ -2599,7 +2600,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 2.5603027, y: -3.2690125}
+  m_AnchoredPosition: {x: 2.5603027, y: -3.269043}
   m_SizeDelta: {x: -624.1526, y: -279.1205}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &754811288
