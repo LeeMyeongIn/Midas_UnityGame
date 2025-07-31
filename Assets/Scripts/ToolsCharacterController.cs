@@ -72,6 +72,8 @@ public class ToolsCharacterController : MonoBehaviour
         else if (item.id == 12) offsetDistance = 1.7f;  // SwordL3
         else offsetDistance = 1.3f;
 
+        animator.SetTrigger("act");
+
         Vector2 position = rgbd2d.position + characterController2d.lastMotionVector * offsetDistance;
         attackController.Attack(item.damage, characterController2d.lastMotionVector);
 
