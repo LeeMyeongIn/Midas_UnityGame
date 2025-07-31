@@ -42,6 +42,7 @@ public class Sleep : MonoBehaviour
         character.FullRest(0);
         SaveGame();  // 게임 저장 기능 추가
         dayTime.SkipToMorning();
+
         playerRespawn.StartRespawn();
 
         scrrenTint.UnTint();
@@ -73,7 +74,8 @@ public class Sleep : MonoBehaviour
             year = time.years,
             day = time.days,
             season = (int)time.CurrentSeason,
-            time = GetCurrentTime(time)
+            time = GetCurrentTime(time),
+            weatherState = WeatherManager.Instance.GetWeather()
         };
 
         SaveManager.SavePlayerData(saveData, data.saveSlotId);

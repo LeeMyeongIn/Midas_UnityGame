@@ -13,9 +13,10 @@ public class PlayerDataForSave
     public int saveSlotId;
     public int selectedCharacterIndex;
 
-    // 날짜/시간/계절 정보
+    // 날짜/시간/계절/날씨 정보
     public int year;
     public int day;
     public int season;
     public float time;
+    public WeatherStates weatherState;
 }

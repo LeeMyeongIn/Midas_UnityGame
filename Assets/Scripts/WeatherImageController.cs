@@ -54,6 +54,8 @@ public class WeatherImageController : MonoBehaviour
             weatherManager = FindObjectOfType<WeatherManager>();
 
         weatherManager.OnWeatherChanged += OnWeatherChanged;
+
+        UpdateWeatherImages();
     }
 
     private void OnDisable()

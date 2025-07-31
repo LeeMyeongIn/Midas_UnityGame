@@ -39,6 +39,8 @@ public enum WeatherStates
 
 public class WeatherManager : MonoBehaviour
 {
+    public static WeatherManager Instance { get; private set; }
+
     [Header("Particle Systems")]
     [SerializeField] ParticleSystem rainObject;
     [SerializeField] ParticleSystem heavyRainObject;
@@ -58,11 +60,21 @@ public class WeatherManager : MonoBehaviour
 
     public string CurrentWeatherText => currentWeatherState.ToString();
 
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()      //test
     {
         //ApplyWeather(WeatherStates.Snow);
-        GenerateDailyWeather(Season.Spring);
     }
 
     public void GenerateDailyWeather(Season currentSeason)
@@ -127,4 +139,14 @@ public class WeatherManager : MonoBehaviour
         currentWeatherState == WeatherStates.Rain ||
         currentWeatherState == WeatherStates.HeavyRain ||
         currentWeatherState == WeatherStates.RainAndThunder;
+
+    public void SetWeather(WeatherStates state)
+    {
+        ApplyWeather(state);
+    }
+
+    public WeatherStates GetWeather()
+    {
+        return currentWeatherState;
+    }
 }

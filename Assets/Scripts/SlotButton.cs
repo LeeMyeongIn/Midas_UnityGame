@@ -38,7 +38,8 @@ public class SlotButton : MonoBehaviour
                 aboutTheFarm = so.aboutTheFarm,
                 playerCharacterGender = so.playerCharacterGender,
                 saveSlotId = slotNumber,
-                selectedCharacterIndex = so.selectedCharacterIndex
+                selectedCharacterIndex = so.selectedCharacterIndex,
+                weatherState = WeatherManager.Instance.GetWeather()
             };
 
             SaveManager.SavePlayerData(saveData, slotNumber);
@@ -64,6 +65,8 @@ public class SlotButton : MonoBehaviour
                 so.selectedCharacterIndex = loaded.selectedCharacterIndex;
 
                 CharacterGameManager.Instance.loadedSaveData = loaded;
+
+                PlayerPrefs.SetInt("LoadedWeatherState", (int)loaded.weatherState);
 
                 SceneManager.LoadScene("FarmingScene", LoadSceneMode.Single);
                 SceneManager.LoadScene("Essential", LoadSceneMode.Additive);
