@@ -38,6 +38,14 @@ public class MainMenu : MonoBehaviour
 
     public void StartNewGame()
     {
+        int slot = playerData.saveSlotId;
+
+        if (SaveManager.HasSaveData(slot))
+        {
+            Debug.LogWarning($"슬롯 {slot}에는 이미 저장된 게임이 있어 새 게임을 시작할 수 없습니다.");
+            return;
+        }
+
         HouseSaveManager.SaveHouseLevel(1, playerData.saveSlotId);
         SceneManager.LoadScene(nameNewGameStartScene, LoadSceneMode.Single);
     }

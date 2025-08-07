@@ -21,6 +21,16 @@ public class SlotButton : MonoBehaviour
             else
                 slotLabel.text = $"½½·Ô {slotNumber}: ºñ¾îÀÖÀ½";
         }
+
+        if (mode == Mode.Save)
+        {
+            if (SaveManager.HasSaveData(slotNumber))
+            {
+                GetComponent<Button>().interactable = false;
+                if (slotLabel != null)
+                    slotLabel.text = $"½½·Ô {slotNumber}: ÀúÀåµÊ (µ¤¾î¾²±â ºÒ°¡)";
+            }
+        }
     }
 
     public void OnClickSlot()
