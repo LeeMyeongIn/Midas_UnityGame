@@ -19,7 +19,7 @@ public class RemovePlowing : ToolAction
 
     public override bool OnApplyToTileMap(Vector3Int gridPosition, TileMapReadController tileMapReadController, Item item)
     {
-        if (item == null || item.id != 302)
+        if (item == null || item.id != 304)
         {
             Debug.LogWarning($"[RemovePlowing] item.id = {item?.id} → 이 작업을 수행할 수 없습니다.");
             return false;

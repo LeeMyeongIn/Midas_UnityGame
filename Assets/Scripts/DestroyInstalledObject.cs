@@ -16,7 +16,7 @@ public class DestroyInstalledObject : ToolAction
 
     public override bool OnApplyToTileMap(Vector3Int gridPosition, TileMapReadController tileMapReadController, Item item)
     {
-        if (item == null || item.id != 304) //hammer id = 304
+        if (item == null || item.id != 313) //hammer id = 313
         {
             Debug.LogWarning($"[DestroyInstalledObject] item.id = {item?.id} → 작업 불가");
             return false;

@@ -97,6 +97,4 @@ public class PlowTile : ToolAction
 
         return positions;
     }
-
-
 }
