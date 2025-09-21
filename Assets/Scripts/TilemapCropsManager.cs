@@ -307,6 +307,8 @@ public class TilemapCropsManager : TimeAgent
 
     public void Seed(Vector3Int position, Crop toSeed)
     {
+        Debug.Log($"[Seed DEBUG] 호출됨! 위치: {position}, 작물: {toSeed.name}");
+
         Debug.Log($"[Seed] 호출됨! {toSeed.name} 심으려고 함, 계절 = {GameManager.instance.timeController.CurrentSeason}");
 
         //잔디용
@@ -317,7 +319,12 @@ public class TilemapCropsManager : TimeAgent
         }
 
         CropTile tile = container.Get(position);
-        if (tile == null) { return; }
+        if (tile == null) 
+        {
+            Debug.Log($"[Seed DEBUG] 해당 위치에 CropTile 데이터가 없습니다: {position}");
+           
+            return; 
+        }
 
         // 현재 계절 가져오기
         Season currentSeason = GameManager.instance.timeController.CurrentSeason;
@@ -336,6 +343,8 @@ public class TilemapCropsManager : TimeAgent
         tile.growTimer = 0;
 
         VisualizeTile(tile);
+
+        Debug.Log($"[Seed DEBUG] 성공적으로 심었습니다: {position}");
     }
 
     public void VisualizeTile(CropTile cropTile)
@@ -474,7 +483,6 @@ public class TilemapCropsManager : TimeAgent
         targetTilemap.SetTile(position, watered);
         Debug.Log($"[Water] {position} 위치에 물을 주었습니다!");
     }
-
 
     //아이템 사용 금지 좌표
     public bool IsBlockedArea(Vector3Int pos)

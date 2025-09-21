@@ -107,17 +107,32 @@ public class ToolsCharacterController : MonoBehaviour
 
     private bool UseToolWorld()
     {
-        if (timer > 0f) return false;
+        if (timer > 0f)
+        {
+            Debug.Log("[DEBUG] UseToolWorld: Timer remains, skipping.");
+            return false;
+        }
 
         Vector2 position = rgbd2d.position + characterController2d.lastMotionVector * offsetDistance;
 
         Item item = toolbarController.GetItem;
-        if (item == null) return false;
+        if (item == null)
+        {
+            Debug.Log("[DEBUG] UseToolWorld: Item is null, skipping.");
+            return false;
+        }
+
+        if (item.onTileMapAction != null)
+        {
+            Debug.Log($"[DEBUG] UseToolWorld: TileMapAction Item ({item.name})이므로 false 반환. UseToolGrid()로 이동.");
+            return false;
+        }
 
         bool complete = false;
 
         if (item.onAction != null)
         {
+            Debug.Log($"[DEBUG] UseToolWorld: WorldAction({item.onAction.name}) 실행 시도.");
             EnergyCost(GetEnergyCost(item.onAction));
 
             if (item.onAction is RemovePlowing rakeTile)
@@ -131,7 +146,8 @@ public class ToolsCharacterController : MonoBehaviour
         }
         else if (item.onItemUsed != null)
         {
-            // 도감 아이템 전용 처리
+            // 도감 아이템 전용 처리 (TileMapAction이 없는 경우에만 실행)
+            Debug.Log($"[DEBUG] UseToolWorld: ItemUsed({item.onItemUsed.name}) 실행 시도.");
             animator.SetTrigger("act");
             item.onItemUsed.OnItemUsed(item, GameManager.instance.inventoryContainer);
             complete = true;
@@ -141,6 +157,8 @@ public class ToolsCharacterController : MonoBehaviour
         {
             characterLevel.AddExperience(item.onItemUsed.skillType, 100);
         }
+
+        Debug.Log($"[DEBUG] UseToolWorld 최종 반환: {complete}. UseToolGrid() 호출 여부: {!complete}");
 
         timer = toolTimeOut;
         return complete;
