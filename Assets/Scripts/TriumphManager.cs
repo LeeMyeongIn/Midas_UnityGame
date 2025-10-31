@@ -18,6 +18,21 @@ public class TriumphManager : MonoBehaviour
 
     private int currentSlot = -1;
 
+    [System.Serializable]
+    public class TriumphSaveEntry
+    {
+        public string id;
+        public int currentCount;
+        public bool isCompleted;
+        public bool isRewardClaimed;
+    }
+
+    [System.Serializable]
+    public class TriumphSaveData
+    {
+        public List<TriumphSaveEntry> entries = new List<TriumphSaveEntry>();
+    }
+
     private void Awake()
     {
         if (Instance == null)
@@ -31,6 +46,16 @@ public class TriumphManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
+        // 슬롯 미설정 방지
+        if (SelectedSlotHolder.slotNumber < 0)
+        {
+            Debug.LogWarning("[업적] 잘못된 슬롯 감지 (-1). 기본 슬롯 0으로 초기화합니다.");
+            SelectedSlotHolder.slotNumber = 0;
+        }
+
+        // 게임 시작 시 현재 슬롯 바로 적용
+        SetSaveSlot(SelectedSlotHolder.slotNumber);
     }
 
     private void OnApplicationQuit()
@@ -38,6 +63,9 @@ public class TriumphManager : MonoBehaviour
         SaveTriumphs();
     }
 
+    /// <summary>
+    /// 슬롯별 JSON 파일이 없으면 생성
+    /// </summary>
     public void CreateAllSlotFiles()
     {
         for (int slot = 0; slot <= 2; slot++)
@@ -65,19 +93,14 @@ public class TriumphManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 현재 사용할 슬롯 설정
+    /// </summary>
     public void SetSaveSlot(int slot)
     {
         currentSlot = Mathf.Clamp(slot, 0, 2);
-        Debug.Log($"[업적] 현재 저장 슬롯: {currentSlot}");
-
-        string path = GetSavePath();
-        if (!File.Exists(path))
-        {
-            Debug.Log($"[업적] 저장 파일 없음. 새로 생성합니다: {path}");
-            SaveTriumphs(); // JSON 생성
-        }
-
-        LoadTriumphs(); // 슬롯 데이터 불러오기
+        LoadTriumphs();
+        Debug.Log($"[업적] 현재 슬롯: {currentSlot}, 경로: {GetSavePath()}");
     }
 
     private string GetSavePath()
@@ -87,6 +110,12 @@ public class TriumphManager : MonoBehaviour
 
     public void SaveTriumphs()
     {
+        if (currentSlot < 0)
+        {
+            Debug.LogWarning("[업적] 슬롯이 설정되지 않아 저장이 취소됨.");
+            return;
+        }
+
         TriumphSaveData saveData = new TriumphSaveData();
 
         foreach (var triumph in triumphList)
@@ -104,36 +133,43 @@ public class TriumphManager : MonoBehaviour
 
         string json = JsonUtility.ToJson(saveData, true);
         File.WriteAllText(GetSavePath(), json);
-        Debug.Log($"[업적] 슬롯 {currentSlot} 저장 완료: {GetSavePath()}");
+        Debug.Log($"[업적] 저장 완료 (슬롯 {currentSlot}): {GetSavePath()}");
     }
 
     public void LoadTriumphs()
     {
         string path = GetSavePath();
 
-        if (!File.Exists(path))
+        if (File.Exists(path))
         {
-            Debug.Log($"[업적] 슬롯 {currentSlot} 저장 파일 없음. 새로 시작합니다.");
-            return;
-        }
+            string json = File.ReadAllText(path);
+            TriumphSaveData saveData = JsonUtility.FromJson<TriumphSaveData>(json);
 
-        string json = File.ReadAllText(path);
-        TriumphSaveData saveData = JsonUtility.FromJson<TriumphSaveData>(json);
-
-        foreach (var entry in saveData.entries)
-        {
-            TriumphSO so = triumphList.Find(t => t.data.id == entry.id);
-            if (so != null)
+            foreach (var entry in saveData.entries)
             {
-                so.data.currentCount = entry.currentCount;
-                so.data.isCompleted = entry.isCompleted;
-                so.data.isRewardClaimed = entry.isRewardClaimed;
+                TriumphSO so = triumphList.Find(t => t.data.id == entry.id);
+                if (so != null)
+                {
+                    so.data.currentCount = entry.currentCount;
+                    so.data.isCompleted = entry.isCompleted;
+                    so.data.isRewardClaimed = entry.isRewardClaimed;
+                }
             }
-        }
 
-        onTriumphUpdated?.Invoke();
-        Debug.Log($"[업적] 슬롯 {currentSlot} 불러오기 완료");
+            onTriumphUpdated?.Invoke();
+            Debug.Log($"[업적] 불러오기 완료 (슬롯 {currentSlot}): {path}");
+        }
+        else
+        {
+            Debug.Log($"[업적] {path} 파일 없음, 새로운 데이터 생성");
+            ResetAllTriumphs();
+            SaveTriumphs();
+        }
     }
+
+    // ==============================
+    // 업적 관련 갱신 메서드
+    // ==============================
 
     public void UpdateCropTypeAchievements()
     {
@@ -146,10 +182,7 @@ public class TriumphManager : MonoBehaviour
                 triumph.data.currentCount = Mathf.Min(uniqueCropCount, triumph.data.targetCount);
 
                 if (triumph.data.currentCount >= triumph.data.targetCount)
-                {
-                    triumph.data.currentCount = triumph.data.targetCount;
                     triumph.data.isCompleted = true;
-                }
 
                 onTriumphUpdated?.Invoke();
             }
@@ -186,10 +219,7 @@ public class TriumphManager : MonoBehaviour
                 triumph.data.currentCount = Mathf.Min(monsterCount, triumph.data.targetCount);
 
                 if (triumph.data.currentCount >= triumph.data.targetCount)
-                {
-                    triumph.data.currentCount = triumph.data.targetCount;
                     triumph.data.isCompleted = true;
-                }
 
                 onTriumphUpdated?.Invoke();
             }
@@ -207,15 +237,16 @@ public class TriumphManager : MonoBehaviour
                 triumph.data.currentCount = Mathf.Min(dropCount, triumph.data.targetCount);
 
                 if (triumph.data.currentCount >= triumph.data.targetCount)
-                {
-                    triumph.data.currentCount = triumph.data.targetCount;
                     triumph.data.isCompleted = true;
-                }
 
                 onTriumphUpdated?.Invoke();
             }
         }
     }
+
+    // ==============================
+    // 보상 관련 메서드
+    // ==============================
 
     public bool CanClaimReward(TriumphData triumph)
     {
@@ -238,25 +269,26 @@ public class TriumphManager : MonoBehaviour
 
         triumph.isRewardClaimed = true;
         onTriumphUpdated?.Invoke();
+        SaveTriumphs();
     }
+
+    // ==============================
+    // 통계 메서드
+    // ==============================
 
     public bool HasAnyClaimableTriumph()
     {
         foreach (var triumph in triumphList)
-        {
             if (CanClaimReward(triumph.data))
                 return true;
-        }
         return false;
     }
 
     public bool AreAllRewardsClaimed()
     {
         foreach (var triumph in triumphList)
-        {
             if (!triumph.data.isCompleted || !triumph.data.isRewardClaimed)
                 return false;
-        }
         return true;
     }
 
@@ -264,17 +296,12 @@ public class TriumphManager : MonoBehaviour
     {
         int count = 0;
         foreach (var triumph in triumphList)
-        {
             if (triumph.data.isRewardClaimed)
                 count++;
-        }
         return count;
     }
 
-    public int GetTotalRewardCount()
-    {
-        return triumphList.Count;
-    }
+    public int GetTotalRewardCount() => triumphList.Count;
 
     public int GetTotalRewardableTriumphCount()
     {
@@ -296,8 +323,8 @@ public class TriumphManager : MonoBehaviour
             triumph.data.isRewardClaimed = false;
         }
 
-        Debug.Log("[업적] 모든 업적이 초기화되었습니다.");
         onTriumphUpdated?.Invoke();
+        Debug.Log("[업적] 모든 업적 초기화 완료");
     }
 
 #if UNITY_EDITOR
@@ -310,19 +337,4 @@ public class TriumphManager : MonoBehaviour
     [ContextMenu("Load Triumphs")]
     private void LoadFromEditor() => LoadTriumphs();
 #endif
-}
-
-[System.Serializable]
-public class TriumphSaveEntry
-{
-    public string id;
-    public int currentCount;
-    public bool isCompleted;
-    public bool isRewardClaimed;
-}
-
-[System.Serializable]
-public class TriumphSaveData
-{
-    public List<TriumphSaveEntry> entries = new List<TriumphSaveEntry>();
 }

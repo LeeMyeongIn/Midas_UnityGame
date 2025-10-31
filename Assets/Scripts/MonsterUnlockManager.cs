@@ -8,12 +8,11 @@ public class MonsterUnlockManager : MonoBehaviour
 
     private HashSet<string> seenMonsterSet = new HashSet<string>();
     private int currentSlot = -1;
-    private string savePath;
 
     [System.Serializable]
-    private class MonsterSaveData
+    private class StringListWrapper
     {
-        public List<string> seenMonsterIds = new List<string>();
+        public List<string> items;
     }
 
     private void Awake()
@@ -22,17 +21,20 @@ public class MonsterUnlockManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            CreateAllSlotFiles();
+
+            // 기본 슬롯 자동 설정
+            if (currentSlot == -1)
+            {
+                SetSaveSlot(0);
+                Debug.Log("[몬스터 Codex] 초기 슬롯이 설정되지 않아 slot0으로 자동 설정됨.");
+            }
         }
         else
         {
             Destroy(gameObject);
+            return;
         }
-    }
-
-    private void Start()
-    {
-        CreateAllSlotFiles(); // 모든 슬롯 JSON 생성
-        SetSaveSlot(SelectedSlotHolder.slotNumber); // 현재 슬롯 선택
     }
 
     public void CreateAllSlotFiles()
@@ -43,10 +45,10 @@ public class MonsterUnlockManager : MonoBehaviour
 
             if (!File.Exists(path))
             {
-                MonsterSaveData newData = new MonsterSaveData(); // 빈 도감
-                string json = JsonUtility.ToJson(newData, true);
+                var wrapper = new StringListWrapper { items = new List<string>() };
+                string json = JsonUtility.ToJson(wrapper, true);
                 File.WriteAllText(path, json);
-                Debug.Log($"[몬스터 도감] 슬롯 {slot} 초기 JSON 생성 완료: {path}");
+                Debug.Log($"[몬스터 Codex] 슬롯 {slot} 초기 JSON 생성 완료: {path}");
             }
         }
     }
@@ -54,23 +56,25 @@ public class MonsterUnlockManager : MonoBehaviour
     public void SetSaveSlot(int slot)
     {
         currentSlot = Mathf.Clamp(slot, 0, 2);
-        savePath = Path.Combine(Application.persistentDataPath, $"monster_slot{currentSlot}.json");
-
-        if (!File.Exists(savePath))
-        {
-            Debug.Log($"[몬스터 도감] {savePath} 없음 → 새로 생성");
-            Save();
-        }
-
         Load();
-        Debug.Log($"[몬스터 도감] 현재 슬롯: {currentSlot}, 경로: {savePath}");
+        Debug.Log($"[몬스터 Codex] 현재 슬롯: {currentSlot}, 경로: {GetSavePath()}");
+    }
+
+    private string GetSavePath()
+    {
+        if (currentSlot == -1)
+        {
+            Debug.LogError("[몬스터 Codex] 경로 요청 시 슬롯이 설정되지 않았습니다!");
+            return null;
+        }
+        return Path.Combine(Application.persistentDataPath, $"monster_slot{currentSlot}.json");
     }
 
     public void RegisterMonster(string monsterId)
     {
-        if (string.IsNullOrEmpty(savePath))
+        if (currentSlot == -1)
         {
-            Debug.LogError("[몬스터 도감] savePath가 초기화되지 않았습니다. SetSaveSlot을 먼저 호출해야 합니다.");
+            Debug.LogWarning("[몬스터 Codex] 슬롯이 설정되지 않아 Unlock이 취소됨.");
             return;
         }
 
@@ -78,69 +82,66 @@ public class MonsterUnlockManager : MonoBehaviour
         {
             seenMonsterSet.Add(monsterId);
             Save();
-            TriumphManager.Instance?.UpdateMonsterCodexAchievements();
+            Debug.Log($"[몬스터 Codex] 새 몬스터 등록됨: {monsterId}, 총 개수: {seenMonsterSet.Count}");
+
+            // 업적 시스템 연동
+            if (TriumphManager.Instance != null)
+            {
+                TriumphManager.Instance.UpdateMonsterCodexAchievements();
+                Debug.Log("[몬스터 Codex] 업적 시스템 갱신 완료.");
+            }
+            else
+            {
+                Debug.LogWarning("[몬스터 Codex] TriumphManager 인스턴스를 찾을 수 없습니다.");
+            }
+        }
+        else
+        {
+            Debug.Log($"[몬스터 Codex] 이미 등록된 몬스터: {monsterId}");
         }
     }
 
-    public bool HasSeen(string monsterId)
-    {
-        return seenMonsterSet.Contains(monsterId);
-    }
-
-    public List<string> GetSeenMonsterIds()
-    {
-        return new List<string>(seenMonsterSet);
-    }
-
-    public int GetSeenMonsterCount()
-    {
-        return seenMonsterSet.Count;
-    }
-
-    public void ClearAll()
-    {
-        seenMonsterSet.Clear();
-        Save();
-        Debug.Log("[몬스터 도감] 초기화 완료");
-    }
+    public bool HasSeen(string monsterId) => seenMonsterSet.Contains(monsterId);
+    public List<string> GetSeenMonsterIds() => new List<string>(seenMonsterSet);
+    public int GetSeenMonsterCount() => seenMonsterSet.Count;
 
     private void Save()
     {
-        if (string.IsNullOrEmpty(savePath))
+        if (currentSlot == -1)
         {
-            Debug.LogError("[몬스터 도감] Save() 호출 시 savePath가 null이거나 비어 있음");
+            Debug.LogError("[몬스터 Codex] Save() 시 슬롯이 설정되지 않았습니다. SetSaveSlot()을 먼저 호출해야 합니다.");
             return;
         }
 
-        MonsterSaveData data = new MonsterSaveData
-        {
-            seenMonsterIds = new List<string>(seenMonsterSet)
-        };
-
-        string json = JsonUtility.ToJson(data, true);
-        File.WriteAllText(savePath, json);
-        Debug.Log($"[몬스터 도감] 저장 완료: {savePath}");
+        string path = GetSavePath();
+        string json = JsonUtility.ToJson(new StringListWrapper { items = new List<string>(seenMonsterSet) }, true);
+        File.WriteAllText(path, json);
+        Debug.Log($"[몬스터 Codex] 저장 완료: {path}");
     }
 
     private void Load()
     {
-        if (string.IsNullOrEmpty(savePath))
-        {
-            Debug.LogError("[몬스터 도감] Load() 호출 시 savePath가 null이거나 비어 있음");
-            return;
-        }
+        string path = GetSavePath();
 
-        if (File.Exists(savePath))
+        if (!string.IsNullOrEmpty(path) && File.Exists(path))
         {
-            string json = File.ReadAllText(savePath);
-            MonsterSaveData data = JsonUtility.FromJson<MonsterSaveData>(json);
-            seenMonsterSet = new HashSet<string>(data.seenMonsterIds ?? new List<string>());
-            Debug.Log($"[몬스터 도감] 불러오기 완료: {savePath}");
+            string json = File.ReadAllText(path);
+            StringListWrapper wrapper = JsonUtility.FromJson<StringListWrapper>(json);
+
+            if (wrapper != null && wrapper.items != null)
+                seenMonsterSet = new HashSet<string>(wrapper.items);
+            else
+                seenMonsterSet.Clear();
+
+            Debug.Log($"[몬스터 Codex] 불러오기 완료 ({wrapper?.items?.Count ?? 0}개): {path}");
         }
         else
         {
-            seenMonsterSet = new HashSet<string>();
-            Debug.Log($"[몬스터 도감] {savePath} 파일 없음, 새로운 데이터 생성");
+            seenMonsterSet.Clear();
+            var wrapper = new StringListWrapper { items = new List<string>() };
+            string json = JsonUtility.ToJson(wrapper, true);
+            File.WriteAllText(path, json);
+            Debug.Log($"[몬스터 Codex] {path} 파일이 없어 새로 생성함");
         }
     }
 }

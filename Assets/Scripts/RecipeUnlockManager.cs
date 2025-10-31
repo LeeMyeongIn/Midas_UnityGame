@@ -32,8 +32,21 @@ public class RecipeUnlockManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
+        //  슬롯 미설정 방지
+        if (SelectedSlotHolder.slotNumber < 0)
+        {
+            Debug.LogWarning("[레시피 도감] 잘못된 슬롯 감지 (-1). 기본 슬롯 0으로 초기화합니다.");
+            SelectedSlotHolder.slotNumber = 0;
+        }
+
+        // 슬롯 초기 로드 (게임 시작 시 바로 적용 가능)
+        SetSaveSlot(SelectedSlotHolder.slotNumber);
     }
 
+    /// <summary>
+    /// 슬롯별 JSON 파일이 없으면 생성
+    /// </summary>
     public void CreateAllSlotFiles()
     {
         for (int slot = 0; slot <= 2; slot++)
@@ -50,6 +63,9 @@ public class RecipeUnlockManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 현재 사용할 저장 슬롯 설정
+    /// </summary>
     public void SetSaveSlot(int slot)
     {
         currentSlot = Mathf.Clamp(slot, 0, 2);
@@ -64,21 +80,37 @@ public class RecipeUnlockManager : MonoBehaviour
 
     public void Unlock(int recipeId)
     {
+        // 슬롯이 설정되지 않은 경우 방어
+        if (currentSlot < 0)
+        {
+            Debug.LogWarning("[레시피 도감] 슬롯이 설정되지 않아 Unlock이 취소됨.");
+            return;
+        }
+
         string id = recipeId.ToString();
         if (!unlockedRecipeSet.Contains(id))
         {
             unlockedRecipeSet.Add(id);
             Save();
+            Debug.Log($"[레시피 도감] 레시피 {id} 해금 (슬롯 {currentSlot})");
         }
     }
 
     public void RegisterCooked(int recipeId)
     {
+        // 슬롯이 설정되지 않은 경우 방어
+        if (currentSlot < 0)
+        {
+            Debug.LogWarning("[레시피 도감] 슬롯이 설정되지 않아 RegisterCooked가 취소됨.");
+            return;
+        }
+
         string id = recipeId.ToString();
         if (!cookedRecipeSet.Contains(id))
         {
             cookedRecipeSet.Add(id);
             Save();
+            Debug.Log($"[레시피 도감] 레시피 {id} 요리 등록 (슬롯 {currentSlot})");
         }
     }
 
@@ -111,7 +143,7 @@ public class RecipeUnlockManager : MonoBehaviour
 
         string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(GetSavePath(), json);
-        Debug.Log($"[레시피 도감] 저장 완료: {GetSavePath()}");
+        Debug.Log($"[레시피 도감] 저장 완료 (슬롯 {currentSlot}): {GetSavePath()}");
     }
 
     private void Load()
@@ -124,7 +156,7 @@ public class RecipeUnlockManager : MonoBehaviour
             RecipeSaveData data = JsonUtility.FromJson<RecipeSaveData>(json);
             unlockedRecipeSet = new HashSet<string>(data.unlocked ?? new List<string>());
             cookedRecipeSet = new HashSet<string>(data.cooked ?? new List<string>());
-            Debug.Log($"[레시피 도감] 불러오기 완료: {path}");
+            Debug.Log($"[레시피 도감] 불러오기 완료 (슬롯 {currentSlot}): {path}");
         }
         else
         {

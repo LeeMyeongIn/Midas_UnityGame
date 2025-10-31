@@ -28,6 +28,16 @@ public class MonsterDropCodexTracker : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
+        // 슬롯 미설정 시 0번으로 초기화
+        if (SelectedSlotHolder.slotNumber < 0)
+        {
+            Debug.LogWarning("[드랍 Codex] 잘못된 슬롯 감지 (-1). 기본 슬롯 0으로 초기화합니다.");
+            SelectedSlotHolder.slotNumber = 0;
+        }
+
+        // 현재 슬롯 불러오기
+        SetSaveSlot(SelectedSlotHolder.slotNumber);
     }
 
     public void CreateAllSlotFiles()
@@ -60,9 +70,9 @@ public class MonsterDropCodexTracker : MonoBehaviour
 
     public void RegisterDrop(string itemId)
     {
-        if (string.IsNullOrEmpty(GetSavePath()))
+        if (currentSlot < 0)
         {
-            Debug.LogError("[드랍 Codex] 저장 경로가 설정되지 않았습니다. SetSaveSlot을 먼저 호출해야 합니다.");
+            Debug.LogError("[드랍 Codex] 현재 슬롯이 설정되지 않았습니다. SetSaveSlot()을 먼저 호출해야 합니다.");
             return;
         }
 
